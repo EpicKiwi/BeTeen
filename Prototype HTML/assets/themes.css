@@ -93,3 +93,57 @@
 {
 	color: #FF5900;
 }
+
+.forum.sombre .nom
+{
+	border: solid #404040 8px;
+	background-color: #DBDBDB;
+}
+
+.forum.sombre .nom h3
+{
+	color: #404040;
+}
+
+.forum.sombre .premierSujet h3
+{
+	color: #404040;
+}
+
+.forum.turquoise .nom
+{
+	border: solid #00B8B5 8px;
+	background-color: #CEEBEA;
+}
+
+.forum.turquoise .nom h3
+{
+	color: #00B8B5;
+}
+
+.forum.turquoise .premierSujet h3
+{
+	color: #00B8B5;
+}
+
+.forum.rose .nom
+{
+	border: solid #DE0492 8px;
+	background-color: #F5D7EB;
+}
+
+.forum.rose .nom h3 , .forum.rose .premierSujet h3
+{
+	color: #DE0492;
+}
+
+.forum.bleuFonce .nom
+{
+	border: solid #2A3AB5 8px;
+	background-color: #BBC1F2;
+}
+
+.forum.bleuFonce .nom h3 , .forum.bleuFonce .premierSujet h3
+{
+	color: #2A3AB5;
+}
