@@ -1,0 +1,95 @@
+.forum.orange .nom
+{
+	border: solid #E0A500 8px;
+	background-color: #FFF1CC;
+}
+
+.forum.orange .nom h3
+{
+	color: #E0A500;
+}
+
+.forum.orange .premierSujet h3
+{
+	color: #E0A500;
+}
+
+.forum.bleu .nom
+{
+	border: solid #008AED 8px;
+	background-color: #C1D6E6;
+}
+
+.forum.bleu .nom h3
+{
+	color: #008AED;
+}
+
+.forum.bleu .premierSujet h3
+{
+	color: #008AED;
+}
+
+.forum.vert .nom
+{
+	border: solid #BEED00 8px;
+	background-color: #E7F0C5;
+}
+
+.forum.vert .nom h3
+{
+	color: #BEED00;
+}
+
+.forum.vert .premierSujet h3
+{
+	color: #BEED00;
+}
+
+.forum.violet .nom
+{
+	border: solid #9200ED 8px;
+	background-color: #F0D9FF;
+}
+
+.forum.violet .nom h3
+{
+	color: #9200ED;
+}
+
+.forum.violet .premierSujet h3
+{
+	color: #9200ED;
+}
+
+.forum.jaune .nom
+{
+	border: solid #FFFB00 8px;
+	background-color: #FFFEDB;
+}
+
+.forum.jaune .nom h3
+{
+	color: #FFFB00;
+}
+
+.forum.jaune .premierSujet h3
+{
+	color: #FFFB00;
+}
+
+.forum.rouge .nom
+{
+	border: solid #FF5900 8px;
+	background-color: #FFE3D4;
+}
+
+.forum.rouge .nom h3
+{
+	color: #FF5900;
+}
+
+.forum.rouge .premierSujet h3
+{
+	color: #FF5900;
+}
