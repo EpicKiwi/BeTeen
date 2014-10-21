@@ -4,12 +4,7 @@
 	background-color: #FFF1CC;
 }
 
-.forum.orange .nom h3
-{
-	color: #E0A500;
-}
-
-.forum.orange .premierSujet h3
+.forum.orange .nom h3 , .forum.orange .premierSujet h3
 {
 	color: #E0A500;
 }
@@ -20,12 +15,7 @@
 	background-color: #C1D6E6;
 }
 
-.forum.bleu .nom h3
-{
-	color: #008AED;
-}
-
-.forum.bleu .premierSujet h3
+.forum.bleu .nom h3 , .forum.bleu .premierSujet h3
 {
 	color: #008AED;
 }
@@ -36,12 +26,7 @@
 	background-color: #E7F0C5;
 }
 
-.forum.vert .nom h3
-{
-	color: #BEED00;
-}
-
-.forum.vert .premierSujet h3
+.forum.vert .nom h3 , .forum.vert .premierSujet h3
 {
 	color: #BEED00;
 }
@@ -52,12 +37,7 @@
 	background-color: #F0D9FF;
 }
 
-.forum.violet .nom h3
-{
-	color: #9200ED;
-}
-
-.forum.violet .premierSujet h3
+.forum.violet .nom h3 , .forum.violet .premierSujet h3
 {
 	color: #9200ED;
 }
@@ -68,12 +48,7 @@
 	background-color: #FFFEDB;
 }
 
-.forum.jaune .nom h3
-{
-	color: #FFFB00;
-}
-
-.forum.jaune .premierSujet h3
+.forum.jaune .nom h3 , .forum.jaune .premierSujet h3
 {
 	color: #FFFB00;
 }
@@ -84,12 +59,7 @@
 	background-color: #FFE3D4;
 }
 
-.forum.rouge .nom h3
-{
-	color: #FF5900;
-}
-
-.forum.rouge .premierSujet h3
+.forum.rouge .nom h3 , .forum.rouge .premierSujet h3
 {
 	color: #FF5900;
 }
@@ -100,12 +70,7 @@
 	background-color: #DBDBDB;
 }
 
-.forum.sombre .nom h3
-{
-	color: #404040;
-}
-
-.forum.sombre .premierSujet h3
+.forum.sombre .nom h3 , .forum.sombre .premierSujet h3
 {
 	color: #404040;
 }
@@ -116,12 +81,7 @@
 	background-color: #CEEBEA;
 }
 
-.forum.turquoise .nom h3
-{
-	color: #00B8B5;
-}
-
-.forum.turquoise .premierSujet h3
+.forum.turquoise .nom h3 , .forum.turquoise .premierSujet h3
 {
 	color: #00B8B5;
 }
