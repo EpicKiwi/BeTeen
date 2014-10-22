@@ -1,0 +1,16 @@
+<! Doctype html >
+<html>
+	<head>
+		<title>Forum</title>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<h1>{{sujet.titre}}</h1>
+		<h2>{{sujet.categorie.nom}}</h2>
+		<h3>{{sujet.categorie.description}}</h3>
+		<p>
+		{{sujet.contenu}}
+		</p>
+		<p>Le : {{sujet.date|date("d/m/Y")}} a {{sujet.date|date("H:i")}}</p>
+	</body>
+</html>

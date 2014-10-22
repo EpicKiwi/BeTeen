@@ -5,3 +5,7 @@ be_teen_forum_index:
 be_teen_forum_categorie:
     path:     /{categorie}
     defaults: { _controller: BeTeenForumBundle:Forum:categorie}
+
+be_teen_forum_sujet:
+    path:     /{categorie}/{sujet}
+    defaults: { _controller: BeTeenForumBundle:Forum:sujet}

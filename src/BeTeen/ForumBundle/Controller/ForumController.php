@@ -19,7 +19,15 @@ class ForumController extends Controller
 			$position = $repository->find($categorie);
 		}
 		$categories = $repository->findAllSubcategories($position);
-        return $this->render('BeTeenForumBundle:Forum:index.html.twig',array("listeCategories"=>$categories,"categorieActuelle"=>$position));
+        return $this->render('BeTeenForumBundle:Forum:categorie.html.twig',array("listeCategories"=>$categories,"categorieActuelle"=>$position));
     }
+	
+	public function sujetAction($categorie,$sujet)
+	{
+		$manager = $this->getDoctrine()->getManager();
+		$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
+		$sujet = $repository->find($sujet);
+		return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet));
+	}
 	
 }
