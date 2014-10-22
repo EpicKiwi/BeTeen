@@ -9,12 +9,26 @@ body
 	font-family: calibri, arial, default;
 }
 
+.forums
+{
+	width: 50%;
+	float: left;
+	vertical-align:top;
+}
+
+.sujets
+{
+	padding: 10px;
+	margin-left: 800px;
+}
+
 .forum
 {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	width: 750px;
+	clear: both;
 }
 
 .forum .nom
@@ -26,9 +40,13 @@ body
 	padding-top: 50px;
 	box-shadow: 0 0 5px black;
 	margin: 15px;
-	display: inline-block;
+	float: left;
+	position: relative;
+	z-index: 3;
 	-webkit-transition-duration: 0.5s;
 	-webkit-transition-property: all;
+	transition-duration: 0.5s;
+	transition-property: all;
 }
 
 .forum .nom:hover
@@ -47,17 +65,34 @@ body
 	font-weight: bold;
 }
 
+/*-----Reduit-----*/
+
+.forums.reduit .premierSujet , .forums.reduit .queue
+{
+	display: none;
+}
+
+.forums.reduit
+{
+	width: 200px;
+}
+
+.forums.reduit + .sujets
+{
+	margin-left: 188px;
+}
+
 .forum .premierSujet
 {
 	height: 130px;
-	width: 500px;
-	display: inline-block;
-	vertical-align: middle;
 	overflow: hidden;
 	padding: 10px;
 	border: solid #DBDBDB 1px;
 	box-shadow: 0 0 2px black;
 	margin-left: 10px;
+	position: relative;
+	top: 20px;
+	background-color: white;
 }
 
 .forum .premierSujet img
@@ -71,6 +106,14 @@ body
 .forum .queue
 {
 	position: absolute;
-	left: 191px;
+	left: 180px;
 	top: 84px;
+	z-index: 2;
+}
+
+.sujets .sujet
+{
+	margin: 5px;
+	padding: 5px;
+	border: solid #DBDBDB 1px;
 }
