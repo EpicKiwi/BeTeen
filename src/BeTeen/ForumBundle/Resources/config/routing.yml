@@ -1,3 +1,7 @@
-be_teen_forum_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BeTeenForumBundle:Default:index }
+be_teen_forum_index:
+    path:     /
+    defaults: { _controller: BeTeenForumBundle:Forum:index }
+
+be_teen_forum_categorie:
+    path:     /{categorie}
+    defaults: { _controller: BeTeenForumBundle:Forum:categorie}

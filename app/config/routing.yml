@@ -1,4 +1,4 @@
 be_teen_forum:
     resource: "@BeTeenForumBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /forum
 

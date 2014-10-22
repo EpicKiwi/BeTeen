@@ -1,0 +1,27 @@
+<! Doctype html >
+<html>
+	<head>
+		<title>Forum</title>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<h1>Forum</h1>
+		<h2>{{categorieActuelle.nom}}</h2>
+		<h3>{{categorieActuelle.description}}</h3>
+		<dl>
+				{% if categorieActuelle.nom != "Index" %}
+					<dt><a href="{{ path('be_teen_forum_index') }}" >Accueil</a></dt>
+					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.categorieParente.id}) }}" >Catégorie précédente</a></dt>
+				{% endif %}
+			{% if listeCategories != null %}
+				{% for categorie in listeCategories %}
+					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.id}) }}" >{{categorie.nom}}</a></dt>
+					<dd>{{categorie.description}}</dd>
+				{% endfor %}
+			{% else %}
+				<dt>Aucune Catégorie !</dt>
+				<dd>Aucune sous categories dans cette catégorie
+			{% endif %}
+		</dl>
+	</body>
+</html>
