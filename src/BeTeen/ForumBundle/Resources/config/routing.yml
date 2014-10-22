@@ -1,0 +1,3 @@
+be_teen_forum_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BeTeenForumBundle:Default:index }

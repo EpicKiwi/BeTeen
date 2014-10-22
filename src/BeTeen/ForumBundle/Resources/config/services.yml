@@ -1,0 +1,4 @@
+services:
+#    be_teen_forum.example:
+#        class: BeTeen\ForumBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

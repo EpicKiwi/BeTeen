@@ -41,3 +41,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#Dossier Symfony
+/web/bundles/
+/app/bootstrap*
+/app/cache/*
+/app/cache/dev/*
+/app/logs/*
+/vendor/
+/app/config/parameters.yml
