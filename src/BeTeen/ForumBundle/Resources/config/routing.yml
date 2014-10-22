@@ -1,6 +1,6 @@
 be_teen_forum_index:
     path:     /
-    defaults: { _controller: BeTeenForumBundle:Forum:index }
+    defaults: { _controller: BeTeenForumBundle:Forum:categorie, categorie: 0}
 
 be_teen_forum_categorie:
     path:     /{categorie}
