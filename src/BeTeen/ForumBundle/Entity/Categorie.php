@@ -47,6 +47,11 @@ class Categorie
 	 * @ORM\JoinColumn(nullable=true)
 	 */
 	private $categorieParente;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie")
+	 */
+	private $sujetsStandards;
 
     /**
      * Get id
@@ -148,5 +153,45 @@ class Categorie
     public function getCategorieParente()
     {
         return $this->categorieParente;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sujetsStandards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sujetsStandards
+     *
+     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
+     * @return Categorie
+     */
+    public function addSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
+    {
+        $this->sujetsStandards[] = $sujetsStandards;
+    
+        return $this;
+    }
+
+    /**
+     * Remove sujetsStandards
+     *
+     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
+     */
+    public function removeSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
+    {
+        $this->sujetsStandards->removeElement($sujetsStandards);
+    }
+
+    /**
+     * Get sujetsStandards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSujetsStandards()
+    {
+        return $this->sujetsStandards;
     }
 }

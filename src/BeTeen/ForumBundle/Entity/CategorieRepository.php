@@ -14,7 +14,9 @@ class CategorieRepository extends EntityRepository
 {
 	public function findAllSubcategories($parent)
 	{
-		$builder = $this->createQueryBuilder('c');
+		$builder = $this->createQueryBuilder('c')
+						->leftJoin('c.sujetsStandards','ss')
+						->addSelect('ss');
 		$builder->where('c.categorieParente = :parent')
 				->setParameter("parent",$parent)
 				->orderBy("c.nom");

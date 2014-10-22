@@ -47,6 +47,11 @@ class Categorie
 	 * @ORM\JoinColumn(nullable=true)
 	 */
 	private $categorieParente;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="Categorie")
+	 */
+	private $sujetsStandards;
 
     /**
      * Get id
@@ -125,5 +130,28 @@ class Categorie
     public function getRegles()
     {
         return $this->regles;
+    }
+
+    /**
+     * Set categorieParente
+     *
+     * @param \BeTeen\ForumBundle\Entity\Categorie $categorieParente
+     * @return Categorie
+     */
+    public function setCategorieParente(\BeTeen\ForumBundle\Entity\Categorie $categorieParente = null)
+    {
+        $this->categorieParente = $categorieParente;
+    
+        return $this;
+    }
+
+    /**
+     * Get categorieParente
+     *
+     * @return \BeTeen\ForumBundle\Entity\Categorie 
+     */
+    public function getCategorieParente()
+    {
+        return $this->categorieParente;
     }
 }

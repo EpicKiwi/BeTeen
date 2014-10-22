@@ -20,7 +20,19 @@
 				{% endfor %}
 			{% else %}
 				<dt>Aucune Catégorie !</dt>
-				<dd>Aucune sous categories dans cette catégorie
+				<dd>Aucune sous categories dans cette catégorie</dd>
+			{% endif %}
+		</dl>
+		<h3>Sujets</h3>
+		<dl>
+			{% if categorieActuelle.sujetsStandards|length != 0 %}
+				{% for sujet in categorieActuelle.sujetsStandards %}
+				<dt>{{sujet.titre}}</dt>
+				<dd>{{sujet.contenu}}</dd>
+				{% endfor %}
+			{% else %}
+				<dt>Aucun Sujet !</dt>
+				<dd>Ajoutez en dont un ;)</dd>
 			{% endif %}
 		</dl>
 	</body>
