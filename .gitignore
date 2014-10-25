@@ -52,4 +52,6 @@ Temporary Items
 /vendor/
 /vendor/*
 /app/config/parameters.yml
+# Projet Netbeans
+/nbproject/
 /nbproject/private/

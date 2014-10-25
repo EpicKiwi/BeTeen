@@ -19,7 +19,7 @@ class CategorieRepository extends EntityRepository
 						->addSelect('ss');
 		$builder->where('c.categorieParente = :parent')
 				->setParameter("parent",$parent)
-				->orderBy("c.nom");
+				->orderBy("c.ordre");
 		return $builder->getQuery()->getResult();
 	}
 }

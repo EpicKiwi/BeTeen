@@ -41,17 +41,25 @@ class Categorie
      * @ORM\Column(name="regles", type="text")
      */
     private $regles;
+    
+    /**
+     *
+     * @var integer
+     * 
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie")
-	 * @ORM\JoinColumn(nullable=true)
-	 */
-	private $categorieParente;
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $categorieParente;
 	
-	/**
-	 * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie")
-	 */
-	private $sujetsStandards;
+    /**
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie")
+     */
+    private $sujetsStandards;
 
     /**
      * Get id
@@ -193,5 +201,28 @@ class Categorie
     public function getSujetsStandards()
     {
         return $this->sujetsStandards;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return Categorie
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
     }
 }
