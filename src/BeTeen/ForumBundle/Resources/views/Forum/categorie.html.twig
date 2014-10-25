@@ -28,7 +28,7 @@
 			{% if categorieActuelle.sujetsStandards|length != 0 %}
 				{% for sujet in categorieActuelle.sujetsStandards %}
 				<dt><a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.id,'sujet':sujet.id}) }}" >{{sujet.titre}}</a></dt>
-				<dd>{{sujet.contenu}}</dd>
+				<dd>{{sujet.contenu|markdown}}</dd>
 				{% endfor %}
 			{% else %}
 				<dt>Aucun Sujet !</dt>

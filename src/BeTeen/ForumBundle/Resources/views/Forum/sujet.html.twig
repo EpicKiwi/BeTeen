@@ -9,7 +9,7 @@
 		<h2>{{sujet.categorie.nom}}</h2>
 		<h3>{{sujet.categorie.description}}</h3>
 		<p>
-		{{sujet.contenu}}
+		{{sujet.contenu|markdown}}
 		</p>
 		<p>Le : {{sujet.date|date("d/m/Y")}} a {{sujet.date|date("H:i")}}</p>
 	</body>
