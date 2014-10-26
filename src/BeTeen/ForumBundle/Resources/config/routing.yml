@@ -4,7 +4,7 @@ be_teen_admin_initialize:
     
 be_teen_forum_index:
     path:     /
-    defaults: { _controller: BeTeenForumBundle:Forum:categorie, categorie: 0}
+    defaults: { _controller: BeTeenForumBundle:Forum:categorie, categorie: index}
 
 be_teen_forum_categorie:
     path:     /{categorie}

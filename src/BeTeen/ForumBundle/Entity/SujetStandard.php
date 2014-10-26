@@ -2,6 +2,7 @@
 
 namespace BeTeen\ForumBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,11 +43,17 @@ class SujetStandard
      */
     private $date;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie",inversedBy="sujetsStandards")
-	 * @ORM\JoinColumn(nullable=false)
-	 */
-	private $categorie;
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie",inversedBy="sujetsStandards")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+    
+    /**
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
 
     /**
@@ -149,5 +156,28 @@ class SujetStandard
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return SujetStandard
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

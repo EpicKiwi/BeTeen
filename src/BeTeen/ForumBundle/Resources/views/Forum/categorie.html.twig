@@ -13,7 +13,7 @@
                 <ul>
                     <li><a href="{{ path('be_teen_forum_index') }}" >Accueil</a></li>
                     {% if categorieActuelle.parent.id != categorieActuelle.root %}
-                    <li><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.id}) }}" >Catégorie précédente</a></li>
+                    <li><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.slug}) }}" >Catégorie précédente</a></li>
                     {% endif %}
                 </ul>
 		{% endif %}
@@ -21,7 +21,7 @@
 		<dl>
 			{% if listeCategories != null %}
 				{% for categorie in listeCategories %}
-					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.id}) }}" >{{categorie.nom}}</a></dt>
+					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" >{{categorie.nom}}</a></dt>
 					<dd>{{categorie.description}}</dd>
                                         <dd>{{ categorie.sujetsStandards|length }} Sujets</dd>
 				{% endfor %}
@@ -34,8 +34,8 @@
 		<dl>
 			{% if categorieActuelle.sujetsStandards|length != 0 %}
 				{% for sujet in categorieActuelle.sujetsStandards %}
-				<dt><a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.id,'sujet':sujet.id}) }}" >{{sujet.titre}}</a></dt>
-				<dd>{{sujet.contenu|markdown}}</dd>
+				<dt><a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.slug,'sujet':sujet.slug}) }}" >{{sujet.titre}}</a></dt>
+                                <dd>{{sujet.contenu|striptags('<br>')|markdown}}</dd>
 				{% endfor %}
 			{% else %}
 				<dt>Aucun Sujet !</dt>

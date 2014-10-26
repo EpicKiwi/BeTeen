@@ -11,24 +11,29 @@ class ForumController extends Controller
     {
         $manager = $this->getDoctrine()->getManager();
 	$repository = $manager->getRepository("BeTeenForumBundle:Categorie");
-        if($categorie == 0)
-	{
-            $position = $repository->findOneBy(array("nom"=>"Index"));
-	}
-	else
-	{
-            $position = $repository->find($categorie);
-	}
+        
+        $position = $repository->findOneBy(array("slug"=>$categorie));
+            
+        if($position == null)
+        {
+            throw $this->createNotFoundException('Catégorie non trouvée');
+        }
+        
 	$categories = $repository->children($position,true);
+        
         return $this->render('BeTeenForumBundle:Forum:categorie.html.twig',array("listeCategories"=>$categories,"categorieActuelle"=>$position));
     }
 	
-	public function sujetAction($categorie,$sujet)
-	{
-		$manager = $this->getDoctrine()->getManager();
-		$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
-		$sujet = $repository->find($sujet);
-		return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet));
-	}
+    public function sujetAction($categorie,$sujet)
+    {
+        $manager = $this->getDoctrine()->getManager();
+	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
+	$sujet = $repository->findOneByslug($sujet);
+        if($sujet == null)
+        {
+            throw $this->createNotFoundException('Sujet non trouvé');
+        }
+	return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet));
+    }
 	
 }
