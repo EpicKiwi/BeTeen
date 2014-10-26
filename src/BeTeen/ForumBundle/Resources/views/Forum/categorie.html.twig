@@ -8,11 +8,17 @@
 		<h1>Forum</h1>
 		<h2>{{categorieActuelle.nom}}</h2>
 		<h3>{{categorieActuelle.description}}</h3>
+                
+		{% if categorieActuelle.root != categorieActuelle.id %}
+                <ul>
+                    <li><a href="{{ path('be_teen_forum_index') }}" >Accueil</a></li>
+                    {% if categorieActuelle.parent.id != categorieActuelle.root %}
+                    <li><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.id}) }}" >Catégorie précédente</a></li>
+                    {% endif %}
+                </ul>
+		{% endif %}
+                
 		<dl>
-				{% if categorieActuelle.nom != "Index" %}
-					<dt><a href="{{ path('be_teen_forum_index') }}" >Accueil</a></dt>
-					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.categorieParente.id}) }}" >Catégorie précédente</a></dt>
-				{% endif %}
 			{% if listeCategories != null %}
 				{% for categorie in listeCategories %}
 					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.id}) }}" >{{categorie.nom}}</a></dt>
