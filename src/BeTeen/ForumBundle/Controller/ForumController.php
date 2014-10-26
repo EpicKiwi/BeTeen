@@ -13,7 +13,7 @@ class ForumController extends Controller
 	$repository = $manager->getRepository("BeTeenForumBundle:Categorie");
         
         $position = $repository->findOneBy(array("slug"=>$categorie));
-            
+        
         if($position == null)
         {
             throw $this->createNotFoundException('Catégorie non trouvée');

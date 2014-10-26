@@ -23,7 +23,9 @@
 				{% for categorie in listeCategories %}
 					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" >{{categorie.nom}}</a></dt>
 					<dd>{{categorie.description}}</dd>
+                                        {% if categorie.sujetsStandards|length != 0 %}
                                         <dd>{{ categorie.sujetsStandards|length }} Sujets</dd>
+                                        {% endif %}
 				{% endfor %}
 			{% else %}
 				<dt>Aucune Catégorie !</dt>
