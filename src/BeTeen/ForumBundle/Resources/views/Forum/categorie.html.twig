@@ -17,6 +17,7 @@
 				{% for categorie in listeCategories %}
 					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.id}) }}" >{{categorie.nom}}</a></dt>
 					<dd>{{categorie.description}}</dd>
+                                        <dd>{{ categorie.sujetsStandards|length }} Sujets</dd>
 				{% endfor %}
 			{% else %}
 				<dt>Aucune Catégorie !</dt>

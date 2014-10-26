@@ -44,6 +44,7 @@ Temporary Items
 .apdisk
 
 #Dossier Symfony
+
 /web/bundles/
 /app/bootstrap*
 /app/cache/*
@@ -52,6 +53,8 @@ Temporary Items
 /vendor/
 /vendor/*
 /app/config/parameters.yml
+
 # Projet Netbeans
+
 /nbproject/
 /nbproject/private/
