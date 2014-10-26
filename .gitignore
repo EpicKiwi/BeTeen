@@ -45,7 +45,6 @@ Temporary Items
 
 #Dossier Symfony
 
-/web/bundles/
 /app/bootstrap*
 /app/cache/*
 /app/cache/dev/*

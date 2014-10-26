@@ -1,4 +1,4 @@
-<! Doctype html >
+{#<! Doctype html >
 <html>
 	<head>
 		<title>Forum</title>
@@ -44,5 +44,55 @@
 				<dd>Ajoutez en dont un ;)</dd>
 			{% endif %}
 		</dl>
+	</body>
+</html>
+#}
+<! Doctype html >
+<html>
+	<head>
+		<title>{{categorieActuelle.nom}} | BeTeen</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="{{ asset('css/global.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/themes.css') }}" />
+	</head>
+	<body>
+		<section class="forums" >
+                {% if listeCategories != null %}
+                    {% for categorie in listeCategories %}
+			<article class="forum orange" >
+				<a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" class="nom" >
+					<h3>{{categorie.nom}}</h3>
+					 {% if categorie.sujetsStandards|length != 0 %}<p>{{ categorie.sujetsStandards|length }} Sujets</p>{% endif %}
+				</a>
+                                {% if categorie.sujetsStandards|length != 0 %}
+				<div class="premierSujet" >
+					<h3>{{ categorie.sujetsStandards|first.titre }}</h3>
+					<p>
+					{{ categorie.sujetsStandards|first.contenu }}
+                                        </p>
+				</div>
+                                {% endif %}
+			</article>
+                    {% endfor %}
+                {% else %}
+                    <p>Rien a voir ici</p>
+		{% endif %}
+		</section>
+		<section class="sujets" >
+                {% if categorieActuelle.sujetsStandards|length != 0 %}
+                    {% for sujet in categorieActuelle.sujetsStandards %}
+                    <article class="sujet" >
+                        <h3>{{sujet.titre}}</h3>
+                        <p>{{sujet.contenu|striptags('<br>')|markdown}}</p>
+                    </article>
+                    {% endfor %}
+                {% else %}
+		<article class="sujet" >
+                    <h3>Aucun sujet</h3>
+                    <p>Il n'y a aucun sujet ici ...</p>
+                </article>
+		{% endif %}
+		</section>
+		<script src="assets/switch.js" ></script>
 	</body>
 </html>
