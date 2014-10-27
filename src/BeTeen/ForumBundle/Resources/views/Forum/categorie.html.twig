@@ -9,14 +9,15 @@
 		<h2>{{categorieActuelle.nom}}</h2>
 		<h3>{{categorieActuelle.description}}</h3>
                 
-		{% if categorieActuelle.root != categorieActuelle.id %}
                 <ul>
+		{% if categorieActuelle.root != categorieActuelle.id %}
                     <li><a href="{{ path('be_teen_forum_index') }}" >Accueil</a></li>
                     {% if categorieActuelle.parent.id != categorieActuelle.root %}
                     <li><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.slug}) }}" >Catégorie précédente</a></li>
                     {% endif %}
-                </ul>
 		{% endif %}
+                    <li><a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}" >Ajouter un sujet</a></li>
+                </ul>
                 
 		<dl>
 			{% if listeCategories != null %}

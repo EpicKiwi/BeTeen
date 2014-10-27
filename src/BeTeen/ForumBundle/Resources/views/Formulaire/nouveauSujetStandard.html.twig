@@ -1,0 +1,17 @@
+<! Doctype html >
+<html>
+	<head>
+		<title>Forum</title>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<h1>Forum</h1>
+		<h2>{{categorieActuelle.nom}}</h2>
+		<h3>{{categorieActuelle.description}}</h3>
+                
+                <form method="post" {{form_enctype(form)}} >
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-primary" />
+                </form>
+	</body>
+</html>

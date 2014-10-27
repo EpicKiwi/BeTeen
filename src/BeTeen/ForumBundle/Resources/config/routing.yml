@@ -2,6 +2,10 @@ be_teen_admin_initialize:
     path:     /admin/initialize
     defaults: { _controller: BeTeenForumBundle:Admin:Initialize }
     
+be_teen_user_ajouterSujet:
+    path:     /utilisateur/{categorie}/nouveau
+    defaults: { _controller: BeTeenForumBundle:Forum:ajouterSujet }
+    
 be_teen_forum_index:
     path:     /
     defaults: { _controller: BeTeenForumBundle:Forum:categorie, categorie: index}
