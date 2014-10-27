@@ -8,9 +8,23 @@
 		<h1>{{sujet.titre}}</h1>
 		<h2>{{sujet.categorie.nom}}</h2>
 		<h3>{{sujet.categorie.description}}</h3>
+                <div class="question">
 		<p>
 		{{sujet.contenu|striptags('<br>')|markdown}}
 		</p>
 		<p>Le : {{sujet.date|date("d/m/Y")}} a {{sujet.date|date("H:i")}}</p>
+                </div>
+                {% if sujet.reponses|length > 0 %}
+                    {% for reponse in sujet.reponses %}
+                    <div class="reponce">
+                        <p>{{reponse.contenu}}</p>
+                        <p>Le : {{reponse.date|date("d/m/Y")}} a {{reponse.date|date("H:i")}}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="reponce">
+                        <p>Aucune réponse ...</p>
+                    </div>
+                {% endif %}
 	</body>
 </html>

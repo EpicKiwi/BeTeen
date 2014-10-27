@@ -30,7 +30,7 @@ class ForumController extends Controller
     {
         $manager = $this->getDoctrine()->getManager();
 	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
-	$sujet = $repository->findOneByslug($sujet);
+	$sujet = $repository->findOneSubjectSlug($sujet);
         if($sujet == null)
         {
             throw $this->createNotFoundException('Sujet non trouvé');

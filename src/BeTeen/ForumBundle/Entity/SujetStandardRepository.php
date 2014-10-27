@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class SujetStandardRepository extends EntityRepository
 {
+    public function findOneSubjectSlug($slug)
+    {
+        $builder = $this->createQueryBuilder('s')
+						->leftJoin('s.reponses','r')
+						->addSelect('r');
+        
+	$builder->where('s.slug = :slug')
+			->setParameter("slug",$slug)
+			->orderBy("r.date");
+        
+	return $builder->getQuery()->getOneOrNullResult();
+        
+    }
 }

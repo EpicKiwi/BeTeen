@@ -49,6 +49,12 @@ class SujetStandard
      */
     private $categorie;
     
+	
+    /**
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet")
+     */
+    private $reponses;
+    
     /**
      * @Gedmo\Slug(fields={"titre"})
      * @ORM\Column(length=128, unique=true)
@@ -185,5 +191,38 @@ class SujetStandard
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Add reponses
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponses
+     * @return SujetStandard
+     */
+    public function addReponse(\BeTeen\ForumBundle\Entity\ReponseStandard $reponses)
+    {
+        $this->reponses[] = $reponses;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponses
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponses
+     */
+    public function removeReponse(\BeTeen\ForumBundle\Entity\ReponseStandard $reponses)
+    {
+        $this->reponses->removeElement($reponses);
+    }
+
+    /**
+     * Get reponses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
     }
 }
