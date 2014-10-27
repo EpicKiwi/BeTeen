@@ -26,5 +26,12 @@
                         <p>Aucune réponse ...</p>
                     </div>
                 {% endif %}
+                    <div class="reponce">
+                        <p>Répondre</p>
+                <form action="{{ path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug}) }}" method="post" {{form_enctype(form)}} >
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-primary" />
+                </form>
+                    </div>
 	</body>
 </html>

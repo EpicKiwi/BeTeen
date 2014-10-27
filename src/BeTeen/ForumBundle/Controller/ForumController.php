@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BeTeen\ForumBundle\Entity\Categorie;
 use BeTeen\ForumBundle\Entity\SujetStandard;
 use BeTeen\ForumBundle\Form\SujetStandardType;
+use BeTeen\ForumBundle\Entity\ReponseStandard;
+use BeTeen\ForumBundle\Form\ReponseStandardType;
 
 class ForumController extends Controller
 {
@@ -31,11 +33,16 @@ class ForumController extends Controller
         $manager = $this->getDoctrine()->getManager();
 	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
 	$sujet = $repository->findOneSubjectSlug($sujet);
+        
+        $reponse = new ReponseStandard();
+        $reponse->setSujet($sujet);
+        $form = $this->createForm(new ReponseStandardType, $reponse);
+        
         if($sujet == null)
         {
             throw $this->createNotFoundException('Sujet non trouvé');
         }
-	return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet));
+	return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet,"form"=>$form->createView()));
     }
     
     public function ajouterSujetAction($categorie)
@@ -47,6 +54,7 @@ class ForumController extends Controller
         $position = $repository->findOneBySlug($categorie);
         $sujet->setCategorie($position);
         $form = $this->createForm(new SujetStandardType, $sujet);
+        
         $requete = $this->get("request");
         if($requete->getMethod() == 'POST')
         {
@@ -62,6 +70,29 @@ class ForumController extends Controller
         {
             return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
         }
+    }
+    
+    public function ajouterReponseAction($categorie,$sujet)
+    {
+        $manager = $this->getDoctrine()->getManager();
+	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
+        
+        $reponse = new ReponseStandard();
+        $reponse->setSujet($repository->findOneBySlug($sujet));
+        $form = $this->createForm(new ReponseStandardType, $reponse);
+        
+        $requete = $this->get("request");
+        
+        if($requete->getMethod() == 'POST')
+        {
+            $form->bind($requete);
+            if($form->isValid())
+            {
+                $manager->persist($reponse);
+                $manager->flush();
+            }
+        }
+        return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
     }
 	
 }
