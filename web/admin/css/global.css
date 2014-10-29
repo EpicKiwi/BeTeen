@@ -136,3 +136,20 @@ nav.menuCirculaire a h3
 {
     font-size: 25px;
 }
+
+/*-----[Articles]-----*/
+
+article
+{
+    text-align: justify;
+    width: 100%;
+    margin: 0;
+}
+
+article.col-2
+{
+    width: 45%;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: inline-block;
+}

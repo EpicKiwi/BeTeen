@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <a href='#' id='sortirAdmin' ><i class="fi-x"></i></a><h1>{{ siteName }} - Espace d'administration</h1><h2>{% block headerTitle %}{% endblock %}</h2>
+            <a href='{{ path("be_teen_forum_index") }}' title="Quitter l'administration" id='sortirAdmin' ><i class="fi-x"></i></a><h1>{{ siteName }} - Espace d'administration</h1><h2>{% block headerTitle %}{% endblock %}</h2>
         </header>
         <section>
         {% block body %} {% endblock %}
