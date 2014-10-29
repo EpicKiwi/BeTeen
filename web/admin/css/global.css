@@ -84,6 +84,18 @@ header h2
     font-size: 30px;
 }
 
+/*-----[Footer]-----*/
+
+footer
+{
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: #c4c4c4 dashed 1px;
+}
+
 /*-----[Menu]-----*/
 
 nav.menuCirculaire
@@ -152,4 +164,51 @@ article.col-2
     margin-left: 2%;
     margin-right: 2%;
     display: inline-block;
+    vertical-align: top;
+}
+
+article h4
+{
+    color: #FF9933;
+    text-decoration: none;
+}
+
+article h4 a
+{
+    color: inherit;
+    text-decoration: none;
+}
+
+/*-----[Sujets]-----*/
+
+article .sujet
+{
+    width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid #DBDBDB 1px;
+}
+
+article .sujet p
+{
+    max-height: 150px;
+    overflow: hidden;
+    transition-duration: 0.5s;
+    transition-property: all;
+}
+
+article .sujet:hover p
+{
+    max-height: 1000px;
+}
+
+article .sujet .meta
+{
+    margin-top: 5px;
+    width: 100%;
+}
+
+article .meta td
+{
+    text-align: center;
 }

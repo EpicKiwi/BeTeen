@@ -31,7 +31,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         siteName: BeTeen
-        siteAuthors: EpicKiwi et Soad
+        siteAuthors: EpicKiwi et Soad76290
 
 # Assetic Configuration
 assetic:

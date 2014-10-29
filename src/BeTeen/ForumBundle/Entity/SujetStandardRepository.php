@@ -25,4 +25,14 @@ class SujetStandardRepository extends EntityRepository
 	return $builder->getQuery()->getOneOrNullResult();
         
     }
+    
+    public function findAllLimitorderByDate($limit)
+    {
+        $builder = $this->createQueryBuilder("s")
+                        ->leftJoin("s.reponses","r")
+                        ->addSelect("r");
+        $builder->orderBy("s.date","DESC")
+                ->setMaxResults($limit);
+        return $builder->getQuery()->getResult();
+    }
 }

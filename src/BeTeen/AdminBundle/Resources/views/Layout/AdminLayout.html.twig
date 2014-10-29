@@ -14,5 +14,10 @@
         <section>
         {% block body %} {% endblock %}
         </section>
+        <footer>
+            Administration global du site {{siteName}}<br/>
+            Site crée par {{siteAuthors}}<br/>
+            &copy {{"now"|date("Y")}}
+        </footer>
     </body>
 </html>
