@@ -1,0 +1,3 @@
+be_teen_admin_index:
+    path:       /
+    defaults:   { _controller: BeTeenAdminBundle:Admin:Index }

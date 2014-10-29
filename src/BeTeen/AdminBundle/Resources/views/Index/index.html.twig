@@ -1,0 +1,16 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}Accueil | {{ parent() }} {% endblock %}
+{% block headerTitle %} Accueil {% endblock %}
+{% block body %}
+    <h2>Que voulez vous configurer ?</h2>
+    <nav class="menuCirculaire" >
+        <table>
+            <tr>
+                <td><a href="#" ><i class="fi-comment"></i><h3>Forum</h3></td>
+                <td><a href="#" ><i class="fi-torsos-all"></i><h3>Utilisateurs</h3></td>
+                <td><a href="#" ><i class="fi-page"></i><h3>Fichiers</h3></td>
+                <td><a href="#" ><i class="fi-megaphone"></i><h3>Annonces</h3></td>
+            </tr>
+        </table>
+    </nav>
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    be_teen_admin.example:
+#        class: BeTeen\AdminBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,18 @@
+<! Doctype html >
+<html>
+    <head>
+        <title>{% block title %}Administration {{ siteName }}{% endblock %}</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{{asset("admin/css/global.css")}}" />
+        <link rel="stylesheet" href="{{asset("admin/foundation-icons/foundation-icons.css")}}" />
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <a href='#' id='sortirAdmin' ><i class="fi-x"></i></a><h1>{{ siteName }} - Espace d'administration</h1><h2>{% block headerTitle %}{% endblock %}</h2>
+        </header>
+        <section>
+        {% block body %} {% endblock %}
+        </section>
+    </body>
+</html>
