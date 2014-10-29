@@ -116,6 +116,14 @@ nav.menuCirculaire a
     text-align: center;
     text-decoration: none;
     padding-top: 25px;
+    transition-duration: 0.2s;
+    transition-property: all;
+}
+
+nav.menuCirculaire a:hover
+{
+    transform: rotate(-3deg) scale(1.2);
+    box-shadow: 0 0 10px black;
 }
 
 nav.menuCirculaire a i
