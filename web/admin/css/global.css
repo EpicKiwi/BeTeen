@@ -267,3 +267,38 @@ article .meta td
 {
     text-align: center;
 }
+
+/*-----[Categories]-----*/
+
+table.categories
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.categories td
+{
+    text-align: center;
+    font-size: 20px;
+    color: #383838;
+    border-bottom: #c4c4c4 solid 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table.categories .actuelle
+{
+    background-color: #ffeec1;
+}
+
+table.categories td i
+{
+    font-size: 40px;
+    color: #383838;
+}
+
+table.categories td a
+{
+    color: black;
+    text-decoration: none;
+}

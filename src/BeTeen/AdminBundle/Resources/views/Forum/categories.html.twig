@@ -1,0 +1,66 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}Categories sous {{position.nom}} | {{ parent() }} {% endblock %}
+{% block headerTitle %} Categories sous {{position.nom}} {% endblock %}
+{% block body %}
+    <h2>Que voulez vous configurer ?</h2>
+    <nav class="menuCirculaire" >
+        <table>
+            <tr>
+                <td><a href="{{ path("be_teen_admin_forum") }}" ><i class="fi-arrow-left"></i><h3>Retour</h3></a></td>
+                {% if position.parent != null %}<td><a href="{{ path("be_teen_admin_forum_categories",{"categorie":position.parent.slug}) }}" ><i class="fi-arrow-up"></i><h3>Parent</h3></a></td>{% endif %}
+                <td><a href="#" ><i class="fi-plus"></i><h3>Ajouter</h3></a></td>
+            </tr>
+        </table>
+    </nav>
+    <article>
+        <h2>Catégories sous {{position.nom}}</h2>
+        <table class="categories" >
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="3">Sujets Autorisés</td>
+            </tr>
+            <tr>
+                <td>Nom</td>
+                <td>Descendre</td>
+                <td>Monter</td>
+                <td>Supprimer</td>
+                <td>Voir</td>
+                <td>Standard</td>
+                <td>Questions</td>
+                <td>Versus</td>
+            </tr>
+            <tr class="actuelle">
+                <td><a href="{{ path("be_teen_admin_forum_categories",{"categorie":position.slug}) }}" >{{position.nom}}</a></td>
+                <td></td>
+                <td></td>
+                <td>{% if position.root != position.id %}<a href="#"><i class="fi-x"></i></a>{% endif %}</td>
+                <td><a href="{{ path("be_teen_forum_categorie",{"categorie":position.slug}) }}"><i class="fi-eye"></i></a></td>
+                <td><a href="#"><i class="fi-check"></i></a></td>
+                <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
+                <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
+            </tr>
+        {% if categories != null %}
+            {% for categorie in categories %}
+            <tr>
+                <td><a href="{{ path("be_teen_admin_forum_categories",{"categorie":categorie.slug}) }}" >{{categorie.nom}}</a></td>
+                <td><a href="{{ path("be_teen_admin_forum_categories_descendre",{"categorie":categorie.slug}) }}"><i class="fi-arrow-down"></i></a></td>
+                <td><a href="{{ path("be_teen_admin_forum_categories_monter",{"categorie":categorie.slug}) }}"><i class="fi-arrow-up"></i></a></td>
+                <td><a href="{{ path("be_teen_admin_forum_categories_supprimer",{"categorie":categorie.slug}) }}"><i class="fi-x"></i></a></td>
+                <td><a href="{{ path("be_teen_forum_categorie",{"categorie":categorie.slug}) }}"><i class="fi-eye"></i></a></td>
+                <td><a href="#"><i class="fi-check"></i></a></td>
+                <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
+                <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="8" >Pas de categories</td>
+            </tr>
+        {% endif %}
+        </table>
+    </article>
+{% endblock %}

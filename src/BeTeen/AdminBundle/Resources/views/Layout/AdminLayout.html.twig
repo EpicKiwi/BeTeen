@@ -14,7 +14,7 @@
             {% if flashbag|length > 0 %}
             <div class="flashInfo">
                 {% for message in flashbag %}
-                    <p>{{ message }}</p>
+                    <p>{{ message|raw }}</p>
                 {% endfor %}
             </div>
             {% endif %}

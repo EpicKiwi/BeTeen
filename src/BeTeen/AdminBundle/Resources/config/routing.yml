@@ -6,9 +6,21 @@ be_teen_admin_forum:
     path:       /forum
     defaults:   { _controller: BeTeenAdminBundle:Forum:Index }
     
-#be_teen_admin_forum_categories:
-#    path:       /forum/categories
-#    delaults:   { _controller: BeTeenAdminBundle:Forum:Categories }
+be_teen_admin_forum_categories:
+    path:       /forum/categories/{categorie}
+    defaults:   { _controller: BeTeenAdminBundle:Forum:Categories ,categorie: index}
+    
+be_teen_admin_forum_categories_monter:
+    path:       /forum/categories/{categorie}/monter
+    defaults:   { _controller: BeTeenAdminBundle:Forum:MonterCategorie}
+    
+be_teen_admin_forum_categories_descendre:
+    path:       /forum/categories/{categorie}/descendre
+    defaults:   { _controller: BeTeenAdminBundle:Forum:DescendreCategorie}
+    
+be_teen_admin_forum_categories_supprimer:
+    path:       /forum/categories/{categorie}/supprimer
+    defaults:   { _controller: BeTeenAdminBundle:Forum:SupprimerCategorie}
     
 be_teen_admin_forum_sujets:
     path:       /forum/sujets
