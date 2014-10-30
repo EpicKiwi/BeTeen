@@ -1,0 +1,42 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}Accueil | {{ parent() }} {% endblock %}
+{% block headerTitle %} Accueil {% endblock %}
+{% block body %}
+    <h2>Que voulez vous configurer ?</h2>
+    <nav class="menuCirculaire" >
+        <table>
+            <tr>
+                <td><a href="{{ path("be_teen_admin_index") }}" ><i class="fi-arrow-left"></i><h3>Retour</h3></a></td>
+                <td><a href="#" ><i class="fi-database"></i><h3>Categories</h3></a></td>
+                <td><a href="{{ path("be_teen_admin_forum_sujets") }}" ><i class="fi-comment"></i><h3>Sujets</h3></a></td>
+                <td><a href="#" ><i class="fi-widget"></i><h3>Réglages</h3></a></td>
+            </tr>
+        </table>
+    </nav>
+    <article class="col-2" >
+        <h2>Derniers sujets</h2>
+        {{ render( controller("BeTeenAdminBundle:Forum:Sujets", {"limit":50,"inside":true} ) ) }}
+    </article>
+    <article class="col-2" >
+        <h2>Catégories de premier niveau</h2>
+        {% if categories != null %}
+            {% for categorie in categories %}
+            <div class="sujet">
+                <h4>{{categorie.nom}}</h4>
+                <p>{{categorie.description}}</p>
+            </div>
+                {% for souscat in categorie.children %}
+                <div class="sous sujet">
+                    <h4>{{souscat.nom}}</h4>
+                    <p>{{souscat.description}}</p>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <div class="sujet">
+                <h4>Pas de categories</h4>
+                <p>Ajoutez en pour que vos utilisateurs puissent converser</p>
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}

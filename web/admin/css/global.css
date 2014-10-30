@@ -104,6 +104,7 @@ nav.menuCirculaire
     height: auto;
     padding-left: 15%;
     padding-right: 15%;
+    margin-bottom: 20px;
 }
 
 nav.menuCirculaire table
@@ -189,9 +190,15 @@ article .sujet
     border-bottom: solid #DBDBDB 1px;
 }
 
+article .sous.sujet
+{
+    width: 95%;
+    margin-left: 5%;
+}
+
 article .sujet p
 {
-    max-height: 150px;
+    max-height: 55px;
     overflow: hidden;
     transition-duration: 0.5s;
     transition-property: all;
@@ -206,6 +213,17 @@ article .sujet .meta
 {
     margin-top: 5px;
     width: 100%;
+}
+
+article .sujet .meta tr.icones td
+{
+    font-size: 50px;
+}
+
+article .sujet .meta tr.icones td a
+{
+    color: #383838;
+    text-decoration: none;
 }
 
 article .meta td

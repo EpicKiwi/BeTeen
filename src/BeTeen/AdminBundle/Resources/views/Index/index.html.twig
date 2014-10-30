@@ -6,31 +6,17 @@
     <nav class="menuCirculaire" >
         <table>
             <tr>
-                <td><a href="#" ><i class="fi-comment"></i><h3>Forum</h3></td>
-                <td><a href="#" ><i class="fi-torsos-all"></i><h3>Utilisateurs</h3></td>
-                <td><a href="#" ><i class="fi-page"></i><h3>Fichiers</h3></td>
-                <td><a href="#" ><i class="fi-megaphone"></i><h3>Annonces</h3></td>
+                <td><a href="{{ path("be_teen_admin_forum") }}" ><i class="fi-comments"></i><h3>Forum</h3></a></td>
+                <td><a href="#" ><i class="fi-torsos-all"></i><h3>Utilisateurs</h3></a></td>
+                <td><a href="#" ><i class="fi-page"></i><h3>Fichiers</h3></a></td>
+                <td><a href="#" ><i class="fi-megaphone"></i><h3>Annonces</h3></a></td>
+                <td><a href="#" ><i class="fi-widget"></i><h3>Site</h3></a></td>
             </tr>
         </table>
     </nav>
     <article class="col-2" >
         <h2>Derniers sujets</h2>
-        {% if sujets != null %}
-            {% for sujet in sujets %}
-            <div class="sujet">
-                <h4><a href="{{ path("be_teen_forum_sujet",{'categorie':sujet.categorie.slug,'sujet':sujet.slug}) }}" title="Aller au sujet {{sujet.titre}}">{{sujet.titre}}</a></h4>
-                <p>{{sujet.contenu|striptags('<br>,<br/>')|markdown}}</p>
-                <table class="meta">
-                    <tr><td>{{sujet.reponses|length}} reponse{% if sujet.reponses|length > 1 %}s{% endif %}</td><td>{{sujet.categorie.nom}}</td><td>{{sujet.date|date("d/m/Y")}} {{sujet.date|date("H:i")}}</td></tr>
-                </table>
-            </div>
-            {% endfor %}
-        {% else %}
-            <div class="sujet">
-                <h4>Pas de sujets<h4>
-                <p> attendez un peux sa vas venir</p>
-            </div>
-        {% endif %}
+        {{ render( controller("BeTeenAdminBundle:Forum:Sujets", {"limit":10,"inside":true} ) ) }}
     </article>
     <article class="col-2" >
         <h2>Quoi de neuf ?</h2>

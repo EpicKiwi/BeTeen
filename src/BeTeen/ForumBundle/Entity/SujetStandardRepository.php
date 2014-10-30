@@ -26,13 +26,22 @@ class SujetStandardRepository extends EntityRepository
         
     }
     
-    public function findAllLimitorderByDate($limit)
+    public function findAllLimitOrderByDate($limit)
     {
         $builder = $this->createQueryBuilder("s")
                         ->leftJoin("s.reponses","r")
                         ->addSelect("r");
         $builder->orderBy("s.date","DESC")
                 ->setMaxResults($limit);
+        return $builder->getQuery()->getResult();
+    }
+    
+    public function findAllOrderByDate()
+    {
+        $builder = $this->createQueryBuilder("s")
+                        ->leftJoin("s.reponses","r")
+                        ->addSelect("r");
+        $builder->orderBy("s.date","DESC");
         return $builder->getQuery()->getResult();
     }
 }
