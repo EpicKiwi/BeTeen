@@ -9,7 +9,9 @@
     </head>
     <body>
         <header class="replie">
-            <a href='{{ path("be_teen_forum_index") }}' title="Quitter l'administration" id='sortirAdmin' ><i class="fi-x"></i></a><h1>{{ siteName }} - Espace d'administration</h1><h2>{% block headerTitle %}{% endblock %}</h2>
+            <a href='{{ path("be_teen_forum_index") }}' title="Quitter l'administration" id='sortirAdmin' ><i class="fi-x"></i></a>
+            <a href='{{ path("be_teen_admin_index") }}' title="Accueil de l'administration" ><h1>{{ siteName }} - Espace d'administration</h1></a>
+            <h2>{% block headerTitle %}{% endblock %}</h2>
             {% set flashbag = app.session.flashbag.get('info') %}
             {% if flashbag|length > 0 %}
             <div class="flashInfo">
@@ -36,6 +38,10 @@
                     {
                         $('header').removeClass("replie");
                     }
+                })
+                
+                $('a').click(function(){
+                    $('header').addClass("replie");
                 })
                 
                 $('header').mouseleave(function(){

@@ -1,0 +1,12 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}Modifier | {{ parent() }} {% endblock %}
+{% block headerTitle %} Modifier {% endblock %}
+{% block body %}
+    <h2>Modifier</h2>
+    <article class="ajouter">
+        <form method="post" {{form_enctype(form)}} >
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" value="Modifier" />
+        </form>
+    </article>
+{% endblock %}

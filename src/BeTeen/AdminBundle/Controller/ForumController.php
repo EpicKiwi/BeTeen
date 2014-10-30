@@ -3,6 +3,8 @@
 namespace BeTeen\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use BeTeen\ForumBundle\Entity\Categorie;
+use BeTeen\ForumBundle\Form\CategorieType;
 
 class ForumController extends Controller
 {
@@ -164,5 +166,63 @@ class ForumController extends Controller
         $manager->flush();
         
         return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$cat->getParent()->getSlug())));
+    }
+    
+    public function ajouterCategorieAction($parent)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:Categorie");
+        $categorieParente = $repository->findOneBySlug($parent);
+        if($categorieParente == null)
+        {
+            throw $this->createNotFoundException("La catégorie parente n'existe pas");
+        }
+        
+        $categorie = new Categorie;
+        $categorie->setParent($categorieParente);
+        $form = $this->createForm(new CategorieType, $categorie);
+        
+        $requete = $this->get("request");
+        if($requete->getMethod() == "POST")
+        {
+            $form->bind($requete);
+            if($form->isValid())
+            {
+                $manager->persist($categorie);
+                $manager->flush();
+                $this->get('session')->getFlashBag()->add('info','La catégorie '.$categorie->getNom()." a été ajouté sous ".$categorieParente->getNom()." !");
+                return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$categorieParente->getSlug())));
+            }
+        }
+        
+        return $this->render("BeTeenAdminBundle:Forum:Ajouter.html.twig",array("form"=>$form->createView()));
+    }
+    
+    public function modifierCategorieAction($categorie)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:Categorie");
+        $categorieActuelle = $repository->findOneBySlug($categorie);
+        if($categorieActuelle == null)
+        {
+            throw $this->createNotFoundException("La catégorie n'existe pas");
+        }
+        
+        $form = $this->createForm(new CategorieType, $categorieActuelle);
+        
+        $requete = $this->get("request");
+        if($requete->getMethod() == "POST")
+        {
+            $form->bind($requete);
+            if($form->isValid())
+            {
+                $manager->persist($categorieActuelle);
+                $manager->flush();
+                $this->get('session')->getFlashBag()->add('info','La catégorie '.$categorieActuelle->getNom()." a été modifiée !");
+                return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$categorieActuelle->getParent()->getSlug())));
+            }
+        }
+        
+        return $this->render("BeTeenAdminBundle:Forum:Modifier.html.twig",array("form"=>$form->createView()));
     }
 }

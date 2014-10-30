@@ -22,6 +22,14 @@ be_teen_admin_forum_categories_supprimer:
     path:       /forum/categories/{categorie}/supprimer
     defaults:   { _controller: BeTeenAdminBundle:Forum:SupprimerCategorie}
     
+be_teen_admin_forum_categories_ajouter:
+    path:       /forum/categories/{parent}/ajouter
+    defaults:   { _controller: BeTeenAdminBundle:Forum:AjouterCategorie}
+    
+be_teen_admin_forum_categories_modifier:
+    path:       /forum/categories/{categorie}/modifier
+    defaults:   { _controller: BeTeenAdminBundle:Forum:ModifierCategorie}
+    
 be_teen_admin_forum_categories_sujetswitch:
     path:       /forum/categories/{categorie}/sujet-switch
     defaults:   { _controller: BeTeenAdminBundle:Forum:SwitchAllowSujet}
