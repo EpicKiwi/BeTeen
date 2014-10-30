@@ -38,7 +38,7 @@ class Categorie
     private $description;
 	
     /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
      */
     private $sujetsStandards;
 
@@ -74,7 +74,7 @@ class Categorie
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="parent", cascade={"remove"})
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;

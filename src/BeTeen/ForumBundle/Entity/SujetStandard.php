@@ -51,7 +51,7 @@ class SujetStandard
     
 	
     /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet")
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet", cascade={"remove"})
      */
     private $reponses;
     

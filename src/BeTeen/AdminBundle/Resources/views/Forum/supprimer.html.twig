@@ -1,0 +1,13 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}supprimer | {{ parent() }} {% endblock %}
+{% block headerTitle %} Supprimer {% endblock %}
+{% block body %}
+    <h2>Supprimer ?</h2>
+    <article class="supprimer">
+        {{message}}
+        <form method="post" {{form_enctype(form)}} >
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" value="Supprimer" />
+        </form>
+    </article>
+{% endblock %}
