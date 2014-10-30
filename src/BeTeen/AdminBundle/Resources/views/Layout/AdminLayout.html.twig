@@ -8,11 +8,12 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        <header>
+        <header class="replie">
             <a href='{{ path("be_teen_forum_index") }}' title="Quitter l'administration" id='sortirAdmin' ><i class="fi-x"></i></a><h1>{{ siteName }} - Espace d'administration</h1><h2>{% block headerTitle %}{% endblock %}</h2>
-            {% if message in app.session.flashbag.get('info') %}
+            {% set flashbag = app.session.flashbag.get('info') %}
+            {% if flashbag|length > 0 %}
             <div class="flashInfo">
-                {% for message in app.session.flashbag.get('info') %}
+                {% for message in flashbag %}
                     <p>{{ message }}</p>
                 {% endfor %}
             </div>
@@ -26,5 +27,32 @@
             Site crée par {{siteAuthors}}<br/>
             &copy {{"now"|date("Y")}}
         </footer>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" >
+        </script>
+        <script>
+            $('document').ready(function(){
+                $('header').mouseenter(function(){
+                    if($('header').hasClass("replie"))
+                    {
+                        $('header').removeClass("replie");
+                    }
+                })
+                
+                $('header').mouseleave(function(){
+                    $('header').addClass("replie");
+                })
+                if($('header .flashInfo').length > 0)
+                {
+                    $('header').removeClass("replie");
+                    setTimeout(function(){
+                        $('header').addClass("replie");
+                    },3000)
+                }
+                else
+                {
+                    $('header').addClass("replie");
+                }
+            })
+        </script>
     </body>
 </html>
