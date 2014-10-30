@@ -137,4 +137,32 @@ class ForumController extends Controller
         
         return $this->render('BeTeenAdminBundle:Forum:supprimer.html.twig',array("form"=>$form->createView(),"message"=>$message));
     }
+    
+    public function switchAllowSujetAction($categorie)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:Categorie");
+        $cat = $repository->findOneBySlug($categorie);
+        if($cat == null)
+        {
+            throw $this->createNotFoundException("Ce sujet n'existe pas");
+        }
+        
+        
+        if($cat->getAllowSujetStandard())
+        {
+            $cat->setAllowSujetStandard(false);
+            $this->get('session')->getFlashBag()->add('info','La catégorie '.$cat->getNom()." refuse maintenant la création de sujets standards");
+        }
+        else
+        {
+            $cat->setAllowSujetStandard(true);
+            $this->get('session')->getFlashBag()->add('info','La catégorie '.$cat->getNom()." accepte maintenant la création de sujets standards");
+        }
+        
+        $manager->persist($cat);
+        $manager->flush();
+        
+        return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$cat->getParent()->getSlug())));
+    }
 }

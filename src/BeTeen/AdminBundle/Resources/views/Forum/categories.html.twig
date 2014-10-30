@@ -39,7 +39,10 @@
                 <td></td>
                 <td>{% if position.root != position.id %}<a href="#"><i class="fi-x"></i></a>{% endif %}</td>
                 <td><a href="{{ path("be_teen_forum_categorie",{"categorie":position.slug}) }}"><i class="fi-eye"></i></a></td>
-                <td><a href="#"><i class="fi-check"></i></a></td>
+                <td><a href="{{ path("be_teen_admin_forum_categories_sujetswitch",{"categorie":position.slug}) }}">
+                        {% if position.allowSujetStandard %}<i class="fi-check"></i>
+                        {% else %}<i class="fi-x"></i> {% endif %}
+                    </a></td>
                 <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
                 <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
             </tr>
@@ -51,7 +54,9 @@
                 <td><a href="{{ path("be_teen_admin_forum_categories_monter",{"categorie":categorie.slug}) }}"><i class="fi-arrow-up"></i></a></td>
                 <td><a href="{{ path("be_teen_admin_forum_categories_supprimer",{"categorie":categorie.slug}) }}"><i class="fi-x"></i></a></td>
                 <td><a href="{{ path("be_teen_forum_categorie",{"categorie":categorie.slug}) }}"><i class="fi-eye"></i></a></td>
-                <td><a href="#"><i class="fi-check"></i></a></td>
+                <td><a href="{{ path("be_teen_admin_forum_categories_sujetswitch",{"categorie":categorie.slug}) }}">
+                        {% if categorie.allowSujetStandard %}<i class="fi-check"></i>
+                        {% else %}<i class="fi-x"></i> {% endif %}</a></td>
                 <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
                 <td><a href="#" title="non Implémenté"><i class="fi-puzzle"></i></a></td>
             </tr>

@@ -41,6 +41,13 @@ class Categorie
      * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
      */
     private $sujetsStandards;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="allowSujetStandard", type="boolean")
+     */
+    private $allowSujetStandard;
 
     /**
      * @Gedmo\TreeLeft
@@ -376,5 +383,28 @@ class Categorie
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set allowSujetStandard
+     *
+     * @param boolean $allowSujetStandard
+     * @return Categorie
+     */
+    public function setAllowSujetStandard($allowSujetStandard)
+    {
+        $this->allowSujetStandard = $allowSujetStandard;
+
+        return $this;
+    }
+
+    /**
+     * Get allowSujetStandard
+     *
+     * @return boolean 
+     */
+    public function getAllowSujetStandard()
+    {
+        return $this->allowSujetStandard;
     }
 }

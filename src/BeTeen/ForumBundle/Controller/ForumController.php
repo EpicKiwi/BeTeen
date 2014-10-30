@@ -52,23 +52,31 @@ class ForumController extends Controller
         
         $sujet = new SujetStandard();
         $position = $repository->findOneBySlug($categorie);
-        $sujet->setCategorie($position);
-        $form = $this->createForm(new SujetStandardType, $sujet);
-        
-        $requete = $this->get("request");
-        if($requete->getMethod() == 'POST')
+        if($position->getAllowSujetStandard())
         {
-            $form->bind($requete);
-            if($form->isValid())
+            $sujet->setCategorie($position);
+            $form = $this->createForm(new SujetStandardType, $sujet);
+
+            $requete = $this->get("request");
+            if($requete->getMethod() == 'POST')
             {
-                $manager->persist($sujet);
-                $manager->flush();
-                return $this->redirect($this->generateUrl("be_teen_forum_categorie",array("categorie"=>$categorie)));
+                $form->bind($requete);
+                if($form->isValid())
+                {
+                    $manager->persist($sujet);
+                    $manager->flush();
+                    return $this->redirect($this->generateUrl("be_teen_forum_categorie",array("categorie"=>$categorie)));
+                }
+            }
+            else
+            {
+                return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
             }
         }
         else
         {
-            return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
+            $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas ajouter de sujet ici !');
+            return $this->redirect($this->generateUrl("be_teen_forum_categorie",array("categorie"=>$categorie)));
         }
     }
     

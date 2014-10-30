@@ -16,7 +16,9 @@
                     <li><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.slug}) }}" >Catégorie précédente</a></li>
                     {% endif %}
 		{% endif %}
+                {% if categorieActuelle.allowSujetStandard %}
                     <li><a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}" >Ajouter un sujet</a></li>
+                {% endif %}
                 </ul>
                 
 		<dl>

@@ -38,9 +38,16 @@ class Categorie
     private $description;
 	
     /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
      */
     private $sujetsStandards;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="allowSujetStandard", type="boolean")
+     */
+    private $allowSujetStandard;
 
     /**
      * @Gedmo\TreeLeft
@@ -74,13 +81,14 @@ class Categorie
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="parent", cascade={"remove"})
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;
     
     /**
-     * @Gedmo\Slug(fields={"nom", "code"})
+     * @var string
+     * @Gedmo\Slug(fields={"nom"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -179,6 +187,7 @@ class Categorie
      */
     public function getSujetsStandards()
     {
+        
         return $this->sujetsStandards;
     }
 
