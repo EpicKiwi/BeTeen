@@ -13,3 +13,7 @@ be_teen_admin_forum:
 be_teen_admin_forum_sujets:
     path:       /forum/sujets
     defaults:   { _controller: BeTeenAdminBundle:Forum:Sujets }
+    
+be_teen_admin_forum_sujets_supprimer:
+    path:       /forum/sujets/supprimer-{sujet}
+    defaults:   { _controller: BeTeenAdminBundle:Forum:SupprimerSujet }
