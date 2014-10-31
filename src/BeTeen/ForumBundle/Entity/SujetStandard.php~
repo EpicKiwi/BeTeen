@@ -42,6 +42,14 @@ class SujetStandard
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+    
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="verouille", type="boolean")
+     */
+    private $verouille;
 
     /**
      * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie",inversedBy="sujetsStandards")
@@ -51,7 +59,7 @@ class SujetStandard
     
 	
     /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet")
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet", cascade={"remove"})
      */
     private $reponses;
     
@@ -191,5 +199,38 @@ class SujetStandard
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Add reponses
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponses
+     * @return SujetStandard
+     */
+    public function addReponse(\BeTeen\ForumBundle\Entity\ReponseStandard $reponses)
+    {
+        $this->reponses[] = $reponses;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponses
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponses
+     */
+    public function removeReponse(\BeTeen\ForumBundle\Entity\ReponseStandard $reponses)
+    {
+        $this->reponses->removeElement($reponses);
+    }
+
+    /**
+     * Get reponses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
     }
 }

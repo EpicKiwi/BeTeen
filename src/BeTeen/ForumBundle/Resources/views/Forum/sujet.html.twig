@@ -26,6 +26,7 @@
                         <p>Aucune réponse ...</p>
                     </div>
                 {% endif %}
+                {% if sujet.verouille == false %}
                     <div class="reponce">
                         <p>Répondre</p>
                 <form action="{{ path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug}) }}" method="post" {{form_enctype(form)}} >
@@ -33,5 +34,6 @@
                     <input type="submit" class="btn btn-primary" />
                 </form>
                     </div>
+                {% endif %}
 	</body>
 </html>

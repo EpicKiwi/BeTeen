@@ -86,20 +86,26 @@ class ForumController extends Controller
 	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
         
         $reponse = new ReponseStandard();
-        $reponse->setSujet($repository->findOneBySlug($sujet));
-        $form = $this->createForm(new ReponseStandardType, $reponse);
+        $sujetActuel = $repository->findOneBySlug($sujet);
+        $reponse->setSujet($sujetActuel);
         
-        $requete = $this->get("request");
-        
-        if($requete->getMethod() == 'POST')
+        if($sujetActuel->getVerouille() == false)
         {
-            $form->bind($requete);
-            if($form->isValid())
+            $form = $this->createForm(new ReponseStandardType, $reponse);
+
+            $requete = $this->get("request");
+
+            if($requete->getMethod() == 'POST')
             {
-                $manager->persist($reponse);
-                $manager->flush();
+                $form->bind($requete);
+                if($form->isValid())
+                {
+                    $manager->persist($reponse);
+                    $manager->flush();
+                }
             }
         }
+        $this->get('session')->getFlashBag()->add('info','Ce sujet est verouillé');
         return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
     }
 	

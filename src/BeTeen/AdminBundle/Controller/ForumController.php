@@ -67,6 +67,29 @@ class ForumController extends Controller
         return $this->render('BeTeenAdminBundle:Forum:supprimer.html.twig',array("form"=>$form->createView(),"message"=>$message));
     }
     
+    public function verouillageSujetAction($sujet)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
+        $sujetVerouill = $repository->findOneBySlug($sujet);
+        
+        if($sujetVerouill->getVerouille())
+        {
+            $this->get('session')->getFlashBag()->add('info','Le sujet '.$sujetVerouill->getTitre()." a été déverouillé !");
+            $sujetVerouill->setVerouille(false);
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('info','Le sujet '.$sujetVerouill->getTitre()." a été verouillé !");
+            $sujetVerouill->setVerouille(true);
+        }
+        
+        $manager->persist($sujetVerouill);
+        $manager->flush();
+        
+        return $this->redirect($this->generateUrl("be_teen_admin_forum_sujets"));
+    }
+    
     public function categoriesAction($categorie)
     {
         $manager = $this->getDoctrine()->getManager();

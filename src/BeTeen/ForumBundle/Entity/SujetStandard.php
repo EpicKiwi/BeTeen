@@ -42,6 +42,14 @@ class SujetStandard
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+    
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="verouille", type="boolean")
+     */
+    private $verouille;
 
     /**
      * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie",inversedBy="sujetsStandards")
@@ -224,5 +232,28 @@ class SujetStandard
     public function getReponses()
     {
         return $this->reponses;
+    }
+
+    /**
+     * Set verouille
+     *
+     * @param boolean $verouille
+     * @return SujetStandard
+     */
+    public function setVerouille($verouille)
+    {
+        $this->verouille = $verouille;
+
+        return $this;
+    }
+
+    /**
+     * Get verouille
+     *
+     * @return boolean 
+     */
+    public function getVerouille()
+    {
+        return $this->verouille;
     }
 }

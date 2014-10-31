@@ -23,7 +23,13 @@
                 <table class="meta">                    
                     <tr class="icones">
                         <td><a href="{{ path("be_teen_forum_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug}) }}" title="Aller au sujet {{sujet.titre}}" ><i class="fi-eye"></i></a></td>
-                        <td><a href="#" title="Verouiller le sujet {{sujet.titre}}" ><i class="fi-lock"></i></a></td>
+                        <td><a href="{{ path("be_teen_admin_forum_sujets_verouillageswitch",{"sujet":sujet.slug}) }}" title="Verouiller le sujet {{sujet.titre}}" >
+                                {% if sujet.verouille == true %}
+                                <i class="fi-lock"></i>
+                                {% else %}
+                                <i class="fi-unlock"></i>
+                                {% endif %}
+                                </a></td>
                         <td><a href="{{ path("be_teen_admin_forum_sujets_supprimer",{"sujet":sujet.slug}) }}" title="Supprimmer sujet {{sujet.titre}}" ><i class="fi-x"></i></a></td>
                     </tr>
                 </table>
