@@ -38,7 +38,7 @@ class Categorie
     private $description;
 	
     /**
-     * @ORM\ManyToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
      */
     private $sujetsStandards;
     
@@ -94,14 +94,6 @@ class Categorie
     private $slug;
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->sujetsStandards = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -120,7 +112,7 @@ class Categorie
     public function setNom($nom)
     {
         $this->nom = $nom;
-
+    
         return $this;
     }
 
@@ -143,7 +135,7 @@ class Categorie
     public function setDescription($description)
     {
         $this->description = $description;
-
+    
         return $this;
     }
 
@@ -158,26 +150,68 @@ class Categorie
     }
 
     /**
-     * Set allowSujetStandard
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sujetsStandards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sujetsStandards
      *
-     * @param boolean $allowSujetStandard
+     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
      * @return Categorie
      */
-    public function setAllowSujetStandard($allowSujetStandard)
+    public function addSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
     {
-        $this->allowSujetStandard = $allowSujetStandard;
-
+        $this->sujetsStandards[] = $sujetsStandards;
+    
         return $this;
     }
 
     /**
-     * Get allowSujetStandard
+     * Remove sujetsStandards
      *
-     * @return boolean 
+     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
      */
-    public function getAllowSujetStandard()
+    public function removeSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
     {
-        return $this->allowSujetStandard;
+        $this->sujetsStandards->removeElement($sujetsStandards);
+    }
+
+    /**
+     * Get sujetsStandards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSujetsStandards()
+    {
+        
+        return $this->sujetsStandards;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return Categorie
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
     }
 
     /**
@@ -189,7 +223,7 @@ class Categorie
     public function setLft($lft)
     {
         $this->lft = $lft;
-
+    
         return $this;
     }
 
@@ -212,7 +246,7 @@ class Categorie
     public function setLvl($lvl)
     {
         $this->lvl = $lvl;
-
+    
         return $this;
     }
 
@@ -235,7 +269,7 @@ class Categorie
     public function setRgt($rgt)
     {
         $this->rgt = $rgt;
-
+    
         return $this;
     }
 
@@ -258,7 +292,7 @@ class Categorie
     public function setRoot($root)
     {
         $this->root = $root;
-
+    
         return $this;
     }
 
@@ -273,67 +307,6 @@ class Categorie
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Categorie
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Add sujetsStandards
-     *
-     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
-     * @return Categorie
-     */
-    public function addSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
-    {
-        $this->sujetsStandards[] = $sujetsStandards;
-        
-        if($this->parent != null)
-        {
-            $this->parent->addSujetsStandard($sujetsStandards);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove sujetsStandards
-     *
-     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
-     */
-    public function removeSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
-    {
-        $this->sujetsStandards->removeElement($sujetsStandards);
-    }
-
-    /**
-     * Get sujetsStandards
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSujetsStandards()
-    {
-        return $this->sujetsStandards;
-    }
-
-    /**
      * Set parent
      *
      * @param \BeTeen\ForumBundle\Entity\Categorie $parent
@@ -342,7 +315,7 @@ class Categorie
     public function setParent(\BeTeen\ForumBundle\Entity\Categorie $parent = null)
     {
         $this->parent = $parent;
-
+    
         return $this;
     }
 
@@ -355,21 +328,6 @@ class Categorie
     {
         return $this->parent;
     }
-    
-    public function getParentRecursive()
-    {
-        if($this->parent != null)
-        {
-            $returnArray = $this->parent->getParentRecursive();
-            array_push($returnArray,$this->parent);
-        }
-        else
-        {
-            $returnArray = array($this->parent);
-        }
-        
-        return $returnArray;
-    }
 
     /**
      * Add children
@@ -380,7 +338,7 @@ class Categorie
     public function addChild(\BeTeen\ForumBundle\Entity\Categorie $children)
     {
         $this->children[] = $children;
-
+    
         return $this;
     }
 
@@ -402,5 +360,28 @@ class Categorie
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Categorie
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

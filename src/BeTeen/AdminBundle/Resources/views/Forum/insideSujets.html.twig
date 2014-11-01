@@ -1,10 +1,10 @@
 {% if sujets != null %}
         {% for sujet in sujets %}
             <div class="sujet">
-                <h4><a href="{{ path("be_teen_forum_sujet",{'categorie':sujet.firstCategorie.slug,'sujet':sujet.slug}) }}" title="Aller au sujet {{sujet.titre}}">{{sujet.titre}}</a></h4>
+                <h4><a href="{{ path("be_teen_forum_sujet",{'categorie':sujet.categorie.slug,'sujet':sujet.slug}) }}" title="Aller au sujet {{sujet.titre}}">{{sujet.titre}}</a></h4>
                 <p>{{sujet.contenu|striptags('<br>,<br/>')|markdown}}</p>
                 <table class="meta">
-                    <tr><td>{{sujet.reponses|length}} reponse{% if sujet.reponses|length > 1 %}s{% endif %}</td><td>{{sujet.firstCategorie.nom}}</td><td>{{sujet.date|date("d/m/Y")}} {{sujet.date|date("H:i")}}</td></tr>
+                    <tr><td>{{sujet.reponses|length}} reponse{% if sujet.reponses|length > 1 %}s{% endif %}</td><td>{{sujet.categorie.nom}}</td><td>{{sujet.date|date("d/m/Y")}} {{sujet.date|date("H:i")}}</td></tr>
                 </table>
             </div>
         {% endfor %}

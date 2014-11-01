@@ -52,21 +52,14 @@ class SujetStandard
     private $verouille;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BeTeen\ForumBundle\Entity\Categorie",cascade={"persist"},inversedBy="sujetsStandards")
-     * @ORM\JoinTable(name="sategories_sujetsstandards")
-     * )
+     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie",inversedBy="sujetsStandards")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
     
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie")
-     */
-    private $firstCategorie;
-    
 	
     /**
-     * @ORM\ManyToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet", cascade={"remove"})
      */
     private $reponses;
     
@@ -80,9 +73,9 @@ class SujetStandard
     public function __construct() 
     {
         $this->date = new \DateTime;
-        $this->categorie = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
+    
     /**
      * Get id
      *
@@ -102,7 +95,7 @@ class SujetStandard
     public function setTitre($titre)
     {
         $this->titre = $titre;
-
+    
         return $this;
     }
 
@@ -125,7 +118,7 @@ class SujetStandard
     public function setContenu($contenu)
     {
         $this->contenu = $contenu;
-
+    
         return $this;
     }
 
@@ -148,7 +141,7 @@ class SujetStandard
     public function setDate($date)
     {
         $this->date = $date;
-
+    
         return $this;
     }
 
@@ -163,26 +156,26 @@ class SujetStandard
     }
 
     /**
-     * Set verouille
+     * Set categorie
      *
-     * @param boolean $verouille
+     * @param \BeTeen\ForumBundle\Entity\Categorie $categorie
      * @return SujetStandard
      */
-    public function setVerouille($verouille)
+    public function setCategorie(\BeTeen\ForumBundle\Entity\Categorie $categorie)
     {
-        $this->verouille = $verouille;
-
+        $this->categorie = $categorie;
+    
         return $this;
     }
 
     /**
-     * Get verouille
+     * Get categorie
      *
-     * @return boolean 
+     * @return \BeTeen\ForumBundle\Entity\Categorie 
      */
-    public function getVerouille()
+    public function getCategorie()
     {
-        return $this->verouille;
+        return $this->categorie;
     }
 
     /**
@@ -194,7 +187,7 @@ class SujetStandard
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
+    
         return $this;
     }
 
@@ -207,6 +200,7 @@ class SujetStandard
     {
         return $this->slug;
     }
+
     /**
      * Add reponses
      *
@@ -238,61 +232,5 @@ class SujetStandard
     public function getReponses()
     {
         return $this->reponses;
-    }
-
-    /**
-     * Add categorie
-     *
-     * @param \BeTeen\ForumBundle\Entity\Categorie $categorie
-     * @return SujetStandard
-     */
-    public function addCategorie(\BeTeen\ForumBundle\Entity\Categorie $categorie)
-    {
-        $this->categorie[] = $categorie;
-
-        return $this;
-    }
-
-    /**
-     * Remove categorie
-     *
-     * @param \BeTeen\ForumBundle\Entity\Categorie $categorie
-     */
-    public function removeCategorie(\BeTeen\ForumBundle\Entity\Categorie $categorie)
-    {
-        $this->categorie->removeElement($categorie);
-    }
-
-    /**
-     * Get categorie
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCategorie()
-    {
-        return $this->categorie;
-    }
-
-    /**
-     * Set firstCategorie
-     *
-     * @param \BeTeen\ForumBundle\Entity\Categorie $firstCategorie
-     * @return SujetStandard
-     */
-    public function setFirstCategorie(\BeTeen\ForumBundle\Entity\Categorie $firstCategorie = null)
-    {
-        $this->firstCategorie = $firstCategorie;
-
-        return $this;
-    }
-
-    /**
-     * Get firstCategorie
-     *
-     * @return \BeTeen\ForumBundle\Entity\Categorie 
-     */
-    public function getFirstCategorie()
-    {
-        return $this->firstCategorie;
     }
 }

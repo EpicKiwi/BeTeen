@@ -6,8 +6,8 @@
 	</head>
 	<body>
 		<h1>{{sujet.titre}}</h1>
-		<h2>{{sujet.firstCategorie.nom}}</h2>
-		<h3>{{sujet.firstCategorie.description}}</h3>
+		<h2>{{sujet.categorie.nom}}</h2>
+		<h3>{{sujet.categorie.description}}</h3>
                 <div class="question">
 		<p>
 		{{sujet.contenu|striptags('<br>')|markdown}}
@@ -29,7 +29,7 @@
                 {% if sujet.verouille == false %}
                     <div class="reponce">
                         <p>Répondre</p>
-                <form action="{{ path("be_teen_user_ajouterReponse",{"categorie":sujet.firstCategorie.slug,"sujet":sujet.slug}) }}" method="post" {{form_enctype(form)}} >
+                <form action="{{ path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug}) }}" method="post" {{form_enctype(form)}} >
                     {{ form_widget(form) }}
                     <input type="submit" class="btn btn-primary" />
                 </form>
