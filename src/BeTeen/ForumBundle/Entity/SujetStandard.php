@@ -52,14 +52,22 @@ class SujetStandard
     private $verouille;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie",inversedBy="sujetsStandards")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="BeTeen\ForumBundle\Entity\Categorie",cascade={"persist"},inversedBy="sujetsStandards")
+     * @ORM\JoinTable(name="sategories_sujetsstandards")
+     * )
      */
     private $categorie;
     
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $firstCategorie;
+    
 	
     /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="sujet", cascade={"remove"})
      */
     private $reponses;
     
@@ -73,9 +81,9 @@ class SujetStandard
     public function __construct() 
     {
         $this->date = new \DateTime;
+        $this->categorie = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
-    
+
     /**
      * Get id
      *
@@ -95,7 +103,7 @@ class SujetStandard
     public function setTitre($titre)
     {
         $this->titre = $titre;
-    
+
         return $this;
     }
 
@@ -118,7 +126,7 @@ class SujetStandard
     public function setContenu($contenu)
     {
         $this->contenu = $contenu;
-    
+
         return $this;
     }
 
@@ -141,7 +149,7 @@ class SujetStandard
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
@@ -156,26 +164,26 @@ class SujetStandard
     }
 
     /**
-     * Set categorie
+     * Set verouille
      *
-     * @param \BeTeen\ForumBundle\Entity\Categorie $categorie
+     * @param boolean $verouille
      * @return SujetStandard
      */
-    public function setCategorie(\BeTeen\ForumBundle\Entity\Categorie $categorie)
+    public function setVerouille($verouille)
     {
-        $this->categorie = $categorie;
-    
+        $this->verouille = $verouille;
+
         return $this;
     }
 
     /**
-     * Get categorie
+     * Get verouille
      *
-     * @return \BeTeen\ForumBundle\Entity\Categorie 
+     * @return boolean 
      */
-    public function getCategorie()
+    public function getVerouille()
     {
-        return $this->categorie;
+        return $this->verouille;
     }
 
     /**
@@ -187,7 +195,7 @@ class SujetStandard
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
@@ -200,7 +208,6 @@ class SujetStandard
     {
         return $this->slug;
     }
-
     /**
      * Add reponses
      *
@@ -235,25 +242,58 @@ class SujetStandard
     }
 
     /**
-     * Set verouille
+     * Add categorie
      *
-     * @param boolean $verouille
+     * @param \BeTeen\ForumBundle\Entity\Categorie $categorie
      * @return SujetStandard
      */
-    public function setVerouille($verouille)
+    public function addCategorie(\BeTeen\ForumBundle\Entity\Categorie $categorie)
     {
-        $this->verouille = $verouille;
+        $this->categorie[] = $categorie;
 
         return $this;
     }
 
     /**
-     * Get verouille
+     * Remove categorie
      *
-     * @return boolean 
+     * @param \BeTeen\ForumBundle\Entity\Categorie $categorie
      */
-    public function getVerouille()
+    public function removeCategorie(\BeTeen\ForumBundle\Entity\Categorie $categorie)
     {
-        return $this->verouille;
+        $this->categorie->removeElement($categorie);
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Set firstCategorie
+     *
+     * @param \BeTeen\ForumBundle\Entity\Categorie $firstCategorie
+     * @return SujetStandard
+     */
+    public function setFirstCategorie(\BeTeen\ForumBundle\Entity\Categorie $firstCategorie = null)
+    {
+        $this->firstCategorie = $firstCategorie;
+
+        return $this;
+    }
+
+    /**
+     * Get firstCategorie
+     *
+     * @return \BeTeen\ForumBundle\Entity\Categorie 
+     */
+    public function getFirstCategorie()
+    {
+        return $this->firstCategorie;
     }
 }

@@ -54,7 +54,13 @@ class ForumController extends Controller
         $position = $repository->findOneBySlug($categorie);
         if($position->getAllowSujetStandard())
         {
-            $sujet->setCategorie($position);
+            $sujet->setFirstCategorie($position);
+            $sujet->addCategorie($position);
+            foreach($position->getParentRecursive() as $parent)
+            {
+                $sujet->addCategorie($parent);
+            }
+            $sujet->setVerouille(false);
             $form = $this->createForm(new SujetStandardType, $sujet);
 
             $requete = $this->get("request");
