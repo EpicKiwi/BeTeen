@@ -73,6 +73,7 @@ class SujetStandard
     public function __construct() 
     {
         $this->date = new \DateTime;
+        $this->verouille = false;
     }
     
     
