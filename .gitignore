@@ -52,7 +52,6 @@ Temporary Items
 /app/logs/*
 /vendor/
 /vendor/*
-/app/config/parameters.yml
 
 # Projet Netbeans
 
