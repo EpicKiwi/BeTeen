@@ -267,7 +267,7 @@ class ForumController extends Controller
         else
         {
             $this->get('session')->getFlashBag()->add('info','Le forum est déjà initialisé');
-            return $this->redirect($this->generateUrl("be_teen_admin_forum"));
         }
+            return $this->redirect($this->generateUrl("be_teen_admin_forum"));
     }
 }
