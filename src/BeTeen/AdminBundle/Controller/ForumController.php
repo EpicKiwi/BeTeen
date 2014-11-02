@@ -248,4 +248,26 @@ class ForumController extends Controller
         
         return $this->render("BeTeenAdminBundle:Forum:Modifier.html.twig",array("form"=>$form->createView()));
     }
+    
+    public function initializeAction()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:Categorie");
+        $categorie = $repository->findOneBySlug("index");
+        if($categorie == null)
+        {
+            $categorie = new Categorie();
+            $categorie->setNom("Index");
+            $categorie->setDescription("Racine du site");
+            $categorie->setAllowSujetStandard(false);
+            $manager->persist($categorie);
+            $manager->flush();
+            $this->get('session')->getFlashBag()->add('info','Le forum a été initialisé');
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('info','Le forum est déjà initialisé');
+            return $this->redirect($this->generateUrl("be_teen_admin_forum"));
+        }
+    }
 }

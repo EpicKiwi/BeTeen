@@ -6,6 +6,10 @@ be_teen_admin_forum:
     path:       /forum
     defaults:   { _controller: BeTeenAdminBundle:Forum:Index }
     
+be_teen_admin_forum_initialize:
+    path:       /forum/initialize
+    defaults:   { _controller: BeTeenAdminBundle:Forum:Initialize }
+    
 be_teen_admin_forum_categories:
     path:       /forum/categories/{categorie}
     defaults:   { _controller: BeTeenAdminBundle:Forum:Categories ,categorie: index}
