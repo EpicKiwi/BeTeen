@@ -13,8 +13,8 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    locale:            fr
+    secret:            aea2da37a12f681038ff2e6d4cf9253ce5691f86
 
     debug_toolbar:          true
     debug_redirects:        false
