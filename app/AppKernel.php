@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new BeTeen\ForumBundle\BeTeenForumBundle(),
             new BeTeen\AdminBundle\BeTeenAdminBundle(),
             new BeTeen\IndexBundle\BeTeenIndexBundle(),
+            new BeTeen\UserBundle\BeTeenUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
