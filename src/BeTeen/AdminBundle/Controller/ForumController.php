@@ -170,9 +170,8 @@ class ForumController extends Controller
         $cat = $repository->findOneBySlug($categorie);
         if($cat == null)
         {
-            throw $this->createNotFoundException("Ce sujet n'existe pas");
+            throw $this->createNotFoundException("Cette categorie n'existe pas");
         }
-        
         
         if($cat->getAllowSujetStandard())
         {
@@ -188,7 +187,14 @@ class ForumController extends Controller
         $manager->persist($cat);
         $manager->flush();
         
-        return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$cat->getParent()->getSlug())));
+        if($cat->getParent() == null)
+        {
+            return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$cat->getSlug())));
+        }
+        else
+        {
+            return $this->redirect($this->generateUrl("be_teen_admin_forum_categories",array("categorie"=>$cat->getParent()->getSlug())));
+        }
     }
     
     public function ajouterCategorieAction($parent)

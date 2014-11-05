@@ -8,6 +8,7 @@ use BeTeen\ForumBundle\Entity\SujetStandard;
 use BeTeen\ForumBundle\Form\SujetStandardType;
 use BeTeen\ForumBundle\Entity\ReponseStandard;
 use BeTeen\ForumBundle\Form\ReponseStandardType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ForumController extends Controller
 {
@@ -45,6 +46,9 @@ class ForumController extends Controller
 	return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet,"form"=>$form->createView()));
     }
     
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
     public function ajouterSujetAction($categorie)
     {
         $manager = $this->getDoctrine()->getManager();
