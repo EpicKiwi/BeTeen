@@ -4,7 +4,7 @@ namespace BeTeen\IndexBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class IndexController extends Controller
 {
     public function indexAction()
     {
