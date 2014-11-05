@@ -1,3 +1,7 @@
+be_teen_index:
+    resource: "@BeTeenIndexBundle/Resources/config/routing.yml"
+    prefix:   /
+
 be_teen_admin:
     resource: "@BeTeenAdminBundle/Resources/config/routing.yml"
     prefix:   /admin

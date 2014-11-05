@@ -1,0 +1,3 @@
+be_teen_index_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BeTeenIndexBundle:Default:index }
