@@ -1,21 +1,16 @@
-<! Doctype html >
-<html>
-	<head>
-		<title>Forum</title>
-		<meta charset="UTF-8" />
-	</head>
-	<body>
-		<h1> {{sujet.titre|upper}} </h1>
-		<h2> {{sujet.categorie.nom}} </h2>
-		<h3> {{sujet.categorie.description}} </h3>
-		<p> {{sujet.contenu|striptags|markdown}} </p>
-		<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%} {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} </p>
-		{%if sujet.reponses == null%} Aucune réponse {%else%} {%for reponse in sujet.reponses%} <p>{{reponse.contenu|striptags|markdown}}
-		<br/>{{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}}
-		</p>{%endfor%} {%endif%}
-		<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
-		{{ form_widget(form) }}
-		<input type="submit" value="envoyer"/>
-		</form>
-	</body>
-</html>
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %} {{sujet.titre}} | {{parent()}} {% endblock %}
+{% block body %} 
+	<h1> {{sujet.titre}} </h1>
+	<h2> {{sujet.categorie.nom}} </h2>
+	<h3> {{sujet.categorie.description}} </h3>
+	<p> {{sujet.contenu|striptags|markdown}} </p>
+	<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%} {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} </p>
+	{%if sujet.reponses == null%} Aucune réponse {%else%} {%for reponse in sujet.reponses%} <p>{{reponse.contenu|striptags|markdown}}
+	<br/>{{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}}
+	</p>{%endfor%} {%endif%}
+	<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
+	{{ form_widget(form) }}
+	<input type="submit" value="envoyer"/>
+	</form>
+{%  endblock %}

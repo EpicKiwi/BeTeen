@@ -1,6 +1,7 @@
-<DOCTYPE HTML>
+<! DOCTYPE HTML>
 <html>
 	<head>
+		<link rel="stylesheet" href="{{asset("css/Global.css")}}" />
 		<meta charset="utf-8">
 		<title>{% block title %}{{siteName}}{% endblock %}</title>
 		{% block header %}  {% endblock %}
@@ -8,13 +9,20 @@
 	<body>
 		<header>
 			<h1>{{siteName}}</h1>
+			 <span>{% if app.user != null %}
+			 <a href="{{path("logout")}}">Déconnexion </a>
+					{{app.user.username}}
+					{% else %}
+					Non connecté
+					{% endif %}</span>
+			 
 			
 		</header>
 		<section>
 			{% block body %}  {% endblock %}
 		</section>
 		<footer>
-			{% block footer %}  {% block %}
+			{% block footer %}  {% endblock %}
 			{{siteAuthors}}
 		</footer>
 	
