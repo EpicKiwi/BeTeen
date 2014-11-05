@@ -1,6 +1,6 @@
 be_teen_user:
     resource: "@BeTeenUserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /utilisateur
 
 be_teen_index:
     resource: "@BeTeenIndexBundle/Resources/config/routing.yml"
@@ -13,4 +13,13 @@ be_teen_admin:
 be_teen_forum:
     resource: "@BeTeenForumBundle/Resources/config/routing.yml"
     prefix:   /forum
+    
+login:
+    pattern:  /connexion
+    defaults: { _controller: BeTeenUserBundle:User:login }
 
+login_check:
+    pattern:  /connexion-check
+    
+logout:
+    pattern:  /deconnexion
