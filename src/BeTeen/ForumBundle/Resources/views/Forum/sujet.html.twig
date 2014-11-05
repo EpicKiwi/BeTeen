@@ -5,35 +5,17 @@
 		<meta charset="UTF-8" />
 	</head>
 	<body>
-		<h1>{{sujet.titre}}</h1>
-		<h2>{{sujet.categorie.nom}}</h2>
-		<h3>{{sujet.categorie.description}}</h3>
-                <div class="question">
-		<p>
-		{{sujet.contenu|striptags('<br>')|markdown}}
-		</p>
-		<p>Le : {{sujet.date|date("d/m/Y")}} a {{sujet.date|date("H:i")}}</p>
-                </div>
-                {% if sujet.reponses|length > 0 %}
-                    {% for reponse in sujet.reponses %}
-                    <div class="reponce">
-                        <p>{{reponse.contenu}}</p>
-                        <p>Le : {{reponse.date|date("d/m/Y")}} a {{reponse.date|date("H:i")}}</p>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="reponce">
-                        <p>Aucune réponse ...</p>
-                    </div>
-                {% endif %}
-                {% if sujet.verouille == false %}
-                    <div class="reponce">
-                        <p>Répondre</p>
-                <form action="{{ path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug}) }}" method="post" {{form_enctype(form)}} >
-                    {{ form_widget(form) }}
-                    <input type="submit" class="btn btn-primary" />
-                </form>
-                    </div>
-                {% endif %}
+		<h1> {{sujet.titre|upper}} </h1>
+		<h2> {{sujet.categorie.nom}} </h2>
+		<h3> {{sujet.categorie.description}} </h3>
+		<p> {{sujet.contenu|striptags|markdown}} </p>
+		<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%} {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} </p>
+		{%if sujet.reponses == null%} Aucune réponse {%else%} {%for reponse in sujet.reponses%} <p>{{reponse.contenu|striptags|markdown}}
+		<br/>{{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}}
+		</p>{%endfor%} {%endif%}
+		<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
+		{{ form_widget(form) }}
+		<input type="submit" value="envoyer"/>
+		</form>
 	</body>
 </html>

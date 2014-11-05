@@ -1,0 +1,39 @@
+<! Doctype html >
+<html>
+	<head>
+		<title>Forum</title>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<h1>{{sujet.titre}}</h1>
+		<h2>{{sujet.categorie.nom}}</h2>
+		<h3>{{sujet.categorie.description}}</h3>
+                <div class="question">
+		<p>
+		{{sujet.contenu|striptags('<br>')|markdown}}
+		</p>
+		<p>Le : {{sujet.date|date("d/m/Y")}} a {{sujet.date|date("H:i")}}</p>
+                </div>
+                {% if sujet.reponses|length > 0 %}
+                    {% for reponse in sujet.reponses %}
+                    <div class="reponce">
+                        <p>{{reponse.contenu}}</p>
+                        <p>Le : {{reponse.date|date("d/m/Y")}} a {{reponse.date|date("H:i")}}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="reponce">
+                        <p>Aucune réponse ...</p>
+                    </div>
+                {% endif %}
+                {% if sujet.verouille == false %}
+                    <div class="reponce">
+                        <p>Répondre</p>
+                <form action="{{ path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug}) }}" method="post" {{form_enctype(form)}} >
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-primary" />
+                </form>
+                    </div>
+                {% endif %}
+	</body>
+</html>
