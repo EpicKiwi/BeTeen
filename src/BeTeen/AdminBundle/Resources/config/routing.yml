@@ -53,3 +53,7 @@ be_teen_admin_forum_sujets_verouillageswitch:
 be_teen_admin_user:
     path:       /utilisateur
     defaults:   { _controller: BeTeenAdminBundle:User:Index }
+    
+be_teen_admin_user_ajout:
+    path:       /utilisateur/ajouter
+    defaults:   { _controller: BeTeenAdminBundle:User:Ajout }
