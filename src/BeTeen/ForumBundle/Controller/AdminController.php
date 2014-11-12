@@ -3,22 +3,22 @@
 namespace BeTeen\ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use BeTeen\ForumBundle\Entity\Categorie;
-use BeTeen\ForumBundle\Entity\SujetStandard;
+use \BeTeen\UserBundle\Entity\User;
 
 class AdminController extends Controller
 {
     public function InitializeAction()
     {
         $manager = $this->getDoctrine()->getManager();
-	$repository = $manager->getRepository("BeTeenForumBundle:Categorie");
+	$repository = $manager->getRepository("BeTeenUserBundle:User");
         
-        if($repository->findBy(array("slug"=>"index")) == null)
+        if($repository->findBy(array("username"=>"admin")) == null)
         {
-            $index = new Categorie();
-            $index->setNom("Index");
-            $index->setDescription("Racine du forum");
-            $index->setAllowSujetStandard(false);
+            $index = new User();
+            $index->setUsername("admin");
+            $index->setPassword("root");
+            $index->setSalt("");
+            $index->setRoles(array("ROLE_SUPER_ADMIN"));
             
             $manager->persist($index);
             

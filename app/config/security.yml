@@ -1,6 +1,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        BeTeen\UserBundle\Entity\User: plaintext
         
     role_hierarchy:
         ROLE_MODERATEUR:        ROLE_USER
@@ -15,6 +16,8 @@ security:
                     user:   {password: userpass, roles:["ROLE_USER"]}
                     modo:   {password: modopass, roles:["ROLE_MODERATEUR"]}
                     admin:  {password: adminpass, roles:["ROLE_ADMIN"]}
+        main:
+            entity: { class: BeTeen\UserBundle\Entity\User, property: username }
 
     firewalls:
         dev:
@@ -24,7 +27,7 @@ security:
         main:
             pattern:            ^/
             anonymous:          true
-            provider:           in_memory
+            provider:           main
             form_login:
                 login_path:     login
                 check_path:    login_check
