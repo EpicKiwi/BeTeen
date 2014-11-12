@@ -34,6 +34,11 @@ security:
             logout:
                 path:           logout
                 target:         /
+            remember_me:
+                key:            "%secret%"
+                lifetime:       604800 #7 jours en secondes
+                path:           /
+                domain:         ~
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
