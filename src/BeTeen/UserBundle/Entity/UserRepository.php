@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    
+    public function findLimit($limit)
+    {
+        $builder = $this->createQueryBuilder("u");
+        
+        $builder//->orderBy("u:username")
+                ->setMaxResults($limit);
+        
+        return $builder->getQuery()->getResult() ;
+    }
+    
 }

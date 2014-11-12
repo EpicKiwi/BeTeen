@@ -49,3 +49,7 @@ be_teen_admin_forum_sujets_supprimer:
 be_teen_admin_forum_sujets_verouillageswitch:
     path:       /forum/sujets/verouillage-{sujet}
     defaults:   { _controller: BeTeenAdminBundle:Forum:VerouillageSujet }
+    
+be_teen_admin_user:
+    path:       /utilisateur
+    defaults:   { _controller: BeTeenAdminBundle:User:Index }

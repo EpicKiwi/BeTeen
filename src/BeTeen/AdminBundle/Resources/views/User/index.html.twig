@@ -1,0 +1,36 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}Utilisateurs | {{ parent() }} {% endblock %}
+{% block headerTitle %} Utilisateurs {% endblock %}
+{% block body %}
+    <h2>Que voulez vous configurer ?</h2>
+    <nav class="menuCirculaire" >
+        <table>
+            <tr>
+                <td><a href="{{ path("be_teen_admin_index") }}" ><i class="fi-arrow-left"></i><h3>Retour</h3></a></td>
+                <td><a href="#" ><i class="fi-plus"></i><h3>Ajouter</h3></a></td>
+                <td><a href="#" ><i class="fi-widget"></i><h3>Réglages</h3></a></td>
+            </tr>
+        </table>
+    </nav>
+    <article class="col-2" >
+        <h2>Quelques utilisateurs</h2>
+        {%if utilisateurs != null%}
+            {%for utilisateur in utilisateurs %}
+                <div class="sujet">
+                    <h4><a href="#" title="Voir le profil de {{utilisateur.username}}">{{utilisateur.username}}</a></h4>
+                </div>
+            {% endfor %}
+        {%else%}
+                <div class="sujet">
+                    <h4>Personne ?!</h4>
+                    <p>C'est vide ici</p>
+                </div>
+        {%endif%}
+    </article>
+    <article class="col-2" >
+        <h2>Quoi de neuf ?</h2>
+        <p>
+            Des que les status serons implémentés ils apparaitrons ici
+        </p>
+    </article>
+{% endblock %}
