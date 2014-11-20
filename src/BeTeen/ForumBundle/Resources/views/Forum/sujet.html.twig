@@ -8,7 +8,7 @@
 	<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%}<br/>
         Le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} par {{sujet.auteur.username}}</p>
 	{%if sujet.reponses == null%} Aucune réponse {%else%} {%for reponse in sujet.reponses%} <p>{{reponse.contenu|striptags|markdown}}
-	<br/>{{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}}
+	<br/>Le {{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}} par {{reponse.auteur.username}}
 	</p>{%endfor%} {%endif%}
 	<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
 	{{ form_widget(form) }}

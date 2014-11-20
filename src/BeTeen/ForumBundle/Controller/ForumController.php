@@ -59,6 +59,7 @@ class ForumController extends Controller
         if($position->getAllowSujetStandard())
         {
             $sujet->setCategorie($position);
+            $sujet->setAuteur($this->get('security.context')->getToken()->getUser());
             $form = $this->createForm(new SujetStandardType, $sujet);
 
             $requete = $this->get("request");
@@ -84,6 +85,9 @@ class ForumController extends Controller
         }
     }
     
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
     public function ajouterReponseAction($categorie,$sujet)
     {
         $manager = $this->getDoctrine()->getManager();
@@ -92,6 +96,7 @@ class ForumController extends Controller
         $reponse = new ReponseStandard();
         $sujetActuel = $repository->findOneBySlug($sujet);
         $reponse->setSujet($sujetActuel);
+        $reponse->setAuteur($this->getUser());
         
         if($sujetActuel->getVerouille() == false)
         {
