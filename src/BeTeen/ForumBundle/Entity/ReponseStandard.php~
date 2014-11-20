@@ -40,6 +40,17 @@ class ReponseStandard
      * @ORM\JoinColumn(nullable=false)
      */
     private $sujet;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\UserBundle\Entity\User",inversedBy="reponsesStandards")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+    
+    public function __construct()
+    {
+        $this->date = new \DateTime;
+    }
     
     /**
      * Get id
@@ -95,5 +106,28 @@ class ReponseStandard
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set sujet
+     *
+     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujet
+     * @return ReponseStandard
+     */
+    public function setSujet(\BeTeen\ForumBundle\Entity\SujetStandard $sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return \BeTeen\ForumBundle\Entity\SujetStandard 
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
     }
 }

@@ -40,6 +40,12 @@ class ReponseStandard
      * @ORM\JoinColumn(nullable=false)
      */
     private $sujet;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\UserBundle\Entity\User",inversedBy="reponsesStandards")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
     
     public function __construct()
     {
@@ -123,5 +129,28 @@ class ReponseStandard
     public function getSujet()
     {
         return $this->sujet;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \BeTeen\UserBundle\Entity\User $auteur
+     * @return ReponseStandard
+     */
+    public function setAuteur(\BeTeen\UserBundle\Entity\User $auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \BeTeen\UserBundle\Entity\User 
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
     }
 }

@@ -83,10 +83,16 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="sujetsStandards", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="auteur", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $sujetsStandards;
+
+    /**
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="auteur", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $reponsesStandards;
     
     public function __construct()
     {
@@ -323,5 +329,38 @@ class User implements UserInterface
     public function getSujetsStandards()
     {
         return $this->sujetsStandards;
+    }
+
+    /**
+     * Add reponsesStandards
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards
+     * @return User
+     */
+    public function addReponsesStandard(\BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards)
+    {
+        $this->reponsesStandards[] = $reponsesStandards;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponsesStandards
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards
+     */
+    public function removeReponsesStandard(\BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards)
+    {
+        $this->reponsesStandards->removeElement($reponsesStandards);
+    }
+
+    /**
+     * Get reponsesStandards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponsesStandards()
+    {
+        return $this->reponsesStandards;
     }
 }
