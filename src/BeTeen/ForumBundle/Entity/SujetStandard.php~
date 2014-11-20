@@ -69,10 +69,17 @@ class SujetStandard
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\UserBundle\Entity\User",inversedBy="sujetsStandards")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
 
     public function __construct() 
     {
         $this->date = new \DateTime;
+        $this->verouille = false;
     }
     
     
@@ -232,5 +239,28 @@ class SujetStandard
     public function getReponses()
     {
         return $this->reponses;
+    }
+
+    /**
+     * Set verouille
+     *
+     * @param boolean $verouille
+     * @return SujetStandard
+     */
+    public function setVerouille($verouille)
+    {
+        $this->verouille = $verouille;
+
+        return $this;
+    }
+
+    /**
+     * Get verouille
+     *
+     * @return boolean 
+     */
+    public function getVerouille()
+    {
+        return $this->verouille;
     }
 }

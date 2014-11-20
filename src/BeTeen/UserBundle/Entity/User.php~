@@ -291,37 +291,4 @@ class User implements UserInterface
     {
         return $this->description;
     }
-
-    /**
-     * Add sujetsStandards
-     *
-     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
-     * @return User
-     */
-    public function addSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
-    {
-        $this->sujetsStandards[] = $sujetsStandards;
-
-        return $this;
-    }
-
-    /**
-     * Remove sujetsStandards
-     *
-     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
-     */
-    public function removeSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
-    {
-        $this->sujetsStandards->removeElement($sujetsStandards);
-    }
-
-    /**
-     * Get sujetsStandards
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSujetsStandards()
-    {
-        return $this->sujetsStandards;
-    }
 }

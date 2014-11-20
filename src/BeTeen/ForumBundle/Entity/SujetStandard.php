@@ -69,6 +69,12 @@ class SujetStandard
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\UserBundle\Entity\User",inversedBy="sujetsStandards")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
 
     public function __construct() 
     {
@@ -256,5 +262,28 @@ class SujetStandard
     public function getVerouille()
     {
         return $this->verouille;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \BeTeen\UserBundle\Entity\User $auteur
+     * @return SujetStandard
+     */
+    public function setAuteur(\BeTeen\UserBundle\Entity\User $auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \BeTeen\UserBundle\Entity\User 
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
     }
 }
