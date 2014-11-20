@@ -5,7 +5,8 @@
 	<h2> {{sujet.categorie.nom}} </h2>
 	<h3> {{sujet.categorie.description}} </h3>
 	<p> {{sujet.contenu|striptags|markdown}} </p>
-	<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%} {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} </p>
+	<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%}<br/>
+        Le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} par {{sujet.auteur.username}}</p>
 	{%if sujet.reponses == null%} Aucune réponse {%else%} {%for reponse in sujet.reponses%} <p>{{reponse.contenu|striptags|markdown}}
 	<br/>{{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}}
 	</p>{%endfor%} {%endif%}
