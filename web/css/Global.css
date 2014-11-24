@@ -26,8 +26,7 @@ footer
 {
 	font-size: 15px;
 	color: #FFAD1D;
-	background-color: #383838;
+	border-top: dashed 2px #FFAD1D;
 	padding: 15px;
-	box-shadow: 0 0 15px black;
 	text-align: center;
 }

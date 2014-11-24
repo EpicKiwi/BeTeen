@@ -21,6 +21,9 @@ class UserController extends Controller
         $utilisateur = new User();
         $utilisateur->setRoles(array("ROLE_USER"));
         $utilisateur->setSalt("");
+		$utilisateur->setAvatar("");
+		$utilisateur->setBackground("");
+		$utilisateur->setDescription("");
         
         $form = $this->createForm(new UserType(),$utilisateur);
         

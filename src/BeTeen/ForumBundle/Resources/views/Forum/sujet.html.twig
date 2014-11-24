@@ -1,17 +1,88 @@
 {% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
 {% block title %} {{sujet.titre}} | {{parent()}} {% endblock %}
-{% block body %} 
-	<h1> {{sujet.titre}} </h1>
-	<h2> {{sujet.categorie.nom}} </h2>
-	<h3> {{sujet.categorie.description}} </h3>
-	<p> {{sujet.contenu|striptags|markdown}} </p>
-	<p>{%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%}<br/>
-        Le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}} par {{sujet.auteur.username}}</p>
-	{%if sujet.reponses == null%} Aucune réponse {%else%} {%for reponse in sujet.reponses%} <p>{{reponse.contenu|striptags|markdown}}
-	<br/>Le {{reponse.date|date ("d/m/Y")}} a {{reponse.date|date ("H:i")}} par {{reponse.auteur.username}}
-	</p>{%endfor%} {%endif%}
-	<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
-	{{ form_widget(form) }}
-	<input type="submit" value="envoyer"/>
-	</form>
+{% block header %}
+<link rel="stylesheet" href="{{ asset("css/Sujet.css") }}"/>
+{% endblock %}
+{% block body %}
+<article>
+	<div class="sujetHead">
+		<p class="sujetCat" > {{sujet.categorie.nom}} <br/> {%if sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%}</p>
+		<h1 class="sujetTitle" > {{sujet.titre}} </h1>
+	</div>
+	<div class="sujetBody">
+		<p> {{sujet.contenu|striptags|markdown}} </p>
+	</div>
+	<div class="sujetFooter" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if sujet.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{sujet.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~sujet.auteur.avatar) }}" alt="Avatar de {{sujet.auteur.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{sujet.auteur.username}}<br/>
+					Le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>
+
+	{%if sujet.reponses == null%}
+	Aucune réponse
+	{%else%}
+	{%for reponse in sujet.reponses%}
+<article>
+	<div class="sujetBody">
+		<p> {{reponse.contenu|striptags|markdown}} </p>
+	</div>
+	<div class="sujetFooter" style="background-image: url('{% if reponse.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~reponse.auteur.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if reponse.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{reponse.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~reponse.auteur.avatar) }}" alt="Avatar de {{reponse.auteur.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{reponse.auteur.username}}<br/>
+					Le {{reponse.date|date("d/m/Y")}} a {{reponse.date|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>
+{%endfor%} {%endif%}
+<article>
+	<div class="sujetBody">
+		<p> 
+			<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
+			{{ form_widget(form) }}
+			<input type="submit" value="envoyer"/>
+			</form> 
+		</p>
+	</div>
+	<div class="sujetFooter" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if app.user.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{app.user.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~app.user.avatar) }}" alt="Avatar de {{app.user.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{app.user.username}}<br/>
+					Le {{"now"|date("d/m/Y")}} a {{"now"|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>
 {%  endblock %}
