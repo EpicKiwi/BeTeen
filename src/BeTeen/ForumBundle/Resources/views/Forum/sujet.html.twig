@@ -58,6 +58,7 @@
 	</div>
 </article>
 {%endfor%} {%endif%}
+{% if app.user != null %}
 <article>
 	<div class="sujetBody">
 		<p> 
@@ -85,4 +86,5 @@
 		</div>
 	</div>
 </article>
+{% endif %}
 {%  endblock %}
