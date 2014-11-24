@@ -60,6 +60,11 @@ article .sujetBody
 	margin-bottom: 30px;
 }
 
+article .sujetBody p
+{
+	margin-bottom: 15px;
+}
+
 article .sujetPhoto
 {
 	float: left;
