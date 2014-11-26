@@ -11,6 +11,12 @@ article
 	/*box-shadow: 0 0 10px black;*/
 }
 
+article, article .sujetPhoto, article .sujetPhoto img, article .sujetFooter
+{
+	transition-duration: 0.5s;
+	transition-property: all;
+}
+
 article .sujetHead
 {
 	width: 100%;
@@ -52,7 +58,7 @@ article .sujetCat
 
 article .sujetBody
 {
-	width: 100%;
+	width: 98%;
 	min-height: 50px;
 	padding-left: 1%;
 	padding-right: 1%;
@@ -63,6 +69,7 @@ article .sujetBody
 article .sujetBody p
 {
 	margin-bottom: 15px;
+	text-align: justify;
 }
 
 article .sujetPhoto
@@ -123,4 +130,30 @@ article .sujetBody form input[type="submit"]
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-top: 10px;
+}
+
+@media screen and (max-width: 800px)
+{
+	article
+	{
+		width: 100%;
+		border-radius: 0;
+		border: none;
+		margin: 0;
+	}
+	
+	article .sujetPhoto img
+	{
+		width: 32px;
+	}
+	
+	article .sujetPhoto
+	{
+		top: 20px;
+	}
+	
+	article .sujetFooter
+	{
+		font-size: 15px;
+	}
 }
