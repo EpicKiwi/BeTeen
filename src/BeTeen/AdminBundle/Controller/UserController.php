@@ -41,6 +41,9 @@ class UserController extends Controller
             $form->bind($requete);
             if($form->isValid())
             {
+                $encoder = $this->get('security.encoder_factory')->getEncoder($utilisateur);
+                $encodedPass = $encoder->encodePassword($utilisateur->getPassword(), $utilisateur->getSalt());
+                $utilisateur->setPassword($encodedPass);
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($utilisateur);
                 $manager->flush();
@@ -66,6 +69,9 @@ class UserController extends Controller
             $form->bind($requete);
             if($form->isValid())
             {
+                $encoder = $this->get('security.encoder_factory')->getEncoder($utilisateur);
+                $encodedPass = $encoder->encodePassword($utilisateur->getPassword(), $utilisateur->getSalt());
+                
                 if($utilisateur->getPassword() == "")
                 {
                     $this->get('session')->getFlashBag()->add('info','Le mot de passe de '.$utilisateur->getUsername()." reste inchangé");
@@ -74,6 +80,7 @@ class UserController extends Controller
                 else
                 {
                     $this->get('session')->getFlashBag()->add('info','Le mot de passe de '.$utilisateur->getUsername()." a été modifié");
+                    $utilisateur->setPassword($encodedPass);
                 }
                 $manager->persist($utilisateur);
                 $manager->flush();
