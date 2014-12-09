@@ -10,12 +10,6 @@ security:
         
     
     providers:
-        in_memory:
-            memory: 
-                users:
-                    user:   {password: userpass, roles:["ROLE_USER"]}
-                    modo:   {password: modopass, roles:["ROLE_MODERATEUR"]}
-                    admin:  {password: adminpass, roles:["ROLE_ADMIN"]}
         main:
             entity: { class: BeTeen\UserBundle\Entity\User, property: username }
 
