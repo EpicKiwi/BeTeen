@@ -1,0 +1,30 @@
+.box
+{
+	width: 300px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 200px;
+	margin-top: 200px;
+	border: solid 1px lightgrey;
+	border-radius: 15px;
+	padding: 10px;
+}
+.box table
+{
+	width: 100%;
+}
+.box input[type="text"], .box input[type="password"]
+{
+	width: 100% ;
+}
+.box input[type="submit"]
+{
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.rememberme
+{
+	
+	margin-top: 10px;
+}

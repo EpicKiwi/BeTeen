@@ -1,24 +1,26 @@
-<! Doctype html >
-<html>
-    <head>
-        <title>Connexion</title>
-        <meta charset="UTF-8" />
-    </head>
-    <body>
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %} Connexion | {{parent()}} {% endblock %}
+{% block header %} <link rel="stylesheet" href="{{asset("css/Connexion.css")}}" />
+{% endblock %}
+{% block body %}
         {% if error %}
-          <div>{{ error.message }}</div>
+          <div class="box">{{ error.message }}</div>
         {% endif %}
 
-        <form action="{{ path('login_check') }}" method="post">
-          <label for="username">Identifiant :</label>
-          <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-          <label for="password">Mot de passe :</label>
-          <input type="password" id="password" name="_password" />
-          <input type="checkbox" id="remember_me" name="_remember_me" />
-          <label for="_remember_me"/>Maintenir la connexion pour une semaine</label>
+       <div class="box"> <form action="{{ path('login_check') }}" method="post">
+		<table>
+          <tr>
+			<td><label for="username">Identifiant</label></td>
+			<td><input type="text" id="username" name="_username" value="{{ last_username }}" /></td>
+		</tr>
+		<tr>
+			<td><label for="password">Mot de passe</label></td>
+			<td><input type="password" id="password" name="_password" /></td>
+		</tr>
+		</table>
+		<div class="rememberme"><input type="checkbox" id="remember_me" name="_remember_me" />
+		<label for="_remember_me"/>Maintenir la connexion pour une semaine</label></div>
           <br />
           <input type="submit" value="Connexion" />
-        </form>
-    </body>
-</html>
+        </form></div>
+    {% endblock %}
