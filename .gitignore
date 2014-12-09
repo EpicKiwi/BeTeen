@@ -50,7 +50,7 @@ Temporary Items
 /app/cache/*
 /app/cache/dev/*
 /app/logs/*
-/app/config/parameter.yml
+/app/config/parameters.yml
 /vendor/
 /vendor/*
 
