@@ -17,8 +17,12 @@ class UserRepository extends EntityRepository
     {
         $builder = $this->createQueryBuilder("u");
         
-        $builder//->orderBy("u:username")
-                ->setMaxResults($limit);
+        $builder->orderBy("u.username");
+        
+        if($limit > 0)
+        {
+            $builder->setMaxResults($limit);
+        }
         
         return $builder->getQuery()->getResult() ;
     }

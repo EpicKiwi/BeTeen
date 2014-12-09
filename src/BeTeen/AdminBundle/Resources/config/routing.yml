@@ -54,6 +54,14 @@ be_teen_admin_user:
     path:       /utilisateur
     defaults:   { _controller: BeTeenAdminBundle:User:Index }
     
+be_teen_admin_user_liste:
+    path:       /utilisateur/liste
+    defaults:   { _controller: BeTeenAdminBundle:User:List }
+    
 be_teen_admin_user_ajout:
     path:       /utilisateur/ajouter
     defaults:   { _controller: BeTeenAdminBundle:User:Ajout }
+    
+be_teen_admin_user_modifier:
+    path:       /utilisateur/modifier/{user}
+    defaults:   { _controller: BeTeenAdminBundle:User:Modifier }

@@ -1,0 +1,38 @@
+{% extends "BeTeenAdminBundle:Layout:AdminLayout.html.twig" %}
+{% block title %}Utilisateurs | {{ parent() }} {% endblock %}
+{% block headerTitle %} Utilisateurs {% endblock %}
+{% block body %}
+    <h2>Que voulez vous configurer ?</h2>
+    <nav class="menuCirculaire" >
+        <table>
+            <tr>
+                <td><a href="{{ path("be_teen_admin_user") }}" ><i class="fi-arrow-left"></i><h3>Retour</h3></a></td>
+                <td><a href="{{ path("be_teen_admin_user_ajout") }}" ><i class="fi-plus"></i><h3>Ajouter</h3></a></td>
+            </tr>
+        </table>
+    </nav>
+    <article>
+        <h2>Tout les utilisateurs</h2>
+        {%if utilisateurs != null%}
+            <table class="categories" >
+                    <tr>
+                        <td>Identifiant</td>
+                        <td>Email</td>
+                        <td>Modifier</td>
+                    <tr>
+            {%for utilisateur in utilisateurs %}
+                    <tr>
+                        <td><a href="#" title="Voir le profil de {{utilisateur.username}}">{{utilisateur.username}}</a></td>
+                        <td>{{utilisateur.email}}</td>
+                        <td><a href="{{ path("be_teen_admin_user_modifier",{'user':utilisateur.username}) }}" title="Modifier {{utilisateur.username}}"><i class="fi-pencil"></i></a></td>
+                    <tr>
+            {% endfor %}
+            </table>
+        {%else%}
+                <div class="sujet">
+                    <h4>Personne ?!</h4>
+                    <p>C'est vide ici</p>
+                </div>
+        {%endif%}
+    </article>
+{% endblock %}
