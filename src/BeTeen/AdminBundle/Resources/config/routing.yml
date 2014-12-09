@@ -65,3 +65,7 @@ be_teen_admin_user_ajout:
 be_teen_admin_user_modifier:
     path:       /utilisateur/modifier/{user}
     defaults:   { _controller: BeTeenAdminBundle:User:Modifier }
+    
+be_teen_admin_user_supprimer:
+    path:       /utilisateur/supprimer/{user}
+    defaults:   { _controller: BeTeenAdminBundle:User:Supprimer }

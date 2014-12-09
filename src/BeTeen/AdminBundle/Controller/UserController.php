@@ -84,4 +84,25 @@ class UserController extends Controller
         
         return $this->render("BeTeenAdminBundle:Forum:Modifier.html.twig",array("form"=>$form->createView()));
     }
+    
+    public function supprimerAction($user)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenUserBundle:User");
+        $utilisateur = $repository->findOneByUsername($user);
+        $message = "Voulez vous vraiment supprimer l'utilisateur ".$utilisateur->getUsername()." ?";
+        
+        $form = $this->createFormBuilder($utilisateur)->getForm();
+        
+        $requete = $this->get("request");
+        if($requete->getMethod() == "POST")
+        {
+            $this->get('session')->getFlashBag()->add('info','L\'utilisateur '.$utilisateur->getUsername()." a été supprimé !");
+            $manager->remove($utilisateur);
+            $manager->flush();
+            return $this->redirect($this->generateUrl("be_teen_admin_user_liste"));
+        }
+        
+        return $this->render('BeTeenAdminBundle:Forum:supprimer.html.twig',array("form"=>$form->createView(),"message"=>$message));
+    }
 }

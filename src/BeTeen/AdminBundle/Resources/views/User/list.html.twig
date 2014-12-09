@@ -19,13 +19,15 @@
                         <td>Identifiant</td>
                         <td>Email</td>
                         <td>Modifier</td>
+                        <td>Supprimer</td>
                     <tr>
             {%for utilisateur in utilisateurs %}
                     <tr>
                         <td><a href="#" title="Voir le profil de {{utilisateur.username}}">{{utilisateur.username}}</a></td>
                         <td>{{utilisateur.email}}</td>
                         <td><a href="{{ path("be_teen_admin_user_modifier",{'user':utilisateur.username}) }}" title="Modifier {{utilisateur.username}}"><i class="fi-pencil"></i></a></td>
-                    <tr>
+                        <td><a href="{{ path("be_teen_admin_user_supprimer",{'user':utilisateur.username}) }}" title="Supprimer {{utilisateur.username}}"><i class="fi-x"></i></a></td>
+                     <tr>
             {% endfor %}
             </table>
         {%else%}
