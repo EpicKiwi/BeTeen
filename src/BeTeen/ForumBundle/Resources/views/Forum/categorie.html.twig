@@ -24,10 +24,9 @@
 		<dl>
 			{% if listeCategories != null %}
 				{% for categorie in listeCategories %}
-					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" >{{categorie.nom}}</a></dt>
+					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" >{{categorie.nom}}{% if categorie.sujetNumber > 0 %} - {{categorie.sujetNumber}} sujets{% endif %}</a></dt>
 					<dd>{{categorie.description}}</dd>
                                         {% if categorie.sujetsStandards|length != 0 %}
-                                        <dd>{{ categorie.sujetsStandards|length }} Sujets</dd>
                                         {% endif %}
 				{% endfor %}
 			{% else %}

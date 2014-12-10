@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @Gedmo\Tree(type="nested")
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
+ * @ORM\Entity(repositoryClass="BeTeen\ForumBundle\Entity\CategorieRepository")
  */
 class Categorie
 {
@@ -41,6 +41,13 @@ class Categorie
      * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
      */
     private $sujetsStandards;
+    
+    /**
+     * @var integer
+     * 
+     * @ORM\Column(name="sujetNumber", type="integer")
+     */
+    private $sujetNumber;
     
     /**
      * @var boolean
@@ -383,5 +390,28 @@ class Categorie
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set allowSujetStandard
+     *
+     * @param boolean $allowSujetStandard
+     * @return Categorie
+     */
+    public function setAllowSujetStandard($allowSujetStandard)
+    {
+        $this->allowSujetStandard = $allowSujetStandard;
+
+        return $this;
+    }
+
+    /**
+     * Get allowSujetStandard
+     *
+     * @return boolean 
+     */
+    public function getAllowSujetStandard()
+    {
+        return $this->allowSujetStandard;
     }
 }

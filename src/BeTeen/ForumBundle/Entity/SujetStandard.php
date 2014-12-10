@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="BeTeen\ForumBundle\Entity\SujetStandardRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class SujetStandard
 {
@@ -82,6 +83,22 @@ class SujetStandard
         $this->verouille = false;
     }
     
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        echo("+1 sujet");
+        $this->categorie->addSujetNumber();
+    }
+    
+    /**
+     * @ORM\PreRemove
+     */
+    public function preRemove()
+    {
+        $this->categorie->delSujetNumber();
+    }
     
     /**
      * Get id

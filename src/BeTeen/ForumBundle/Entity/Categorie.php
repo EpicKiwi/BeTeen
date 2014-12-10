@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @Gedmo\Tree(type="nested")
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
+ * @ORM\Entity(repositoryClass="BeTeen\ForumBundle\Entity\CategorieRepository")
  */
 class Categorie
 {
@@ -41,6 +41,13 @@ class Categorie
      * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
      */
     private $sujetsStandards;
+    
+    /**
+     * @var integer
+     * 
+     * @ORM\Column(name="sujetNumber", type="integer")
+     */
+    private $sujetNumber;
     
     /**
      * @var boolean
@@ -92,7 +99,7 @@ class Categorie
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
-
+    
     /**
      * Get id
      *
@@ -155,6 +162,7 @@ class Categorie
     public function __construct()
     {
         $this->sujetsStandards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sujetNumber = 0;
     }
 
     /**
@@ -406,5 +414,50 @@ class Categorie
     public function getAllowSujetStandard()
     {
         return $this->allowSujetStandard;
+    }
+
+    /**
+     * Set sujetNumber
+     *
+     * @param integer $sujetNumber
+     * @return Categorie
+     */
+    public function setSujetNumber($sujetNumber)
+    {
+        $this->sujetNumber = $sujetNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get sujetNumber
+     *
+     * @return integer 
+     */
+    public function getSujetNumber()
+    {
+        return $this->sujetNumber;
+    }
+    
+    public function addSujetNumber()
+    {
+        $tmp = $this->sujetNumber;
+        $tmp += 1;
+        $this->sujetNumber = $tmp;
+        if($this->parent != null)
+        {
+            $this->parent->addSujetNumber();
+        }
+    }
+    
+    public function delSujetNumber()
+    {
+        $tmp = $this->sujetNumber;
+        $tmp -= 1;
+        $this->sujetNumber = $tmp;
+        if($this->parent != null)
+        {
+            $this->parent->delSujetNumber();
+        }
     }
 }
