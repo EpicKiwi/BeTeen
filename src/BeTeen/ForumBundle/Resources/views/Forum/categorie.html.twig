@@ -1,50 +1,73 @@
-<! Doctype html >
-<html>
-	<head>
-		<title>Forum</title>
-		<meta charset="UTF-8" />
-	</head>
-	<body>
-		<h1>Forum</h1>
-		<h2>{{categorieActuelle.nom}}</h2>
-		<h3>{{categorieActuelle.description}}</h3>
-                
-                <ul>
-		{% if categorieActuelle.root != categorieActuelle.id %}
-                    <li><a href="{{ path('be_teen_forum_index') }}" >Accueil</a></li>
-                    {% if categorieActuelle.parent.id != categorieActuelle.root %}
-                    <li><a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.slug}) }}" >Catégorie précédente</a></li>
-                    {% endif %}
-		{% endif %}
-                {% if categorieActuelle.allowSujetStandard %}
-                    <li><a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}" >Ajouter un sujet</a></li>
-                {% endif %}
-                </ul>
-                
-		<dl>
-			{% if listeCategories != null %}
-				{% for categorie in listeCategories %}
-					<dt><a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" >{{categorie.nom}}{% if categorie.sujetNumber > 0 %} - {{categorie.sujetNumber}} sujets{% endif %}</a></dt>
-					<dd>{{categorie.description}}</dd>
-                                        {% if categorie.sujetsStandards|length != 0 %}
-                                        {% endif %}
-				{% endfor %}
-			{% else %}
-				<dt>Aucune Catégorie !</dt>
-				<dd>Aucune sous categories dans cette catégorie</dd>
-			{% endif %}
-		</dl>
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %}{{categorieActuelle.nom}} | {{parent()}}{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{ asset("css/Categorie.css") }}" /> 
+{% endblock %}
+{% block body %}
+{% if categorieActuelle.root != categorieActuelle.id %}
+<div class="catHeader">
+<h2>{{categorieActuelle.nom}}</h2>
+<p>{{categorieActuelle.description}}</p>
+</div>
+{% endif %}
+{% if listeCategories != null %}
+    <nav class="catNav">
+        <h3>Sous catégories</h3>
+        <table>
+            <tr>
+        {% for categorie in listeCategories %}
+            <td>
+                <a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" title="{{categorie.description}}" >
+                    <h3>{{categorie.nom}}</h3>
+                    <p>{{categorie.sujetNumber}} Sujet{% if categorie.sujetNumber > 1 %}s{% endif %}</p>
+                </a>
+            </td>
+        {% endfor %}
+            </tr>
+        </table>
+    </nav>
+{% endif %}
+{% if categorieActuelle.sujetsStandards|length > 0 or categorieActuelle.allowSujetStandard %}
+<section class="sujets">
 		<h3>Sujets</h3>
-		<dl>
-			{% if categorieActuelle.sujetsStandards|length != 0 %}
-				{% for sujet in categorieActuelle.sujetsStandards %}
-				<dt><a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.slug,'sujet':sujet.slug}) }}" >{{sujet.titre}}</a></dt>
-                                <dd>{{sujet.contenu|striptags('<br>')|markdown}}</dd>
-				{% endfor %}
+                {% if categorieActuelle.allowSujetStandard and app.user != null %}
+                    <article>
+                       <div class="infoContainer" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');" >
+                        <a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}">
+                            <h3>Ajouter un sujet</h3>
+                        </a>
+                       </div>
+			{% if app.user.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{app.user.username}}" />
 			{% else %}
-				<dt>Aucun Sujet !</dt>
-				<dd>Ajoutez en dont un ;)</dd>
+				<img src="{{ asset("uploads/avatar/"~app.user.avatar) }}" alt="Avatar de {{app.user.username}}" />
 			{% endif %}
-		</dl>
-	</body>
-</html>
+                    </article>
+                {% endif %}
+		{% for sujet in categorieActuelle.sujetsStandards %}
+                    <article>
+                       <div class="infoContainer" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');" >
+                        <a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.slug,'sujet':sujet.slug}) }}">
+                            <h3>{{sujet.titre}}</h3>
+                            <p>Par {{sujet.auteur.username}} le {{sujet.date|date("d/m/Y")}}<br/>
+                                {{sujet.reponses|length}} Reponse{% if sujet.reponses|length > 1 %}s{% endif %}</p>
+                        </a>
+                       </div>
+			{% if sujet.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{sujet.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~sujet.auteur.avatar) }}" alt="Avatar de {{sujet.auteur.username}}" />
+			{% endif %}
+                    </article>
+		{% endfor %}
+</section>
+{% endif %}
+<nav class="controlNav">
+    {% if categorieActuelle.parent != null and categorieActuelle.parent.id != categorieActuelle.root %}
+        <a href="{{ path('be_teen_forum_categorie',{'categorie':categorieActuelle.parent.slug}) }}" title="Catégorie Précédente"><i class="fi-rewind"></i></a>
+    {% endif %}
+    {% if categorieActuelle.root != categorieActuelle.id %}
+        <a href="{{ path('be_teen_forum_index') }}" title="Acceuil du forum"><i class="fi-home"></i></a>
+    {% endif %}
+</nav>
+{% endblock %}

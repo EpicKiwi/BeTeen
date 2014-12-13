@@ -13,4 +13,8 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  */
 class CategorieRepository extends NestedTreeRepository
 {
+    public function childrenSubjectOrder($parent)
+    {
+        
+    }
 }
