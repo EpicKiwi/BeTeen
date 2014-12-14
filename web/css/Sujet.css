@@ -41,7 +41,7 @@ article .sujetFooter .meta p
 	padding-top: 5px;
 }
 
-article .sujetHead h1
+article .sujetHead h1, article form h1 input[type="text"]
 {
 	font-size: 30px;
 	padding-bottom: 5px;
@@ -110,19 +110,29 @@ article .sujetFooter
 	border-top: solid 1px lightgrey;
 }
 
-article .sujetBody form label
+article form label
 {
 	display: none;
 }
 
-article .sujetBody form textarea
+article form textarea
 {
 	max-width: 100%;
 	min-width: 100%;
 	min-height: 100px;
 }
 
-article .sujetBody form input[type="submit"]
+article form h1 input[type="text"]
+{
+    border: #FFAD1D solid 2px;
+    background-color: transparent;
+    width: 50%;
+    border-radius: 5px;
+    color: #FFAD1D;
+    padding-left: 1%;
+}
+
+article form input[type="submit"]
 {
 	display: block;
 	margin-left: auto;

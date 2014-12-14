@@ -73,16 +73,13 @@ class ForumController extends Controller
                     return $this->redirect($this->generateUrl("be_teen_forum_categorie",array("categorie"=>$categorie)));
                 }
             }
-            else
-            {
-                return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
-            }
         }
         else
         {
             $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas ajouter de sujet ici !');
             return $this->redirect($this->generateUrl("be_teen_forum_categorie",array("categorie"=>$categorie)));
         }
+        return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
     }
     
   /**

@@ -1,17 +1,40 @@
-<! Doctype html >
-<html>
-	<head>
-		<title>Forum</title>
-		<meta charset="UTF-8" />
-	</head>
-	<body>
-		<h1>Forum</h1>
-		<h2>{{categorieActuelle.nom}}</h2>
-		<h3>{{categorieActuelle.description}}</h3>
-                
-                <form method="post" {{form_enctype(form)}} >
-                    {{ form_widget(form) }}
-                    <input type="submit" class="btn btn-primary" />
-                </form>
-	</body>
-</html>
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %}Ajouter un sujet | {{parent()}} {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{ asset("css/Sujet.css") }}"/>
+{% endblock %}
+{% block body %}        
+<article>
+    <form method="post" {{form_enctype(form)}} >
+	<div class="sujetHead">
+		<p class="sujetCat" > {{categorieActuelle.nom}}</p>
+		<h1 class="sujetTitle" >{{ form_widget(form.titre) }} </h1>
+	</div>
+	<div class="sujetBody">
+		<p> 
+                    {{ form_errors(form) }}
+                    {{ form_widget(form.contenu) }}
+                    {{ form_rest(form)}}
+                    <input type="submit" value="envoyer"/>
+		</p>
+	</div>
+    </form> 
+	<div class="sujetFooter" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if app.user.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{app.user.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~app.user.avatar) }}" alt="Avatar de {{app.user.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{app.user.username}}<br/>
+					Le {{"now"|date("d/m/Y")}} a {{"now"|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>
+{% endblock %}
