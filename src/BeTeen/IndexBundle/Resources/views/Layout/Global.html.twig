@@ -11,6 +11,7 @@
 	<body>
 		<header>
 			<h1>{{siteName}}</h1>
+			<div></div>
 			 <span>{% if app.user != null %}
 			 <a href="{{path("logout")}}">Déconnexion </a>
 					{{app.user.username}}
@@ -18,7 +19,6 @@
 					Non connecté
 					{% endif %}</span>
 			 
-			
 		</header>
 		<section>
 			{% block body %}  {% endblock %}
@@ -28,6 +28,6 @@
 			{{siteAuthors}}<br/>
                         {{siteVersion}}
 		</footer>
-	
+		
 	</body>
 </html>

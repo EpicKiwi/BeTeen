@@ -10,6 +10,7 @@
 		<h1 class="sujetTitle" > {{sujet.titre}} </h1>
 	</div>
 	<div class="sujetBody">
+	
 		<p> {{sujet.contenu|striptags|markdown}} </p>
 	</div>
 	<div class="sujetFooter" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');">
