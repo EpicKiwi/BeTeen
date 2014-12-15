@@ -224,7 +224,7 @@ class ForumController extends Controller
             }
         }
         
-        return $this->render("BeTeenAdminBundle:Forum:Ajouter.html.twig",array("form"=>$form->createView()));
+        return $this->render("BeTeenAdminBundle:Forum:ajouter.html.twig",array("form"=>$form->createView()));
     }
     
     public function modifierCategorieAction($categorie)
@@ -252,7 +252,7 @@ class ForumController extends Controller
             }
         }
         
-        return $this->render("BeTeenAdminBundle:Forum:Modifier.html.twig",array("form"=>$form->createView()));
+        return $this->render("BeTeenAdminBundle:Forum:modifier.html.twig",array("form"=>$form->createView()));
     }
     
     public function initializeAction()
