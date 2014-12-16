@@ -32,8 +32,7 @@ twig:
     globals:
         siteName: BeTeen
         siteAuthors: EpicKiwi et Soad76290
-        siteVersion: ALPHA 1.0 Preview
-
+        siteVersion: Devloppement Version
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"

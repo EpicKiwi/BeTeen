@@ -85,6 +85,39 @@ class ForumController extends Controller
   /**
    * @Security("has_role('ROLE_USER')")
    */
+    public function modifierSujetAction($categorie,$sujet)
+    {
+        $manager = $this->getDoctrine()->getManager();
+	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
+        $sujetActuel = $repository->findOneBySlug($sujet);
+        
+        if($sujetActuel->getAuteur() == $this->get('security.context')->getToken()->getUser())
+        {
+            $form = $this->createForm(new SujetStandardType, $sujetActuel);
+
+            $requete = $this->get("request");
+            if($requete->getMethod() == 'POST')
+            {
+                $form->bind($requete);
+                if($form->isValid())
+                {
+                    $manager->persist($sujetActuel);
+                    $manager->flush();
+                    return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
+                }
+            }
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas modifier ce sujet !');
+                    return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
+        }
+        return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
+    }
+    
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
     public function ajouterReponseAction($categorie,$sujet)
     {
         $manager = $this->getDoctrine()->getManager();

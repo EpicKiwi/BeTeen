@@ -13,6 +13,9 @@
 	
 		<p> {{sujet.contenu|striptags|markdown}} </p>
 	</div>
+        {% if app.user != null and sujet.auteur == app.user %}
+            <div class="controlBar"><a href="{{path("be_teen_forum_modifier_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Modifier votre sujet"><i class="fi-pencil"></i></a></div>
+        {% endif %}
 	<div class="sujetFooter" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');">
 		<div class="sujetPhoto">
 			{% if sujet.auteur.avatar == "" %}
@@ -40,6 +43,9 @@
 	<div class="sujetBody">
 		<p> {{reponse.contenu|striptags|markdown}} </p>
 	</div>
+        {# NON IMPLEMENTE if app.user != null and reponse.auteur == app.user %}
+            <div class="controlBar"><a href="#" title="Modifier votre sujet"><i class="fi-pencil"></i></a></div>
+        {% endif #}
 	<div class="sujetFooter" style="background-image: url('{% if reponse.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~reponse.auteur.background) }}{% endif %}');">
 		<div class="sujetPhoto">
 			{% if reponse.auteur.avatar == "" %}
@@ -61,14 +67,14 @@
 {%endfor%} {%endif%}
 {% if app.user != null %}
 <article>
-	<div class="sujetBody">
+	
 		<p> 
 			<form method="post" action="{{path("be_teen_user_ajouterReponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" {{form_enctype(form)}}>
 			{{ form_widget(form) }}
 			<input type="submit" value="envoyer"/>
 			</form> 
 		</p>
-	</div>
+	
 	<div class="sujetFooter" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');">
 		<div class="sujetPhoto">
 			{% if app.user.avatar == "" %}

@@ -63,7 +63,6 @@ article .sujetBody
 	padding-left: 1%;
 	padding-right: 1%;
 	padding-top: 15px;
-	margin-bottom: 30px;
 }
 
 article .sujetBody p
@@ -140,6 +139,23 @@ article form input[type="submit"]
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-top: 10px;
+}
+
+article .controlBar
+{
+    width: 98%;
+    margin-top: 15px;
+    text-align: right;
+    padding-right: 2%;
+    height: 20px;
+    padding-top: 5px;
+    border-top: solid 1px lightgrey;
+}
+
+article .controlBar a
+{
+    color: grey;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 800px)

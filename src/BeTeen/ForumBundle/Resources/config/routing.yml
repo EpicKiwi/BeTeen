@@ -9,6 +9,10 @@ be_teen_user_ajouterSujet:
 be_teen_user_ajouterReponse:
     path:     /utilisateur/{categorie}/{sujet}/repondre
     defaults: { _controller: BeTeenForumBundle:Forum:ajouterReponse }
+    
+be_teen_forum_modifier_sujet:
+    path:     /utilisateur/{categorie}/{sujet}/modifier
+    defaults: { _controller: BeTeenForumBundle:Forum:modifierSujet }
 
 be_teen_forum_index:
     path:     /
