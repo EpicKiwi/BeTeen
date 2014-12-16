@@ -43,7 +43,7 @@
 		</p>
 	</div>
     </form> 
-	<div class="sujetFooter" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');">
+	<div class="sujetFooter" style="background-image: url('{% if reponse.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~reponse.auteur.background) }}{% endif %}');">
 		<div class="sujetPhoto">
 			{% if reponse.auteur.avatar == "" %}
 				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{reponse.auteur.username}}" />

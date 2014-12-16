@@ -158,7 +158,7 @@ class ForumController extends Controller
         
         $reponse = $repository->find($reponse);
         
-        if($reponse->getAuteur() == $this->get('security.context')->getToken()->getUser())
+        if($reponse->getAuteur() == $this->get('security.context')->getToken()->getUser() || $this->get('security.context')->isGranted('ROLE_MODERATEUR'))
         {
             $form = $this->createForm(new ReponseStandardType, $reponse);
 

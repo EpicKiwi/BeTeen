@@ -46,7 +46,7 @@
 		<p> {{reponse.contenu|striptags|markdown}} </p>
 	</div>
         <div class="controlBar">
-        {% if app.user != null and reponse.auteur == app.user %}
+        {% if app.user != null and reponse.auteur == app.user or is_granted('ROLE_MODERATEUR') %}
             <a href="{{path("be_teen_forum_modifier_reponse",{"categorie":reponse.sujet.categorie.slug,"sujet":reponse.sujet.slug,"reponse":reponse.id})}}" title="Modifier votre réponse"><i class="fi-pencil"></i></a>
         {% endif %}
         </div>
