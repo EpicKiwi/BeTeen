@@ -91,7 +91,7 @@ class ForumController extends Controller
 	$repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
         $sujetActuel = $repository->findOneBySlug($sujet);
         
-        if($sujetActuel->getAuteur() == $this->get('security.context')->getToken()->getUser())
+        if($sujetActuel->getAuteur() == $this->get('security.context')->getToken()->getUser() || $this->get('security.context')->isGranted('ROLE_MODERATEUR'))
         {
             $form = $this->createForm(new SujetStandardType, $sujetActuel);
 
@@ -112,7 +112,7 @@ class ForumController extends Controller
             $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas modifier ce sujet !');
                     return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
         }
-        return $this->render("BeTeenForumBundle:Formulaire:nouveauSujetStandard.html.twig",array("form"=>$form->createView(),"categorieActuelle"=>$position));
+        return $this->render("BeTeenForumBundle:Formulaire:modifierSujetStandard.html.twig",array("form"=>$form->createView(),"sujet"=>$sujetActuel));
     }
     
   /**

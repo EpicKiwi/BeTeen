@@ -14,7 +14,7 @@
 		<p> {{sujet.contenu|striptags|markdown}} </p>
 	</div>
          <div class="controlBar">
-        {% if app.user != null and sujet.auteur == app.user %}
+        {% if app.user != null and sujet.auteur == app.user or is_granted('ROLE_MODERATEUR') %}
            <a href="{{path("be_teen_forum_modifier_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Modifier votre sujet"><i class="fi-pencil"></i></a>
         {% endif %}
         </div>

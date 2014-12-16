@@ -1,0 +1,40 @@
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %}Modifier un sujet | {{parent()}} {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{ asset("css/Sujet.css") }}"/>
+{% endblock %}
+{% block body %}        
+<article>
+    <form method="post" {{form_enctype(form)}} >
+	<div class="sujetHead">
+		<p class="sujetCat" > {{sujet.categorie.nom}}</p>
+		<h1 class="sujetTitle" >{{ form_widget(form.titre) }} </h1>
+	</div>
+	<div class="sujetBody">
+		<p> 
+                    {{ form_errors(form) }}
+                    {{ form_widget(form.contenu) }}
+                    {{ form_rest(form)}}
+                    <input type="submit" value="envoyer"/>
+		</p>
+	</div>
+    </form> 
+	<div class="sujetFooter" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if sujet.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{sujet.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~sujet.auteur.avatar) }}" alt="Avatar de {{sujet.auteur.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{sujet.auteur.username}}<br/>
+					Le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>
+{% endblock %}
