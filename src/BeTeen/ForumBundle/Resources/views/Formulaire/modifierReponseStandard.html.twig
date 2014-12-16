@@ -1,0 +1,64 @@
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %}Modifier une réponse | {{parent()}} {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{ asset("css/Sujet.css") }}"/>
+{% endblock %}
+{% block body %} 
+<article>
+	<div class="sujetHead">
+		<p class="sujetCat" > {{reponse.sujet.categorie.nom}} <br/> {%if reponse.sujet.verouille == true%} Le sujet est verrouillé {%else%} Le sujet est ouvert {%endif%}</p>
+		<h1 class="sujetTitle" > {{reponse.sujet.titre}} </h1>
+	</div>
+	<div class="sujetBody">
+	
+		<p> {{reponse.sujet.contenu|striptags|markdown}} </p>
+	</div>
+        <div class="controlBar"></div>
+	<div class="sujetFooter" style="background-image: url('{% if reponse.sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~reponse.sujet.auteur.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if reponse.sujet.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{reponse.sujet.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~reponse.sujet.auteur.avatar) }}" alt="Avatar de {{reponse.sujet.auteur.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{reponse.sujet.auteur.username}}<br/>
+					Le {{reponse.sujet.date|date("d/m/Y")}} a {{reponse.sujet.date|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>       
+<article>
+    <form method="post" {{form_enctype(form)}} >
+	<div class="sujetBody">
+		<p> 
+                    {{ form_errors(form) }}
+                    {{ form_widget(form.contenu) }}
+                    {{ form_rest(form)}}
+                    <input type="submit" value="envoyer"/>
+		</p>
+	</div>
+    </form> 
+	<div class="sujetFooter" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if reponse.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{reponse.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~reponse.auteur.avatar) }}" alt="Avatar de {{reponse.auteur.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{reponse.auteur.username}}<br/>
+					Le {{reponse.date|date("d/m/Y")}} a {{reponse.date|date ("H:i")}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>
+{% endblock %}

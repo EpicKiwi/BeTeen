@@ -13,9 +13,11 @@
 	
 		<p> {{sujet.contenu|striptags|markdown}} </p>
 	</div>
+         <div class="controlBar">
         {% if app.user != null and sujet.auteur == app.user %}
-            <div class="controlBar"><a href="{{path("be_teen_forum_modifier_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Modifier votre sujet"><i class="fi-pencil"></i></a></div>
+           <a href="{{path("be_teen_forum_modifier_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Modifier votre sujet"><i class="fi-pencil"></i></a>
         {% endif %}
+        </div>
 	<div class="sujetFooter" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');">
 		<div class="sujetPhoto">
 			{% if sujet.auteur.avatar == "" %}
@@ -43,9 +45,11 @@
 	<div class="sujetBody">
 		<p> {{reponse.contenu|striptags|markdown}} </p>
 	</div>
-        {# NON IMPLEMENTE if app.user != null and reponse.auteur == app.user %}
-            <div class="controlBar"><a href="#" title="Modifier votre sujet"><i class="fi-pencil"></i></a></div>
-        {% endif #}
+        <div class="controlBar">
+        {% if app.user != null and reponse.auteur == app.user %}
+            <a href="{{path("be_teen_forum_modifier_reponse",{"categorie":reponse.sujet.categorie.slug,"sujet":reponse.sujet.slug,"reponse":reponse.id})}}" title="Modifier votre réponse"><i class="fi-pencil"></i></a>
+        {% endif %}
+        </div>
 	<div class="sujetFooter" style="background-image: url('{% if reponse.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~reponse.auteur.background) }}{% endif %}');">
 		<div class="sujetPhoto">
 			{% if reponse.auteur.avatar == "" %}

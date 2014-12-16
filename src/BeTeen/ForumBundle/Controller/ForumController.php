@@ -147,5 +147,42 @@ class ForumController extends Controller
         $this->get('session')->getFlashBag()->add('info','Ce sujet est verouillé');
         return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
     }
+    
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
+    public function modifierReponseAction($categorie,$sujet,$reponse)
+    {
+        $manager = $this->getDoctrine()->getManager();
+	$repository = $manager->getRepository("BeTeenForumBundle:ReponseStandard");
+        
+        $reponse = $repository->find($reponse);
+        
+        if($reponse->getAuteur() == $this->get('security.context')->getToken()->getUser())
+        {
+            $form = $this->createForm(new ReponseStandardType, $reponse);
+
+            $requete = $this->get("request");
+
+            if($requete->getMethod() == 'POST')
+            {
+                $form->bind($requete);
+                if($form->isValid())
+                {
+                    $manager->persist($reponse);
+                    $manager->flush();
+                }
+            }
+            else
+            {
+                return $this->render("BeTeenForumBundle:Formulaire:modifierReponseStandard.html.twig",array("form"=>$form->createView(),"reponse"=>$reponse));
+            }
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas modifier cette réponse');
+        }
+        return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
+    }
 	
 }
