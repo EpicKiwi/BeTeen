@@ -43,7 +43,7 @@ class ForumController extends Controller
         {
             throw $this->createNotFoundException('Sujet non trouvé');
         }
-	return $this->render('BeTeenForumBundle:Forum:Sujet.html.twig',array("sujet"=>$sujet,"form"=>$form->createView()));
+	return $this->render('BeTeenForumBundle:Forum:sujet.html.twig',array("sujet"=>$sujet,"form"=>$form->createView()));
     }
     
   /**
