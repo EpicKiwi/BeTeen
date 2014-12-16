@@ -10,15 +10,19 @@
 	</head>
 	<body>
 		<header>
-			<h1>{{siteName}}</h1>
-			<div></div>
+			<div><h1><a href="{{path("be_teen_index_index")}}">{{siteName}}</a></h1>
 			 <span>{% if app.user != null %}
 			 <a href="{{path("logout")}}">Déconnexion </a>
 					{{app.user.username}}
 					{% else %}
 					Non connecté
-					{% endif %}</span>
-			 
+					{% endif %}</span></div>
+					<nav id="menuPrincipal">
+					<div>
+						<a href="#">Profil<a>
+						<a href="#">Paramètres<a>
+					</div>
+					</nav>
 		</header>
 		<section>
 			{% block body %}  {% endblock %}
@@ -28,6 +32,5 @@
 			{{siteAuthors}}<br/>
                         {{siteVersion}}
 		</footer>
-		
 	</body>
 </html>
