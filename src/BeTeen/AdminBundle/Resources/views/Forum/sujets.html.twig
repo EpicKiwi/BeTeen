@@ -18,7 +18,7 @@
                 <h4><a href="{{ path("be_teen_forum_sujet",{'categorie':sujet.categorie.slug,'sujet':sujet.slug}) }}" title="Aller au sujet {{sujet.titre}}">{{sujet.titre}}</a></h4>
                 <p>{{sujet.contenu|striptags('<br>,<br/>')|markdown}}</p>
                 <table class="meta">
-                    <tr><td>{{sujet.reponses|length}} reponse{% if sujet.reponses|length > 1 %}s{% endif %}</td><td>{{sujet.categorie.nom}}</td><td>{{sujet.date|date("d/m/Y")}} {{sujet.date|date("H:i")}}</td></tr>
+                    <tr><td>{{sujet.reponses|length}} reponse{% if sujet.reponses|length > 1 %}s{% endif %}</td><td>{{sujet.categorie.nom}}</td><td>{{sujet.date|date("d/m/Y")}} {{sujet.date|date("H:i")}}</td><td>{{sujet.auteur.username}}</td></tr>
                 </table>
                 <table class="meta">                    
                     <tr class="icones">
@@ -30,7 +30,7 @@
                                 <i class="fi-unlock"></i>
                                 {% endif %}
                                 </a></td>
-                        <td><a href="{{ path("be_teen_admin_forum_sujets_supprimer",{"sujet":sujet.slug}) }}" title="Supprimmer sujet {{sujet.titre}}" ><i class="fi-x"></i></a></td>
+                        <td><a href="{{ path("be_teen_forum_supprimer_sujet",{"sujet":sujet.slug,"categorie":sujet.categorie.slug}) }}" title="Supprimmer sujet {{sujet.titre}}" ><i class="fi-x"></i></a></td>
                     </tr>
                 </table>
             </div>

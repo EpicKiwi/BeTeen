@@ -184,5 +184,40 @@ class ForumController extends Controller
         }
         return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("categorie"=>$categorie,"sujet"=>$sujet)));
     }
+    
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
+    public function supprimerSujetAction($sujet)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:SujetStandard");
+        $sujetSupprime = $repository->findOneBySlug($sujet);
+        if($sujetSupprime == null)
+        {
+            throw $this->createNotFoundException("Ce sujet n'existe pas");
+        }
+        
+        if($sujetSupprime->getAuteur() == $this->get('security.context')->getToken()->getUser() || $this->get('security.context')->isGranted('ROLE_MODERATEUR'))
+        {
+            $form = $this->createFormBuilder($sujetSupprime)->getForm();
+
+            $requete = $this->get("request");
+            if($requete->getMethod() == "POST")
+            {
+                $manager->remove($sujetSupprime);
+                $manager->flush();
+                $this->get('session')->getFlashBag()->add('info','Le sujet '.$sujetSupprime->getTitre()." a été supprimé");
+                return $this->redirect($this->generateUrl("be_teen_forum_categorie",array("categorie"=>$sujetSupprime->getCategorie()->getSlug())));
+            }
+            
+            return $this->render('BeTeenForumBundle:Forum:supprimerSujet.html.twig',array("form"=>$form->createView(),"sujet"=>$sujetSupprime));
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas supprimer ce sujet');
+        }
+        return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("sujet"=>$sujet,"categorie"=>$sujetSupprime->getCategorie()->getSlug())));
+    }
 	
 }

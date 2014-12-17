@@ -42,10 +42,6 @@ be_teen_admin_forum_sujets:
     path:       /forum/sujets
     defaults:   { _controller: BeTeenAdminBundle:Forum:Sujets }
     
-be_teen_admin_forum_sujets_supprimer:
-    path:       /forum/sujets/supprimer-{sujet}
-    defaults:   { _controller: BeTeenAdminBundle:Forum:SupprimerSujet }
-    
 be_teen_admin_forum_sujets_verouillageswitch:
     path:       /forum/sujets/verouillage-{sujet}
     defaults:   { _controller: BeTeenAdminBundle:Forum:VerouillageSujet }

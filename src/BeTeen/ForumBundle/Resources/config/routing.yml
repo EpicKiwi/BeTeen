@@ -14,6 +14,10 @@ be_teen_forum_modifier_sujet:
     path:     /utilisateur/{categorie}/{sujet}/modifier
     defaults: { _controller: BeTeenForumBundle:Forum:modifierSujet }
     
+be_teen_forum_supprimer_sujet:
+    path:     /utilisateur/{categorie}/{sujet}/supprimer
+    defaults: { _controller: BeTeenForumBundle:Forum:supprimerSujet }
+    
 be_teen_forum_modifier_reponse:
     path:     /utilisateur/{categorie}/{sujet}/{reponse}/modifier
     defaults: { _controller: BeTeenForumBundle:Forum:modifierReponse }

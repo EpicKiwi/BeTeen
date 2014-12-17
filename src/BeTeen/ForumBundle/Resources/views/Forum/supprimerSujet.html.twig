@@ -1,0 +1,8 @@
+{% extends "BeTeenIndexBundle:Layout:boxLayout.html.twig" %}
+{% block titleContent %}Connexion{% endblock %}
+{% block boxContent %}
+<form method="post">
+        Voulez vous vraiment supprimer le sujet {{sujet.titre}} ?
+          <input type="submit" value="Supprimer" />
+</form>
+{% endblock %}

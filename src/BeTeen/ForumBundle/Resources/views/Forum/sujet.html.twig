@@ -16,6 +16,7 @@
          <div class="controlBar">
         {% if app.user != null and sujet.auteur == app.user or is_granted('ROLE_MODERATEUR') %}
            <a href="{{path("be_teen_forum_modifier_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Modifier votre sujet"><i class="fi-pencil"></i></a>
+           <a href="{{path("be_teen_forum_supprimer_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Supprimer votre sujet"><i class="fi-x"></i></a>
         {% endif %}
         </div>
 	<div class="sujetFooter" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');">
