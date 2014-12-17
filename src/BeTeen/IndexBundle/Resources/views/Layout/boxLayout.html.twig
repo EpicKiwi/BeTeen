@@ -1,0 +1,9 @@
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %} {% block titleContent %}{% endblock %} | {{parent()}} {% endblock %}
+{% block header %} <link rel="stylesheet" href="{{asset("css/Connexion.css")}}" />
+{% endblock %}
+{% block body %}
+        <div class="box">
+            {% block boxContent %}{% endblock %}
+        </div>
+{% endblock %}
