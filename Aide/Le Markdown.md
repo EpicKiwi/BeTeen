@@ -1,39 +1,39 @@
 #Introduction
-Le MarkDown est un langage de balisage simple et léger utilisé sur le forum pour la rédaction de sujets, de réponses et de biens d'autres choses.  
-Un langage de balisage est une syntaxe spéciale pour mettre en forme un bloc de texte. En bref cela permet de décrie le texte en cours de rédaction comme étant un titre, une emphase ou une citation.  
-Pour le moment aucune interface ne permet la mise en forme simplifiée d'un texte, il deviens alors indispensable de connaitre les bases de ce langage très simple je vous rassure. ;)
+Le MarkDown est un langage de balisage simple et lÃ©ger utilisÃ© sur le forum pour la rÃ©daction de sujets, de rÃ©ponses et de biens d'autres choses.  
+Un langage de balisage est une syntaxe spÃ©ciale pour mettre en forme un bloc de texte. En bref cela permet de dÃ©crie le texte en cours de rÃ©daction comme Ã©tant un titre, une emphase ou une citation.  
+Pour le moment aucune interface ne permet la mise en forme simplifiÃ©e d'un texte, il deviens alors indispensable de connaitre les bases de ce langage trÃ¨s simple je vous rassure. ;)
 #Syntaxte
 ##Emphase
-Dans un sujet il est intéressant de pouvoir mettre des parties du texte en valeur. En MarkDown il existe deux types d'emphases qui s'utilisent comme suis
+Dans un sujet il est intÃ©ressant de pouvoir mettre des parties du texte en valeur. En MarkDown il existe deux types d'emphases qui s'utilisent comme suis
 
     Un mot en *emphase*  
     Un mot bien plus **important**
 
-Résultat :
+RÃ©sultat :
 
 Un mot en *emphase*  
 Un mot bien plus **important**
 
-Si vous n'aimez pas les astérisques (\*) vous pouvez utiliser des tirets du bas (underscore) a la place
+Si vous n'aimez pas les astÃ©risques (\*) vous pouvez utiliser des tirets du bas (underscore) a la place
 
     Un mot en _emphase_  
     Un mot bien plus __important__
 
 Les emphases peuvent se mettre dans n'importe quel paragraphe.
 ##Paragraphe
-Pour créer un paragraphe en plus vous avez juste a sauter une ligne entre vos deux paragraphes
+Pour crÃ©er un paragraphe en plus vous avez juste a sauter une ligne entre vos deux paragraphes
 
     Le premier paragraphe
     
     Le second paragraphe
 
-Résultat :
+RÃ©sultat :
 
 Le premier paragraphe
 
 Le second paragraphe
 
-Cette technique permet de passer un paragraphe mais pas de sauter une ligne, pour ce faire il faut finir une ligne par deux espaces sans quoi aucun retour a la ligne ne sera effectué.
+Cette technique permet de passer un paragraphe mais pas de sauter une ligne, pour ce faire il faut finir une ligne par deux espaces sans quoi aucun retour a la ligne ne sera effectuÃ©.
 
     Un retour  
     A la ligne
@@ -44,29 +44,29 @@ Un retour
 A la ligne
 
 ##Liste
-Pour créer une liste non ordonnée dans votre sujet, sautez une ligne puis marquez un élément sur chaque ligne celui ci précédé d'un astérisque.   
-**ATTENTION** Vous devez obligatoirement sauter une ligne avant la liste et mettre un espace entre l'élément et l’astérisque.
+Pour crÃ©er une liste non ordonnÃ©e dans votre sujet, sautez une ligne puis marquez un Ã©lÃ©ment sur chaque ligne celui ci prÃ©cÃ©dÃ© d'un astÃ©risque.   
+**ATTENTION** Vous devez obligatoirement sauter une ligne avant la liste et mettre un espace entre l'Ã©lÃ©ment et lâ€™astÃ©risque.
 
     * Pommes
     * Fraises
     * Poire
     * Kiwi
 
-Résultat :
+RÃ©sultat :
 
 * Pommes
 * Fraises
 * Poire
 * Kiwi
 
-Vous pouvez aussi insérer des sous-listes en insérant 4 espaces avant chaque éléments de cette sous liste.
+Vous pouvez aussi insÃ©rer des sous-listes en insÃ©rant 4 espaces avant chaque Ã©lÃ©ments de cette sous liste.
 
     * Aller chercher le colis
     * Aller faire les courses
         * Yaourt
         * Fruits
 
-Résultat : 
+RÃ©sultat : 
 
 * Aller chercher le colis
 * Aller faire les courses
@@ -75,19 +75,19 @@ Résultat :
 
 *A noter* que les  sous-listes ne peuvent pas contenir de sous-sous-listes
 ##Titre
-Les sujets peuvent contenir des titres. Il existe plusieurs types de syntaxe pour les titres qui correspondent à des niveaux d'importance différants
+Les sujets peuvent contenir des titres. Il existe plusieurs types de syntaxe pour les titres qui correspondent Ã  des niveaux d'importance diffÃ©rants
 
     #Titres de grande importance
     ##Titre de moyenne importance
     ###Titre de faible importance
-    ####Titre de très faible importance
+    ####Titre de trÃ¨s faible importance
 
-Résultat:
+RÃ©sultat:
 
 #Titres de grande importance
 ##Titre de moyenne importance
 ###Titre de faible importance
-####Titre de très faible importance
+####Titre de trÃ¨s faible importance
 
 Pour les deux premiers niveaux de titre on peux aussi souligner le futur titre avec des - ou des =
 
@@ -96,51 +96,51 @@ Pour les deux premiers niveaux de titre on peux aussi souligner le futur titre a
     Titre de moyenne importance
     --------------------------
 
-Le nombre est arbitraire mais doit être supérieur a 2.
+Le nombre est arbitraire mais doit Ãªtre supÃ©rieur a 2.
 ##Code
-Pour exposer du code vous devez sauter une ligne puis démarrer chaque ligne par 4 espaces. Le code MarkDown n'est aussi plus effectif dans un paragraphe de code.
+Pour exposer du code vous devez sauter une ligne puis dÃ©marrer chaque ligne par 4 espaces. Le code MarkDown n'est aussi plus effectif dans un paragraphe de code.
 
         Ceci est du code **tres** beau
 
-Résultat:
+RÃ©sultat:
 
     Ceci est du code **tres** beau
 
 ##Liens
-Pour insérer un lien dans votre sujet vous  devez mettre le titre du lien entre crochets puis, juste après, mettre l'URL du lien entre parenthésés.  
-*A noter* que vous pouvez aussi  donner un titre a votre lien qui  apparaîtra quand on pose la souris dessus.
+Pour insÃ©rer un lien dans votre sujet vous  devez mettre le titre du lien entre crochets puis, juste aprÃ¨s, mettre l'URL du lien entre parenthÃ©sÃ©s.  
+*A noter* que vous pouvez aussi  donner un titre a votre lien qui  apparaÃ®tra quand on pose la souris dessus.
 
     Le moteur de recherche [google](http://google.fr/ "Le plus populaire au monde")
 
-Résultat :
+RÃ©sultat :
 
 Le moteur de recherche [google](http://google.fr/ "Le plus populaire au monde")
 ##Images
-Pour insérer une images vous devez utiliser la même syntaxe que les liens mais en ajoutant un ! au debut
+Pour insÃ©rer une images vous devez utiliser la mÃªme syntaxe que les liens mais en ajoutant un ! au debut
 
     ![Image](http://lorempixel.com/200/200/ "Une image au hasard")
 
-Résultat :
+RÃ©sultat :
 
 ![Image](http://lorempixel.com/200/200/ "Une image au hasard")
 
 ##Citation
 Pour citer un personne ou autre chose vous pouvez commencer chaque ligne par >
 
-    >  Il n’y a point de génie sans un grain de folie
+    >  Il nâ€™y a point de gÃ©nie sans un grain de folie
     > *Aristote*
 
-Résultat :
+RÃ©sultat :
 
->  Il n’y a point de génie sans un grain de folie  
+>  Il nâ€™y a point de gÃ©nie sans un grain de folie  
 > *Aristote*
 
 La syntaxe MarkDown fonctionne dans les zone de citation
 
 #Questions
-##Pourquoi  ne pas utiliser un éditeur standard ?
+##Pourquoi  ne pas utiliser un Ã©diteur standard ?
 Car cela permet d'uniformiser le style des sujets avec le style global du site
 ##Je n'ai pas envie de tout retenir !
-Un éditeur aidant à la syntaxe est prévu mais pas encore effectif
+Un Ã©diteur aidant Ã  la syntaxe est prÃ©vu mais pas encore effectif
 #Conclusion
-N’hésitez pas a poser d'autres questions en dessous ;)
+Nâ€™hÃ©sitez pas a poser d'autres questions en dessous ;)
