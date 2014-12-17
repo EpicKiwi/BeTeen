@@ -1,0 +1,8 @@
+{% extends "BeTeenIndexBundle:Layout:boxLayout.html.twig" %}
+{% block titleContent %}Supprimer une réponse{% endblock %}
+{% block boxContent %}
+<form method="post">
+        Voulez vous vraiment supprimer la reponse de {{reponse.auteur.username}} sur le sujet {{reponse.sujet.titre}} ?
+          <input type="submit" value="Supprimer" />
+</form>
+{% endblock %}

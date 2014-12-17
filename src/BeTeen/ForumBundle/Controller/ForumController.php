@@ -219,5 +219,40 @@ class ForumController extends Controller
         }
         return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("sujet"=>$sujet,"categorie"=>$sujetSupprime->getCategorie()->getSlug())));
     }
+    
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
+    public function supprimerReponseAction($sujet,$categorie,$reponse)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repository = $manager->getRepository("BeTeenForumBundle:ReponseStandard");
+        $reponseSupprime = $repository->find($reponse);
+        if($reponseSupprime == null)
+        {
+            throw $this->createNotFoundException("Ce sujet n'existe pas");
+        }
+        
+        if($reponseSupprime->getAuteur() == $this->get('security.context')->getToken()->getUser() || $this->get('security.context')->isGranted('ROLE_MODERATEUR'))
+        {
+            $form = $this->createFormBuilder($reponseSupprime)->getForm();
+
+            $requete = $this->get("request");
+            if($requete->getMethod() == "POST")
+            {
+                $manager->remove($reponseSupprime);
+                $manager->flush();
+                $this->get('session')->getFlashBag()->add('info',"La réponse a été supprimée");
+                return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("sujet"=>$sujet,"categorie"=>$categorie)));
+            }
+            
+            return $this->render('BeTeenForumBundle:Forum:supprimerreponse.html.twig',array("form"=>$form->createView(),"reponse"=>$reponseSupprime));
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('info','Vous ne pouvez pas supprimer cette réponse');
+        }
+        return $this->redirect($this->generateUrl("be_teen_forum_sujet",array("sujet"=>$sujet,"categorie"=>$reponseSupprime->getCategorie()->getSlug())));
+    }
 	
 }

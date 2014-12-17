@@ -14,6 +14,7 @@
 		<p> {{sujet.contenu|striptags|markdown}} </p>
 	</div>
          <div class="controlBar">
+           Publié le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}}
         {% if app.user != null and sujet.auteur == app.user or is_granted('ROLE_MODERATEUR') %}
            <a href="{{path("be_teen_forum_modifier_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Modifier votre sujet"><i class="fi-pencil"></i></a>
            <a href="{{path("be_teen_forum_supprimer_sujet",{"categorie":sujet.categorie.slug,"sujet":sujet.slug})}}" title="Supprimer votre sujet"><i class="fi-x"></i></a>
@@ -30,8 +31,7 @@
 		<div class="sujetAuteur">
 			<div class="meta">
 				<p>
-					Par {{sujet.auteur.username}}<br/>
-					Le {{sujet.date|date("d/m/Y")}} a {{sujet.date|date ("H:i")}}
+					Par {{sujet.auteur.username}}
 				</p>
 			</div>
 		</div>
@@ -47,8 +47,10 @@
 		<p> {{reponse.contenu|striptags|markdown}} </p>
 	</div>
         <div class="controlBar">
+            Publié le {{reponse.date|date("d/m/Y")}} a {{reponse.date|date ("H:i")}}
         {% if app.user != null and reponse.auteur == app.user or is_granted('ROLE_MODERATEUR') %}
             <a href="{{path("be_teen_forum_modifier_reponse",{"categorie":reponse.sujet.categorie.slug,"sujet":reponse.sujet.slug,"reponse":reponse.id})}}" title="Modifier votre réponse"><i class="fi-pencil"></i></a>
+            <a href="{{path("be_teen_forum_supprimer_reponse",{"categorie":sujet.categorie.slug,"sujet":sujet.slug,"reponse":reponse.id})}}" title="Supprimer votre réponse"><i class="fi-x"></i></a>
         {% endif %}
         </div>
 	<div class="sujetFooter" style="background-image: url('{% if reponse.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~reponse.auteur.background) }}{% endif %}');">
@@ -62,8 +64,7 @@
 		<div class="sujetAuteur">
 			<div class="meta">
 				<p>
-					Par {{reponse.auteur.username}}<br/>
-					Le {{reponse.date|date("d/m/Y")}} a {{reponse.date|date ("H:i")}}
+					Par {{reponse.auteur.username}}
 				</p>
 			</div>
 		</div>
@@ -91,8 +92,7 @@
 		<div class="sujetAuteur">
 			<div class="meta">
 				<p>
-					Par {{app.user.username}}<br/>
-					Le {{"now"|date("d/m/Y")}} a {{"now"|date ("H:i")}}
+					Par {{app.user.username}}
 				</p>
 			</div>
 		</div>

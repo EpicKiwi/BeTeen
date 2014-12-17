@@ -150,6 +150,8 @@ article .controlBar
     height: 20px;
     padding-top: 5px;
     border-top: solid 1px lightgrey;
+    font-style: italic;
+    color: grey;
 }
 
 article .controlBar a
