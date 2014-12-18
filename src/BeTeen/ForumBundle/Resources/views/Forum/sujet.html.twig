@@ -5,11 +5,11 @@
 {% endblock %}
 {% block body %}
 
-{{  render(controller("BeTeenForumBundle:Layout:Sujet",{"sujet":sujet})) }}
+{{  render(controller("BeTeenForumBundle:Layout:Sujet",{"input":sujet})) }}
 
 {%if sujet.reponses != null%}
 {%for reponse in sujet.reponses%}
-{{  render(controller("BeTeenForumBundle:Layout:Sujet",{"sujet":reponse,"reponse":true})) }}
+{{  render(controller("BeTeenForumBundle:Layout:Sujet",{"input":reponse,"reponse":true})) }}
 {%endfor%} {%endif%}
 {% if app.user != null %}
 <article>
