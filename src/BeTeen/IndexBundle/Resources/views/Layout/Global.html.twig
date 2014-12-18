@@ -10,17 +10,19 @@
 	</head>
 	<body>
 		<header>
-			<div><h1><a href="{{path("be_teen_index_index")}}">{{siteName}}</a></h1>
-			 <span>{% if app.user != null %}
-			 <a href="{{path("logout")}}">Déconnexion </a>
-					{{app.user.username}}
-					{% else %}
-					Non connecté
-					{% endif %}</span></div>
+			<div class="title"><h1><a href="{{path("be_teen_index_index")}}">{{siteName}}</a></h1>
+			 </div>
 					<nav id="menuPrincipal">
-					<div>
-						<a href="#">Profil</a>
+					<div class="menu">
+						<a href="#"></a>
 						<a href="#">Paramètres</a>
+						<span>{% if app.user != null %}
+			 <a href="{{path("logout")}}">Déconnexion</a>
+					<a href="#">{{app.user.username}}
+					<img src="{{asset("uploads/avatar/"~app.user.avatar)}}" alt="Avatar de {{app.user.username}}" /></a>
+					{% else %}
+					<a href="{{path("login")}}">Connexion </a>
+					{% endif %}</span>
 					</div>
 					</nav>
 		</header>

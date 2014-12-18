@@ -4,7 +4,7 @@
 	padding: 0;
 	font-family: calibri;
 }
-header div
+header div.title
 {
 	background-color: #383838;
 	width: 100%;
@@ -21,18 +21,11 @@ header
 	width: 100%;
 	overflow: hidden;
 }
-header div h1 a
+header div.title h1 a
 {
 	font-size: 45px;
 	color: #FFAD1D;
 	text-decoration: none;
-	
-}
-header div span
-{
-	font-size: 15px;
-	color: #FFAD1D;
-	
 	
 }
 footer
@@ -52,11 +45,31 @@ nav#menuPrincipal
 	 transform:rotate(1deg);
 	 height: 104px;
 	 z-index:0;
-	 margin-bottom: 15px;
+	 margin-bottom: 25px;
 	 }
-nav div a
+nav div.menu 
  {
-	color: #ffffff;
+	
 	position: absolute;
 	bottom: 0;
+	right: 0;
+}
+nav div.menu a
+{
+	color: white;
+	text-decoration: none;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 18px;
+	
+}
+nav div.menu a img
+{
+	width: 50px;
+	border-radius: 50px;
+	border: 5px solid white;
+	position: relative;
+	top: 25px;
+	box-shadow: 0 0 5px black;
+	
 }
