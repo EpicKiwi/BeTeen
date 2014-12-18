@@ -15,6 +15,8 @@ header div.title
 	z-index:1;
 	transform-origin: 0 100%;
 	margin-bottom: -100px;
+        transition-duration: 0.5s;
+        transition-propery: all;
 }
 header 
 {
@@ -46,6 +48,8 @@ nav#menuPrincipal
 	 height: 104px;
 	 z-index:0;
 	 margin-bottom: 25px;
+        transition-duration: 0.5s;
+        transition-propery: all;
 	 }
 nav div.menu 
  {
@@ -72,4 +76,22 @@ nav div.menu a img
 	top: 25px;
 	box-shadow: 0 0 5px black;
 	
+}
+
+@media screen and (max-width: 800px)
+{
+    nav#menuPrincipal , header div.title
+    {
+        transform: rotate(0deg);
+    }
+    
+    header div.title
+    {
+        margin-bottom: 0;
+    }
+    
+    nav#menuPrincipal
+    {
+        height: 50px;
+    }
 }

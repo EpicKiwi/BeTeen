@@ -14,8 +14,7 @@
 			 </div>
 					<nav id="menuPrincipal">
 					<div class="menu">
-						<a href="#"></a>
-						<a href="#">Paramètres</a>
+						<a href="{{path("be_teen_forum_index")}}">Forum</a>
 						<span>{% if app.user != null %}
 			 <a href="{{path("logout")}}">Déconnexion</a>
 					<a href="#">{{app.user.username}}

@@ -249,6 +249,10 @@ class User implements UserInterface
      */
     public function getAvatar()
     {
+        if($this->avatar == "")
+        {
+            return "default.png";
+        }
         return $this->avatar;
     }
 

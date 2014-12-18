@@ -7,7 +7,9 @@
 	margin-top: 200px;
 	border: solid 1px lightgrey;
 	border-radius: 15px;
-	padding: 10px;
+	padding: 1%;
+        transition-duration: 0.5s;
+        transition-property: all;
 }
 .box table
 {
@@ -27,4 +29,19 @@
 {
 	
 	margin-top: 10px;
+}
+
+@media screen and (max-width: 500px)
+{
+    .box
+    {
+        width: 98%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+	margin-left:none;
+	margin-right:none;
+	margin-bottom: 75px;
+	margin-top: 75px;
+    }
 }
