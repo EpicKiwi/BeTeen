@@ -1,0 +1,40 @@
+<article>
+{% if not isReponse %}
+	<div class="sujetHead">
+		<p class="sujetCat" > {{input.categorie.nom}} <br/> {%if input.verouille == true%} Le input est verrouillé {%else%} Le input est ouvert {%endif%}</p>
+		<h1 class="sujetTitle" > {{input.titre}} </h1>
+	</div>
+{% endif %}
+	<div class="sujetBody">
+	
+		<p> {{input.contenu|striptags|markdown}} </p>
+	</div>
+         <div class="controlBar">
+           Publié le {{input.date|date("d/m/Y")}} a {{input.date|date ("H:i")}}
+        {% if app.user != null and input.auteur == app.user or is_granted('ROLE_MODERATEUR') %}
+            {% if isReponse %}
+            <a href="{{path("be_teen_forum_modifier_reponse",{"categorie":input.sujet.categorie.slug,"sujet":input.sujet.slug,"reponse":input.id})}}" title="Modifier votre réponse"><i class="fi-pencil"></i></a>
+            <a href="{{path("be_teen_forum_supprimer_reponse",{"categorie":input.sujet.categorie.slug,"sujet":input.sujet.slug,"reponse":input.id})}}" title="Supprimer votre réponse"><i class="fi-x"></i></a>
+            {% else %}
+            <a href="{{path("be_teen_forum_modifier_sujet",{"categorie":input.categorie.slug,"sujet":input.slug})}}" title="Modifier votre input"><i class="fi-pencil"></i></a>
+            <a href="{{path("be_teen_forum_supprimer_sujet",{"categorie":input.categorie.slug,"sujet":input.slug})}}" title="Supprimer votre input"><i class="fi-x"></i></a>
+            {% endif %}
+        {% endif %}
+        </div>
+	<div class="sujetFooter" style="background-image: url('{% if input.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~input.auteur.background) }}{% endif %}');">
+		<div class="sujetPhoto">
+			{% if input.auteur.avatar == "" %}
+				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{input.auteur.username}}" />
+			{% else %}
+				<img src="{{ asset("uploads/avatar/"~input.auteur.avatar) }}" alt="Avatar de {{input.auteur.username}}" />
+			{% endif %}
+		</div>
+		<div class="sujetAuteur">
+			<div class="meta">
+				<p>
+					Par {{input.auteur.username}}
+				</p>
+			</div>
+		</div>
+	</div>
+</article>

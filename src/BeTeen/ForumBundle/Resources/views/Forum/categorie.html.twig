@@ -19,7 +19,7 @@
             <td>
                 <a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" title="{{categorie.description}}" >
                     <h3>{{categorie.nom}}</h3>
-                    <p>{{categorie.sujetNumber}} Sujet{% if categorie.sujetNumber > 1 %}s{% endif %}</p>
+                    <p>{{categorie.sujetNumber}} sujet{% if categorie.sujetNumber > 1 %}s{% endif %}</p>
                 </a>
             </td>
         {% endfor %}
@@ -29,11 +29,11 @@
 {% endif %}
 {% if categorieActuelle.sujetsStandards|length > 0 or categorieActuelle.allowSujetStandard %}
 <section class="sujets">
-		<h3>Sujets</h3>
+		<h3>sujets</h3>
                 {% if categorieActuelle.allowSujetStandard and app.user != null %}
                     <article>
                        <div class="infoContainer" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');" >
-                        <a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}">
+                        <a href="{{ path('be_teen_user_ajoutersujet',{"categorie":categorieActuelle.slug}) }}">
                             <h3>Ajouter un sujet</h3>
                         </a>
                        </div>
