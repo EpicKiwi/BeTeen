@@ -88,7 +88,7 @@ class SujetStandard
      */
     public function prePersist()
     {
-        echo("+1 sujet");
+        $this->categorie->setDernierSujet($this);
         $this->categorie->addSujetNumber();
     }
     

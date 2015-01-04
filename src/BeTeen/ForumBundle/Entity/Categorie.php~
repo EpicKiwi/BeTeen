@@ -43,6 +43,11 @@ class Categorie
     private $sujetsStandards;
     
     /**
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard")
+     */
+    private $dernierSujet;
+    
+    /**
      * @var integer
      * 
      * @ORM\Column(name="sujetNumber", type="integer")
@@ -99,7 +104,7 @@ class Categorie
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
-
+    
     /**
      * Get id
      *
@@ -162,6 +167,7 @@ class Categorie
     public function __construct()
     {
         $this->sujetsStandards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sujetNumber = 0;
     }
 
     /**
@@ -413,5 +419,50 @@ class Categorie
     public function getAllowSujetStandard()
     {
         return $this->allowSujetStandard;
+    }
+
+    /**
+     * Set sujetNumber
+     *
+     * @param integer $sujetNumber
+     * @return Categorie
+     */
+    public function setSujetNumber($sujetNumber)
+    {
+        $this->sujetNumber = $sujetNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get sujetNumber
+     *
+     * @return integer 
+     */
+    public function getSujetNumber()
+    {
+        return $this->sujetNumber;
+    }
+    
+    public function addSujetNumber()
+    {
+        $tmp = $this->sujetNumber;
+        $tmp += 1;
+        $this->sujetNumber = $tmp;
+        if($this->parent != null)
+        {
+            $this->parent->addSujetNumber();
+        }
+    }
+    
+    public function delSujetNumber()
+    {
+        $tmp = $this->sujetNumber;
+        $tmp -= 1;
+        $this->sujetNumber = $tmp;
+        if($this->parent != null)
+        {
+            $this->parent->delSujetNumber();
+        }
     }
 }

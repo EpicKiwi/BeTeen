@@ -43,6 +43,11 @@ class Categorie
     private $sujetsStandards;
     
     /**
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard")
+     */
+    private $dernierSujet;
+    
+    /**
      * @var integer
      * 
      * @ORM\Column(name="sujetNumber", type="integer")
@@ -459,5 +464,28 @@ class Categorie
         {
             $this->parent->delSujetNumber();
         }
+    }
+
+    /**
+     * Set dernierSujet
+     *
+     * @param \BeTeen\ForumBundle\Entity\SujetStandard $dernierSujet
+     * @return Categorie
+     */
+    public function setDernierSujet(\BeTeen\ForumBundle\Entity\SujetStandard $dernierSujet = null)
+    {
+        $this->dernierSujet = $dernierSujet;
+
+        return $this;
+    }
+
+    /**
+     * Get dernierSujet
+     *
+     * @return \BeTeen\ForumBundle\Entity\SujetStandard 
+     */
+    public function getDernierSujet()
+    {
+        return $this->dernierSujet;
     }
 }
