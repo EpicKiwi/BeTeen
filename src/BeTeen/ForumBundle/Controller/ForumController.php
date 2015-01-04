@@ -25,6 +25,7 @@ class ForumController extends Controller
         }
         
 	$categories = $repository->children($position,true);
+        $position = $repository->findOneBySlugSujetOrder($categorie);
         
         return $this->render('BeTeenForumBundle:Forum:categorie.html.twig',array("listeCategories"=>$categories,"categorieActuelle"=>$position));
     }

@@ -40,8 +40,9 @@ class SujetStandardRepository extends EntityRepository
     {
         $builder = $this->createQueryBuilder("s")
                         ->leftJoin("s.reponses","r")
-                        ->addSelect("r");
-        $builder->orderBy("s.date","DESC");
+                        ->addSelect("r")
+                        ->orderBy("s.date","DESC");
+        
         return $builder->getQuery()->getResult();
     }
 }

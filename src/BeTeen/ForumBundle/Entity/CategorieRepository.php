@@ -13,8 +13,14 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  */
 class CategorieRepository extends NestedTreeRepository
 {
-    public function childrenSubjectOrder($parent)
+    public function findOneBySlugSujetOrder($slug)
     {
+        $builder = $this->createQueryBuilder("c");
+        $builder->leftJoin("c.sujetsStandards","s")
+                ->addSelect("s")->where("c.slug = :slug")
+                ->setParameter("slug", $slug)
+                ->orderBy("s.date","DESC");
         
+        return $builder->getQuery()->getOneOrNullResult();
     }
 }

@@ -20,6 +20,10 @@
                 <a href="{{ path('be_teen_forum_categorie',{'categorie':categorie.slug}) }}" title="{{categorie.description}}" >
                     <h3>{{categorie.nom}}</h3>
                     <p>{{categorie.sujetNumber}} sujet{% if categorie.sujetNumber > 1 %}s{% endif %}</p>
+                    {% if categorie.dernierSujet != null %}
+                    <!--Dernier sujet : {{categorie.dernierSujet.titre}} le {{categorie.dernierSujet.date | date("d/m/Y")}}
+                    {{categorie.dernierSujet.contenu}}-->
+                    {% endif %}
                 </a>
             </td>
         {% endfor %}
