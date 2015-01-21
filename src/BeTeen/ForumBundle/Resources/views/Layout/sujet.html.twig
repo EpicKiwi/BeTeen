@@ -21,7 +21,7 @@
             {% endif %}
         {% endif %}
         </div>
-	<div class="sujetFooter" style="background-image: url('{% if input.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~input.auteur.background) }}{% endif %}');">
+	<div class="sujetFooter" style="background-image: url('{{ web_image("uploads/back/"~input.auteur.background).zoomCrop(1000,50) }}');">
 		<div class="sujetPhoto">
 			{% if input.auteur.avatar == "" %}
 				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{input.auteur.username}}" />

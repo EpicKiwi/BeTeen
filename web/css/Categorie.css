@@ -178,3 +178,11 @@
     }
 
 }
+
+@media (max-width: 1000px)
+{
+    .sujets article .infoContainer
+    {
+        background-size: auto 100%;
+    }
+}

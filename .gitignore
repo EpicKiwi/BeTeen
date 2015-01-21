@@ -53,6 +53,7 @@ Temporary Items
 /app/config/parameters.yml
 /vendor/
 /vendor/*
+/web/cache/*
 
 # Projet Netbeans
 

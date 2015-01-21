@@ -50,7 +50,7 @@
                 {% endif %}
 		{% for sujet in categorieActuelle.sujetsStandards %}
                     <article>
-                       <div class="infoContainer" style="background-image: url('{% if sujet.auteur.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~sujet.auteur.background) }}{% endif %}');" >
+                       <div class="infoContainer" style="background-image: url('{{ web_image("uploads/back/"~sujet.auteur.background).zoomCrop(1000,50) }}');" >
                         <a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.slug,'sujet':sujet.slug}) }}">
                             <h3>{{sujet.titre}}</h3>
                             <p>Par {{sujet.auteur.username}} le {{sujet.date|date("d/m/Y")}}<br/>

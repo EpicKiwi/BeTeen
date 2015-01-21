@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new BeTeen\AdminBundle\BeTeenAdminBundle(),
             new BeTeen\IndexBundle\BeTeenIndexBundle(),
             new BeTeen\UserBundle\BeTeenUserBundle(),
+            new Gregwar\ImageBundle\GregwarImageBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
