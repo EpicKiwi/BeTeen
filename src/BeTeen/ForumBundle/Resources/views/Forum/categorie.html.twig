@@ -36,7 +36,7 @@
 		<h3>sujets</h3>
                 {% if categorieActuelle.allowSujetStandard and app.user != null %}
                     <article>
-                       <div class="infoContainer" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');" >
+                       <div class="infoContainer" style="background-image: url('{{ web_image("uploads/back/"~app.user.background).zoomCrop(1000,50)}}');" >
                         <a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}">
                             <h3>Ajouter un sujet</h3>
                         </a>
