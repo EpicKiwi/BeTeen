@@ -276,7 +276,14 @@ class User implements UserInterface
      */
     public function getBackground()
     {
-        return $this->background;
+        if($this->background != "")
+        {
+            return $this->background;
+        }
+        else
+        {
+            return "default.jpg";
+        }
     }
 
     /**
