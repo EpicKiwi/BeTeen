@@ -184,6 +184,11 @@ article .controlBar a
 	{
 		font-size: 15px;
 	}
+	
+	nav#menuPrincipal
+	{
+		margin-bottom: 0;
+	}
 }
 
 @media (max-width: 1000px)
