@@ -31,4 +31,10 @@ class UserController extends Controller
                             "last_username"=>$session->get(SecurityContext::LAST_USERNAME),
                             "error"=>$error));
     }
+    
+    public function profilAction($usr)
+    {
+        $user = $this->getDoctrine()->getRepository("BeTeenUserBundle:User")->findOneByUsername($usr);
+        return $this->render("BeTeenUserBundle:User:profil.html.twig",array("utilisateur"=>$user));
+    }
 }
