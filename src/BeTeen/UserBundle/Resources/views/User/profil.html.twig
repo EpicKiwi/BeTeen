@@ -1,0 +1,16 @@
+{% extends "BeTeenIndexBundle:Layout:global.html.twig" %}
+{% block title %}Profil de {{utilisateur.username}}{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{asset("css/profil.css")}}" />
+{% endblock %}
+{% block body %}
+<div class="profilBox" style="background-image: url('{{asset("uploads/back/"~utilisateur.background)}}');">
+<img src="{{asset("uploads/avatar/"~utilisateur.avatar)}}" alt="Avatar de {{utilisateur.username}}" />
+<h3>Profil de {{utilisateur.username}}</h3>
+
+
+
+
+
+
+{% endblock %}

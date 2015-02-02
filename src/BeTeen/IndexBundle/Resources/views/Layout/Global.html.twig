@@ -17,7 +17,7 @@
 						<a href="{{path("be_teen_forum_index")}}">Forum</a>
 						<span>{% if app.user != null %}
 			 <a href="{{path("logout")}}">Déconnexion</a>
-					<a href="#">{{app.user.username}}
+					<a href="{{path ("be_teen_user_profil",{"usr":app.user.username})}}">{{app.user.username}}
 					<img src="{{asset("uploads/avatar/"~app.user.avatar)}}" alt="Avatar de {{app.user.username}}" /></a>
 					{% else %}
 					<a href="{{path("login")}}">Connexion </a>
