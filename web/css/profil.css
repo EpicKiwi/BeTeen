@@ -1,9 +1,43 @@
 h3
 {
 	color: #FFAD1D;
+	text-shadow: 0 0 5px black;
 }
 .profilbox
 {
 	padding-top:30px;
 	margin-top: -49px;
+	
+}
+p
+{
+	color: #FFAD1D;
+	text-shadow: 0 0 10px black;
+	margin: 100px;
+	 clear: both;
+}
+a
+{
+	color: #FFAD1D;
+	text-decoration: underline;
+    font-weight: bold;
+	 font-size: 30px;
+	 text-shadow: 0 0 10px black;
+}
+ul 
+{
+	color: #FFAD1D;
+	text-shadow: 0 0 10px black;
+	 clear: both;
+	 font-size: 20px;
+	padding: 10px;
+}
+.ImageProfil
+{
+	width:150px;
+	height:150px;
+	float: left;
+	border-radius: 150px;
+	border: 5px solid white;
+	position: relative;
 }

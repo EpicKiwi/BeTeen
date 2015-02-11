@@ -5,10 +5,16 @@
 {% endblock %}
 {% block body %}
 <div class="profilBox" style="background-image: url('{{asset("uploads/back/"~utilisateur.background)}}');">
-<img src="{{asset("uploads/avatar/"~utilisateur.avatar)}}" alt="Avatar de {{utilisateur.username}}" />
+<img class="ImageProfil" src="{{asset("uploads/avatar/"~utilisateur.avatar)}}" alt="Avatar de {{utilisateur.username}}" />
 <h3>Profil de {{utilisateur.username}}</h3>
 
-
+<p> Description ici.... </p>
+ <a> Auteur de : </a>
+ <ul>
+	{% for sujet in utilisateur.sujetsStandards  %}
+        <li>{{ sujet.titre }}</li>
+    {% endfor %}
+</ul>
 
 
 
