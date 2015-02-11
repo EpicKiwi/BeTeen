@@ -1,94 +1,18 @@
-<! Doctype html >
-<html>
-    <head>
-        <title>{{siteName}}</title>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="{{asset("foundation-icons/foundation-icons.css")}}" />
-        <style>
-            *
-            {
-                padding: 0;
-                margin: 0;
-                text-align: center;
-                font-family: calibri, arial;
-            }
-            
-            .menu
-            {
-                width: 200px;
-                height: 150px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 50px;
-                border-radius: 200px;
-                padding-top: 50px;
-                transition-duration: 0.5s;
-                transition-property: all;
-            }
-            
-            .menu:hover
-            {
-                box-shadow: 0 0 10px black;
-                background-color: #383838;
-            }
-            
-            .menu:hover:nth-child(even)
-            {
-                transform: rotate(5deg) scale(1.2);
-            }
-            
-            .menu:hover:nth-child(odd)
-            {
-                transform: rotate(-5deg) scale(1.2);
-            }
-            
-            .menu:hover a
-            {
-                color: white;
-            }
-            
-            .menu a
-            {
-                color: #FFAD1D;
-                font-size: 25px;
-                text-decoration: none;
-                font-weight: bold;
-                transition-duration: 0.5s;
-                transition-property: all;
-            }
-            
-            .menu a i
-            {
-                font-size: 75px;
-            }
-            
-            h1
-            {
-                font-size: 75px;
-                color: #FFAD1D;
-            }
-            
-            h2
-            {
-                font-size: 50px;
-                color: #383838;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>{{siteName}}</h1>
-        <h2>{{ index.nom }}</h2>
-        <ul>
-        	{% for categorie in categories %}
-        	<li>{{ categorie.nom }}
-        	{%  endfor %}
-        </ul>
-        <div class="menu"><a href="{{path('be_teen_forum_index')}}" ><i class="fi-comments"></i><br/>Forum</a></div>
-        <div class="menu"><a href="{{path('be_teen_admin_index')}}" ><i class="fi-widget"></i><br/>Administration</a></div>
-        {% if app.user == null %}
-            <div class="menu"><a href="{{path('login')}}" ><i class="fi-unlock"></i><br/>Connexion</a></div>
-        {% else %}
-            <div class="menu"><a href="{{path('logout')}}" ><i class="fi-lock"></i><br/>Déconnexion</a></div>
-        {% endif %}
-    </body>
-</html>
+{% extends "BeTeenIndexBundle:Layout:global.html.twig" %}
+{% block title %}Accueil {{siteName}}{% endblock %}
+{% block body %}
+<div class="indexCategories">
+  {% for categorie in categories %}
+	<article id="categorie-{{ loop.index }}">
+		<h2> {{categorie.nom}}</h2>
+		{% for sousCategorie in categorie.children %}
+			<article id="sousCategorie-{{ loop.index }}">
+				<h3> {{sousCategorie.nom}}</h3>
+			</article>
+		{% endfor %}
+	</article>
+	{% endfor %}
+
+</div>
+	
+{% endblock %}
