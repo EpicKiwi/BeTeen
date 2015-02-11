@@ -57,7 +57,7 @@ class ForumController extends Controller
         
         $sujet = new SujetStandard();
         $position = $repository->findOneBySlug($categorie);
-        if($position->getAllowSujetStandard())
+        if($position->getAllowSujetStandard() || $this->get("security.context")->isGranted("ROLE_MODERATEUR"))
         {
             $sujet->setCategorie($position);
             $sujet->setAuteur($this->get('security.context')->getToken()->getUser());

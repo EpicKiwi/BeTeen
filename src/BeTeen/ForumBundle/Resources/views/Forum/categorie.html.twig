@@ -31,10 +31,10 @@
         </table>
     </nav>
 {% endif %}
-{% if categorieActuelle.sujetsStandards|length > 0 or categorieActuelle.allowSujetStandard %}
+{% if categorieActuelle.sujetsStandards|length > 0 or categorieActuelle.allowSujetStandard or is_granted("ROLE_MODERATEUR") %}
 <section class="sujets">
 		<h3>sujets</h3>
-                {% if categorieActuelle.allowSujetStandard and app.user != null %}
+                {% if ( categorieActuelle.allowSujetStandard or is_granted("ROLE_MODERATEUR") ) and app.user != null  %}
                     <article>
                        <div class="infoContainer" style="background-image: url('{{ web_image("uploads/back/"~app.user.background).zoomCrop(1000,50)}}');" >
                         <a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}">
