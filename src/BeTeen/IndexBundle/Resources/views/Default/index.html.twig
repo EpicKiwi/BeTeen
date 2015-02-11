@@ -1,12 +1,15 @@
 {% extends "BeTeenIndexBundle:Layout:global.html.twig" %}
 {% block title %}Accueil {{siteName}}{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{asset("css/Accueil.css")}}" />
+{% endblock %}
 {% block body %}
 <div class="indexCategories">
   {% for categorie in categories %}
-	<article id="categorie-{{ loop.index }}">
+	<article class="categorie" id="categorie-{{ loop.index }}">
 		<h2> {{categorie.nom}}</h2>
 		{% for sousCategorie in categorie.children %}
-			<article id="sousCategorie-{{ loop.index }}">
+			<article class="sousCategorie" id="sousCategorie-{{ loop.index }}">
 				<h3> {{sousCategorie.nom}}</h3>
 			</article>
 		{% endfor %}
