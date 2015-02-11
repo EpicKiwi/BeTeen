@@ -77,7 +77,12 @@
     </head>
     <body>
         <h1>{{siteName}}</h1>
-        <h2>En construction</h2>
+        <h2>{{ index.nom }}</h2>
+        <ul>
+        	{% for categorie in categories %}
+        	<li>{{ categorie.nom }}
+        	{%  endfor %}
+        </ul>
         <div class="menu"><a href="{{path('be_teen_forum_index')}}" ><i class="fi-comments"></i><br/>Forum</a></div>
         <div class="menu"><a href="{{path('be_teen_admin_index')}}" ><i class="fi-widget"></i><br/>Administration</a></div>
         {% if app.user == null %}

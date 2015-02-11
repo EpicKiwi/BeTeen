@@ -764,12 +764,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "61a13a7d5febaae676519c595b6caeda1e23ff4c"
+                "reference": "acbf585de09e1ec44b3e362291b9db4eb6cfca6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/61a13a7d5febaae676519c595b6caeda1e23ff4c",
-                "reference": "61a13a7d5febaae676519c595b6caeda1e23ff4c",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/acbf585de09e1ec44b3e362291b9db4eb6cfca6c",
+                "reference": "acbf585de09e1ec44b3e362291b9db4eb6cfca6c",
                 "shasum": ""
             },
             "require": {
@@ -834,7 +834,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-02-10 16:59:37"
+            "time": "2015-01-29 15:01:49"
         },
         {
             "name": "gregwar/cache",
@@ -881,17 +881,17 @@
         },
         {
             "name": "gregwar/image",
-            "version": "v2.0.19",
+            "version": "v2.0.18",
             "target-dir": "Gregwar/Image",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/Image.git",
-                "reference": "8faeedfc211162bef5cddc93bea58700c32e06f6"
+                "reference": "280ed7ade8036aab059b1597e299f582157a2b37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Image/zipball/8faeedfc211162bef5cddc93bea58700c32e06f6",
-                "reference": "8faeedfc211162bef5cddc93bea58700c32e06f6",
+                "url": "https://api.github.com/repos/Gregwar/Image/zipball/280ed7ade8036aab059b1597e299f582157a2b37",
+                "reference": "280ed7ade8036aab059b1597e299f582157a2b37",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +925,7 @@
                 "gd",
                 "image"
             ],
-            "time": "2015-02-03 16:44:33"
+            "time": "2014-11-10 13:57:24"
         },
         {
             "name": "gregwar/image-bundle",
@@ -934,17 +934,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/ImageBundle.git",
-                "reference": "5953a49711c8a0f8779a486055f5a0dc98c9ded7"
+                "reference": "f779be819ac2aa716cd34ba60b476872c6c5561b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/ImageBundle/zipball/5953a49711c8a0f8779a486055f5a0dc98c9ded7",
-                "reference": "5953a49711c8a0f8779a486055f5a0dc98c9ded7",
+                "url": "https://api.github.com/repos/Gregwar/ImageBundle/zipball/f779be819ac2aa716cd34ba60b476872c6c5561b",
+                "reference": "f779be819ac2aa716cd34ba60b476872c6c5561b",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
-                "gregwar/image": "2.*",
+                "gregwar/image": "v2.0.18",
                 "php": ">=5.3.0"
             },
             "type": "symfony-bundle",
@@ -970,7 +970,7 @@
                 "Symfony2",
                 "image"
             ],
-            "time": "2015-02-03 16:49:26"
+            "time": "2014-12-13 14:05:08"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1756,16 +1756,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.5.10",
+            "version": "v2.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "6ffe6437a9e734eabd6d092387f065bebfefcd24"
+                "reference": "e082a9f28edfd5a081b60e009889b30c04979924"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/6ffe6437a9e734eabd6d092387f065bebfefcd24",
-                "reference": "6ffe6437a9e734eabd6d092387f065bebfefcd24",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/e082a9f28edfd5a081b60e009889b30c04979924",
+                "reference": "e082a9f28edfd5a081b60e009889b30c04979924",
                 "shasum": ""
             },
             "require": {
@@ -1865,7 +1865,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-02-02 09:26:53"
+            "time": "2015-01-07 12:32:08"
         },
         {
             "name": "twig/extensions",
@@ -1980,17 +1980,17 @@
     "packages-dev": [
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.5.2",
+            "version": "v2.5.1",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "4b09746520a826a7bf34a466ba31c7d8740fef7e"
+                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/4b09746520a826a7bf34a466ba31c7d8740fef7e",
-                "reference": "4b09746520a826a7bf34a466ba31c7d8740fef7e",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/9e23fc3de265ae013690d84aab98e7a84f46edcd",
+                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd",
                 "shasum": ""
             },
             "require": {
@@ -2024,7 +2024,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2015-02-11 07:21:23"
+            "time": "2015-01-13 07:33:46"
         }
     ],
     "aliases": [],
@@ -2035,7 +2035,6 @@
         "gregwar/image-bundle": 20
     },
     "prefer-stable": false,
-    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
     },

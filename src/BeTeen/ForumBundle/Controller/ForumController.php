@@ -24,7 +24,7 @@ class ForumController extends Controller
             throw $this->createNotFoundException('Catégorie non trouvée');
         }
         
-	$categories = $repository->children($position,true);
+		$categories = $repository->children($position,true);
         $position = $repository->findOneBySlugSujetOrder($categorie);
         
         return $this->render('BeTeenForumBundle:Forum:categorie.html.twig',array("listeCategories"=>$categories,"categorieActuelle"=>$position));
