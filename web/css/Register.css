@@ -1,0 +1,121 @@
+.registerContent
+{
+    width: 100%;
+    background-image: url("../img/registerBackground.jpg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin-top: -100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px black;
+    color: #ffffff;
+}
+
+.registerContent .col
+{
+    width: 49.5%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.registerContent .col.description
+{
+    text-align: center;
+}
+
+.registerContent .col.description p
+{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.registerContent .col.description h2, .registerContent .col.description h3
+{
+    font-weight: bold;
+    text-shadow: 0 0 1px black;
+    color : #FFAD1D;
+}
+
+.registerContent .col.description h2
+{
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.registerContent .col.description h3
+{
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.registerContent form
+{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.registerContent form label, .registerContent form input
+{
+    display: block;
+}
+
+.registerContent form label
+{
+    color: #FFAD1D;
+    font-weight: bold;
+    text-align: right;
+    text-shadow: 0 0 5px black;
+}
+
+.registerContent form input[type="text"], .registerContent form input[type="password"]
+{
+    width: 100%;
+    margin-top: 10px;
+    border: solid 1px #FFAD1D;
+    box-shadow: #FFAD1D 0 0 5px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+}
+
+.registerContent form input[type="submit"]
+{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 2px #FFAD1D;
+    background-color: transparent;
+    font-size: 25px;
+    font-weight: bold;
+    color : #FFAD1D;
+    border-radius: 10px;
+    box-shadow: #FFAD1D 0 0 5px;
+}
+
+.registerContent form .input
+{
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 1000px)
+{
+    .registerContent
+    {
+        background-size: auto 100%;
+    }
+}
+
+@media (max-width: 800px)
+{
+    .registerContent .col
+    {
+        width: 100%;
+        display: block;
+    }
+}

@@ -33,6 +33,7 @@ twig:
         siteName: BeTeen
         siteAuthors: EpicKiwi et Soad76290
         siteVersion: Devloppement Version
+        siteDescription: BeTeen est un site de partage et de rencontre entre jeunes.
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
