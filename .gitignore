@@ -59,3 +59,8 @@ composer.lock
 # Projet Netbeans
 
 /nbproject/private/
+
+# Projet PHPStorm
+
+/.idea
+/.idea/*
