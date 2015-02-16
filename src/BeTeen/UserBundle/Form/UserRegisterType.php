@@ -15,7 +15,7 @@ class UserRegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username',   'text')
+            ->add('username',   'text',array("label" => "Nom d'utilisateur"))
             ->add('password',   'repeated',array(
                                                 'type' => 'password',
                                                 'invalid_message' => 'Les mot de passe doivent correspondre',
