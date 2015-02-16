@@ -1,12 +1,8 @@
-<!Doctype html>
-        <html>
-<head>
-    <title>Enregistrement</title>
-</head>
-<body>
+{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% block title %}Rejoingnez nous - {{ parent() }}{% endblock %}
+{% block body %}
 <form method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <input type="submit"/>
 </form>
-</body>
-        </html>
+{% endblock %}
