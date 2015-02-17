@@ -17,25 +17,42 @@
         </div>
         <div class="col">
             <form method="post" {{  form_enctype(form) }}>
-                {{ form_errors(form) }}
+                <div class="error">
+                    {{ form_errors(form) }}
+                </div>
                 <div class="input">
                     {{ form_label(form.username) }}
+                    <div class="error">
+                        {{ form_errors(form.username) }}
+                    </div>
                     {{ form_widget(form.username) }}
                 </div>
                 <div class="input">
                     {{ form_label(form.password.first) }}
+                    <div class="error">
+                        {{ form_errors(form.password.first) }}
+                    </div>
                     {{ form_widget(form.password.first) }}
                 </div>
                 <div class="input">
                     {{ form_label(form.password.second) }}
+                    <div class="error">
+                        {{ form_errors(form.password.second) }}
+                    </div>
                     {{ form_widget(form.password.second) }}
                 </div>
                 <div class="input">
                     {{ form_label(form.email.first) }}
+                    <div class="error">
+                        {{ form_errors(form.email.first) }}
+                    </div>
                     {{ form_widget(form.email.first) }}
                 </div>
                 <div class="input">
                     {{ form_label(form.email.second) }}
+                    <div class="error">
+                        {{ form_errors(form.email.second) }}
+                    </div>
                     {{ form_widget(form.email.second) }}
                 </div>
                 {{ form_rest(form) }}
