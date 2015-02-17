@@ -3,13 +3,17 @@
 namespace BeTeen\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="BeTeen\UserBundle\Entity\UserRepository")
+ * @UniqueEntity(fields = "username", message = "Ce nom d'utilisateur est déjà utilisé")
+ * @UniqueEntity(fields = "email", message = "Cet email est déjà utilisée")
  */
 class User implements UserInterface
 {
@@ -48,6 +52,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message = "Vous n'avez pas entré une adresse email valide")
      */
     private $email;
     
