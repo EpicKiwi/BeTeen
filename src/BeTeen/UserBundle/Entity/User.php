@@ -96,7 +96,11 @@ class User implements UserInterface
     
     public function __construct()
     {
-      $this->roles = array();
+        $this->roles = array();
+        $this->description = "";
+        $this->avatar = "";
+        $this->background = "";
+        $this->roles = array("ROLE_USER");
     }
 
     /**

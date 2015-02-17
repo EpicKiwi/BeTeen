@@ -43,10 +43,6 @@ class UserController extends Controller
     public function registerAction()
     {
         $user = new User();
-        $user->setRoles(array("ROLE_USER"));
-        $user->setAvatar("");
-        $user->setBackground("");
-        $user->setDescription("");
         $form = $this->createForm(new UserRegisterType, $user);
 
         $request = $this->get("request");
