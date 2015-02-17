@@ -71,14 +71,69 @@ class User implements UserInterface
      * @ORM\Column(name="background", type="string", length=255)
      */
     private $background;
-    
 
     /**
-     * @var text
+     * @var datetime
      *
-     * @ORM\Column(name="description", type="string")
+     * @ORM\Column(name="dateNaissance",type="datetime",nullable=true)
      */
-    private $description;
+    private $dateNaissance;
+
+    /**
+     * @var \Datetime
+     *
+     * @ORM\Column(name="dateInscription",type="datetime",nullable=false)
+     */
+    private $dateInscription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
+     */
+    private $localisation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sexe", type="boolean", length=255, nullable=false)
+     */
+    private $sexe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interets", type="text", nullable=true)
+     */
+    private $interets;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google", type="string", length=255, nullable=true)
+     */
+    private $google;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", length=255, nullable=false)
+     */
+    private $status;
 
     /**
      * @var array
@@ -102,7 +157,9 @@ class User implements UserInterface
     public function __construct()
     {
         $this->roles = array();
-        $this->description = "";
+        $this->dateInscription = new \DateTime();
+        $this->sexe = true;
+        $this->status = false;
         $this->avatar = "";
         $this->background = "";
         $this->roles = array("ROLE_USER");
@@ -382,5 +439,212 @@ class User implements UserInterface
     public function getReponsesStandards()
     {
         return $this->reponsesStandards;
+    }
+
+    /**
+     * Set dateNaissance
+     *
+     * @param \DateTime $dateNaissance
+     * @return User
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNaissance
+     *
+     * @return \DateTime 
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * Set dateInscription
+     *
+     * @param \DateTime $dateInscription
+     * @return User
+     */
+    public function setDateInscription($dateInscription)
+    {
+        $this->dateInscription = $dateInscription;
+
+        return $this;
+    }
+
+    /**
+     * Get dateInscription
+     *
+     * @return \DateTime 
+     */
+    public function getDateInscription()
+    {
+        return $this->dateInscription;
+    }
+
+    /**
+     * Set localisation
+     *
+     * @param string $localisation
+     * @return User
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    /**
+     * Get localisation
+     *
+     * @return string 
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param boolean $sexe
+     * @return User
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return boolean 
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Set interets
+     *
+     * @param string $interets
+     * @return User
+     */
+    public function setInterets($interets)
+    {
+        $this->interets = $interets;
+
+        return $this;
+    }
+
+    /**
+     * Get interets
+     *
+     * @return string 
+     */
+    public function getInterets()
+    {
+        return $this->interets;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string 
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set google
+     *
+     * @param string $google
+     * @return User
+     */
+    public function setGoogle($google)
+    {
+        $this->google = $google;
+
+        return $this;
+    }
+
+    /**
+     * Get google
+     *
+     * @return string 
+     */
+    public function getGoogle()
+    {
+        return $this->google;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
