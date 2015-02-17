@@ -20,7 +20,8 @@
 					<a href="{{path ("be_teen_user_profil",{"usr":app.user.username})}}">{{app.user.username}}
 					<img src="{{asset("uploads/avatar/"~app.user.avatar)}}" alt="Avatar de {{app.user.username}}" /></a>
 					{% else %}
-					<a href="{{path("login")}}">Connexion </a>
+					            <a href="{{path("login")}}">Connexion</a>
+                                <a href="{{path("be_teen_user_register")}}">Enregistrement</a>
 					{% endif %}</span>
 					</div>
 					</nav>
