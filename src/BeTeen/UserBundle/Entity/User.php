@@ -141,18 +141,6 @@ class User implements UserInterface
      * @ORM\Column(name="roles", type="array")
      */
     private $roles;
-
-    /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="auteur", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $sujetsStandards;
-
-    /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\ReponseStandard", mappedBy="auteur", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $reponsesStandards;
     
     public function __construct()
     {

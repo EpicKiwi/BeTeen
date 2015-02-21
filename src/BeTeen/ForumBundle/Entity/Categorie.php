@@ -36,16 +36,6 @@ class Categorie
      * @ORM\Column(name="description", type="text")
      */
     private $description;
-	
-    /**
-     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard", mappedBy="categorie", cascade={"remove"})
-     */
-    private $sujetsStandards;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\SujetStandard")
-     */
-    private $dernierSujet;
     
     /**
      * @var integer
