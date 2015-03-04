@@ -48,6 +48,13 @@ class Sujet
      */
     private $nombreReponse;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="BeTeen\ForumBundle\Entity\Categorie", inversedBy="sujets")
+     *
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
 
     /**
      * Get id

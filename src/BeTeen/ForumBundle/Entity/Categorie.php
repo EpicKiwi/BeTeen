@@ -52,6 +52,11 @@ class Categorie
     private $allowSujetStandard;
 
     /**
+     * @ORM\OneToMany(targetEntity="BeTeen\ForumBundle\Entity\Sujet",mappedBy="categorie")
+     */
+    private $sujets;
+
+    /**
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
@@ -156,42 +161,7 @@ class Categorie
      */
     public function __construct()
     {
-        $this->sujetsStandards = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sujetNumber = 0;
-    }
-
-    /**
-     * Add sujetsStandards
-     *
-     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
-     * @return Categorie
-     */
-    public function addSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
-    {
-        $this->sujetsStandards[] = $sujetsStandards;
-    
-        return $this;
-    }
-
-    /**
-     * Remove sujetsStandards
-     *
-     * @param \BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards
-     */
-    public function removeSujetsStandard(\BeTeen\ForumBundle\Entity\SujetStandard $sujetsStandards)
-    {
-        $this->sujetsStandards->removeElement($sujetsStandards);
-    }
-
-    /**
-     * Get sujetsStandards
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSujetsStandards()
-    {
-        
-        return $this->sujetsStandards;
     }
 
     /**

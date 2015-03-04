@@ -16,10 +16,10 @@ class CategorieRepository extends NestedTreeRepository
     public function findOneBySlugSujetOrder($slug)
     {
         $builder = $this->createQueryBuilder("c");
-        $builder->leftJoin("c.sujetsStandards","s")
-                ->addSelect("s")->where("c.slug = :slug")
-                ->setParameter("slug", $slug)
-                ->orderBy("s.date","DESC");
+        $builder->leftJoin("c.sujets","s")
+                ->addSelect("s")
+                ->where("c.slug = :slug")->setParameter("slug", $slug)
+                ->orderBy("s.dateDerniereReponse","DESC");
         
         return $builder->getQuery()->getOneOrNullResult();
     }
