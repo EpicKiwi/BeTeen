@@ -7,7 +7,8 @@ h3
 {
 	padding-top:30px;
 	margin-top: -49px;
-	
+    background-repeat: no-repeat;
+    background-size: 100% auto;
 }
 p
 {
@@ -32,12 +33,78 @@ ul
 	 font-size: 20px;
 	padding: 10px;
 }
-.ImageProfil
+
+.avatar
 {
 	width:150px;
 	height:150px;
-	float: left;
+    float: left;
+    margin-top: -35px;
+    margin-left: -10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
 	border-radius: 150px;
-	border: 5px solid white;
-	position: relative;
+	border: 5px solid #ffad1d;
+    box-shadow: 0 0 15px black;
+    transform: rotate(-10deg);
+}
+
+.profilBox .content
+{
+    width: 80%;
+    min-height: 50%;
+    position: relative;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #ffffff;
+    border: 1px solid lightgray;
+    border-radius: 10px 10px 0 0;
+
+    color: #000000;
+}
+
+.profilBox .box
+{
+    display: inline-block;
+}
+
+.profilBox .box.col-2
+{
+    width: 40%;
+    margin: 0;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.profilBox .box.col-1
+{
+    width: 98%;
+    margin: 0;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.profilBox h3, .profilBox h2
+{
+    text-shadow: none;
+}
+
+.profilBox h2
+{
+    color: #FFAD1D;
+    font-size: 30px;
+}
+
+.profilBox h3
+{
+    color: grey;
+    font-size: 25px;
+}
+
+.profilBox table
+{
+    width: 100%;
 }
