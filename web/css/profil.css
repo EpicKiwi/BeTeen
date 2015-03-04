@@ -1,8 +1,3 @@
-h3
-{
-	color: #FFAD1D;
-	text-shadow: 0 0 5px black;
-}
 .profilbox
 {
 	padding-top:30px;
@@ -10,28 +5,14 @@ h3
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-p
-{
-	color: #FFAD1D;
-	text-shadow: 0 0 10px black;
-	margin: 100px;
-	 clear: both;
-}
-a
+
+.profilBox a
 {
 	color: #FFAD1D;
 	text-decoration: underline;
     font-weight: bold;
 	 font-size: 30px;
 	 text-shadow: 0 0 10px black;
-}
-ul 
-{
-	color: #FFAD1D;
-	text-shadow: 0 0 10px black;
-	 clear: both;
-	 font-size: 20px;
-	padding: 10px;
 }
 
 .avatar
