@@ -34,9 +34,8 @@ class UserController extends Controller
                             "error"=>$error));
     }
     
-    public function profilAction($usr)
+    public function profilAction(User $user)
     {
-        $user = $this->getDoctrine()->getRepository("BeTeenUserBundle:User")->findOneByUsername($usr);
         return $this->render("BeTeenUserBundle:User:profil.html.twig",array("utilisateur"=>$user));
     }
 
