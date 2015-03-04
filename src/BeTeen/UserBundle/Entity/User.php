@@ -534,6 +534,23 @@ class User implements UserInterface
     }
 
     /**
+     * Get sexe
+     *
+     * @return String
+     */
+    public function getFormatedSexe()
+    {
+        if($this->sexe)
+        {
+            return "Homme";
+        }
+        else
+        {
+            return "Femme";
+        }
+    }
+
+    /**
      * Set interets
      *
      * @param string $interets
