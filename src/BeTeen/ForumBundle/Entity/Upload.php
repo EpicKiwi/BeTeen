@@ -26,28 +26,28 @@ class Upload
     /**
      * @var string
      *
-     * @ORM\Column(name="chemin", type="string", length=255)
+     * @ORM\Column(name="chemin", type="string", length=255, nullable=true)
      */
     private $chemin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="taille", type="decimal")
+     * @ORM\Column(name="taille", type="decimal", nullable=true)
      */
     private $taille;
 
@@ -89,7 +89,7 @@ class Upload
         //Le chemin est relatif au dossier WEB
         $this->chemin = $this->getUploadDir()."/".$this->nom;
         //La taille
-        $this->taille = $this->getClientSize();
+        $this->taille = $this->file->getClientSize();
         //On déplace le fichier
         $this->file->move($this->getUploadRootDir(),$this->nom);
     }
@@ -221,7 +221,7 @@ class Upload
     {
         $this->file = $file;
 
-        if(null !== $this->url)
+        if(null !== $this->chemin)
         {
             $this->tempFilename = $this->nom;
             $this->chemin = null;
