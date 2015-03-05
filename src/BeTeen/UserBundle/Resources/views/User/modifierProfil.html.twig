@@ -12,9 +12,10 @@
         </div>
         <div class="field box col-2">
             <div class="error">
-                A venir
+                {{ form_errors(form.background) }}
             </div>
-            Arriere plan
+            {{ form_label(form.background) }}
+            {{ form_widget(form.background) }}
         </div>
         <div class="field">
             <div class="error">
