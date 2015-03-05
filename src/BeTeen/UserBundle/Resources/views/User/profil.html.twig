@@ -1,43 +1,32 @@
-{% extends "BeTeenIndexBundle:Layout:Global.html.twig" %}
+{% extends "BeTeenUserBundle:layout:profil.html.twig" %}
 {% block title %}Profil de {{utilisateur.username}}{% endblock %}
-{% block header %}
-<link rel="stylesheet" href="{{asset("css/profil.css")}}" />
-{% endblock %}
-{% block body %}
-<div class="profilBox" style="background-image: url('{{asset("uploads/back/"~utilisateur.background)}}');">
-    <div class="content">
-        <img class="avatar" src="{{asset("uploads/avatar/"~utilisateur.avatar)}}" alt="Avatar de {{utilisateur.username}}" />
-        <h2><span class="toolBar"><a href="{{ path("be_teen_user_profil_modifier",{"username":utilisateur.username}) }}" ><i class="fi-pencil" title="Modifier le profil"></i></a></span>
-            Profil de {{utilisateur.username}}
-        </h2>
-        <div class="box col-2">
-            <h3>Informations personnelles</h3>
-            <table class="col-2">
-                <tr><td>Date de naissance</td><td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td></tr>
-                <tr><td>Date d'inscription</td><td>{{ utilisateur.dateInscription|date("d/m/Y") }}</td></tr>
-                <tr><td>Sexe</td><td>{{ utilisateur.formatedSexe }}</td></tr>
-                <tr><td>Localisation</td><td>{{ utilisateur.localisation }}</td></tr>
-            </table>
-        </div>
-        <div class="box col-2">
-            <h3>Réseaux sociaux</h3>
-            <table class="col-2">
-                <tr><td>Facebook</td><td>{{ utilisateur.facebook }}</td></tr>
-                <tr><td>Twitter</td><td>{{ utilisateur.twitter }}</td></tr>
-                <tr><td>Google +</td><td>{{ utilisateur.google }}</td></tr>
-            </table>
-        </div>
-        <div class="box col-1">
-            <h3>Sujets crées</h3>
-            <table>
-                {% for sujet in utilisateur.sujetsStandards %}
-                    <tr><td>{{ sujet.titre }}</td><td>{{ sujet.date|date("d/m/Y") }}</td></tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
+{% block content %}
+<h2><span class="toolBar"><a href="{{ path("be_teen_user_profil_modifier",{"username":utilisateur.username}) }}" ><i class="fi-pencil" title="Modifier le profil"></i></a></span>
+    Profil de {{utilisateur.username}}
+</h2>
+<div class="box col-2">
+    <h3>Informations personnelles</h3>
+    <table class="col-2">
+        <tr><td>Date de naissance</td><td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td></tr>
+        <tr><td>Date d'inscription</td><td>{{ utilisateur.dateInscription|date("d/m/Y") }}</td></tr>
+        <tr><td>Sexe</td><td>{{ utilisateur.formatedSexe }}</td></tr>
+        <tr><td>Localisation</td><td>{{ utilisateur.localisation }}</td></tr>
+    </table>
 </div>
-
-
-
+<div class="box col-2">
+    <h3>Réseaux sociaux</h3>
+    <table class="col-2">
+        <tr><td>Facebook</td><td>{{ utilisateur.facebook }}</td></tr>
+        <tr><td>Twitter</td><td>{{ utilisateur.twitter }}</td></tr>
+        <tr><td>Google +</td><td>{{ utilisateur.google }}</td></tr>
+    </table>
+</div>
+<div class="box col-1">
+    <h3>Sujets crées</h3>
+    <table>
+        {% for sujet in utilisateur.sujetsStandards %}
+            <tr><td>{{ sujet.titre }}</td><td>{{ sujet.date|date("d/m/Y") }}</td></tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
