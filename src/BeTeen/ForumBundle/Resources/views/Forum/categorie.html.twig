@@ -36,7 +36,7 @@
 		<h3>sujets</h3>
                 {% if ( categorieActuelle.allowSujetStandard or is_granted("ROLE_MODERATEUR") ) and app.user != null  %}
                     <article>
-                       <div class="infoContainer" style="background-image: url('{{ web_image("uploads/back/"~app.user.background).zoomCrop(1000,50)}}');" >
+                       <div class="infoContainer" style="background-image: url('{{ web_image(app.user.backgroundChemin).zoomCrop(1000,50)}}');" >
                         <a href="{{ path('be_teen_user_ajouterSujet',{"categorie":categorieActuelle.slug}) }}">
                             <h3>Ajouter un sujet</h3>
                         </a>
@@ -44,24 +44,20 @@
 			{% if app.user.avatar == "" %}
 				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{app.user.username}}" />
 			{% else %}
-				<img src="{{ asset("uploads/avatar/"~app.user.avatar) }}" alt="Avatar de {{app.user.username}}" />
+				<img src="{{ asset(app.user.avatarChemin) }}" alt="Avatar de {{app.user.username}}" />
 			{% endif %}
                     </article>
                 {% endif %}
 		{% for sujet in categorieActuelle.sujetsStandards %}
                     <article>
-                       <div class="infoContainer" style="background-image: url('{{ web_image("uploads/back/"~sujet.auteur.background).zoomCrop(1000,50) }}');" >
+                       <div class="infoContainer" style="background-image: url('{{ web_image(sujet.auteur.backgroundChemin).zoomCrop(1000,50) }}');" >
                         <a href="{{ path('be_teen_forum_sujet',{'categorie':categorieActuelle.slug,'sujet':sujet.slug}) }}">
                             <h3>{{sujet.titre}}</h3>
                             <p>Par {{sujet.auteur.username}} le {{sujet.date|date("d/m/Y")}}<br/>
                                 {{sujet.reponses|length}} Reponse{% if sujet.reponses|length > 1 %}s{% endif %}</p>
                         </a>
                        </div>
-			{% if sujet.auteur.avatar == "" %}
-				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{sujet.auteur.username}}" />
-			{% else %}
-				<img src="{{ asset("uploads/avatar/"~sujet.auteur.avatar) }}" alt="Avatar de {{sujet.auteur.username}}" />
-			{% endif %}
+				        <img src="{{ asset(sujet.auteur.avatarChemin) }}" alt="Avatar de {{sujet.auteur.username}}" />
                     </article>
 		{% endfor %}
 </section>

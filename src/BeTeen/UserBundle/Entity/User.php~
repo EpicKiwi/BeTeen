@@ -3,13 +3,17 @@
 namespace BeTeen\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="BeTeen\UserBundle\Entity\UserRepository")
+ * @UniqueEntity(fields = "username", message = "Ce nom d'utilisateur est déjà utilisé")
+ * @UniqueEntity(fields = "email", message = "Cet email est déjà utilisée")
  */
 class User implements UserInterface
 {
@@ -48,6 +52,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message = "Vous n'avez pas entré une adresse email valide")
      */
     private $email;
     
@@ -66,14 +71,69 @@ class User implements UserInterface
      * @ORM\Column(name="background", type="string", length=255)
      */
     private $background;
-    
 
     /**
-     * @var text
+     * @var datetime
      *
-     * @ORM\Column(name="description", type="string")
+     * @ORM\Column(name="dateNaissance",type="datetime",nullable=true)
      */
-    private $description;
+    private $dateNaissance;
+
+    /**
+     * @var \Datetime
+     *
+     * @ORM\Column(name="dateInscription",type="datetime",nullable=false)
+     */
+    private $dateInscription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
+     */
+    private $localisation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sexe", type="boolean", length=255, nullable=false)
+     */
+    private $sexe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interets", type="text", nullable=true)
+     */
+    private $interets;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google", type="string", length=255, nullable=true)
+     */
+    private $google;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", length=255, nullable=false)
+     */
+    private $status;
 
     /**
      * @var array
@@ -96,7 +156,13 @@ class User implements UserInterface
     
     public function __construct()
     {
-      $this->roles = array();
+        $this->roles = array();
+        $this->dateInscription = new \DateTime();
+        $this->sexe = true;
+        $this->status = false;
+        $this->avatar = "";
+        $this->background = "";
+        $this->roles = array("ROLE_USER");
     }
 
     /**
@@ -249,6 +315,10 @@ class User implements UserInterface
      */
     public function getAvatar()
     {
+        if($this->avatar == "")
+        {
+            return "default.png";
+        }
         return $this->avatar;
     }
 
@@ -272,7 +342,14 @@ class User implements UserInterface
      */
     public function getBackground()
     {
-        return $this->background;
+        if($this->background != "")
+        {
+            return $this->background;
+        }
+        else
+        {
+            return "default.jpg";
+        }
     }
 
     /**
@@ -329,5 +406,38 @@ class User implements UserInterface
     public function getSujetsStandards()
     {
         return $this->sujetsStandards;
+    }
+
+    /**
+     * Add reponsesStandards
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards
+     * @return User
+     */
+    public function addReponsesStandard(\BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards)
+    {
+        $this->reponsesStandards[] = $reponsesStandards;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponsesStandards
+     *
+     * @param \BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards
+     */
+    public function removeReponsesStandard(\BeTeen\ForumBundle\Entity\ReponseStandard $reponsesStandards)
+    {
+        $this->reponsesStandards->removeElement($reponsesStandards);
+    }
+
+    /**
+     * Get reponsesStandards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponsesStandards()
+    {
+        return $this->reponsesStandards;
     }
 }

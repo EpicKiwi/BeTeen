@@ -58,27 +58,79 @@ class User implements UserInterface
     
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="avatar", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove","refresh"})
      */
     private $avatar;
-    
+
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove","refresh"})
+     */
+    private $background;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="dateNaissance",type="datetime",nullable=true)
+     */
+    private $dateNaissance;
+
+    /**
+     * @var \Datetime
+     *
+     * @ORM\Column(name="dateInscription",type="datetime",nullable=false)
+     */
+    private $dateInscription;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="background", type="string", length=255)
+     * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
      */
-    private $background;
-    
+    private $localisation;
 
     /**
-     * @var text
+     * @var boolean
      *
-     * @ORM\Column(name="description", type="string")
+     * @ORM\Column(name="sexe", type="boolean", length=255, nullable=false)
      */
-    private $description;
+    private $sexe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interets", type="text", nullable=true)
+     */
+    private $interets;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google", type="string", length=255, nullable=true)
+     */
+    private $google;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", length=255, nullable=false)
+     */
+    private $status;
 
     /**
      * @var array
@@ -102,10 +154,47 @@ class User implements UserInterface
     public function __construct()
     {
         $this->roles = array();
-        $this->description = "";
-        $this->avatar = "";
-        $this->background = "";
+        $this->dateInscription = new \DateTime();
+        $this->sexe = true;
+        $this->status = false;
+        $this->avatar = null;
+        $this->background = null;
         $this->roles = array("ROLE_USER");
+    }
+
+    /**
+     * @Assert\True(message="Le fichier doit etre une image")
+     */
+    public function isImage()
+    {
+
+        $imagesTypes = array("image/gif","image/jpeg","image/pjpeg","image/png","image/x-png","image/tiff");
+
+        if($this->avatar != null && $this->avatar->getFile() != null)
+        {
+            $fileType = $this->avatar->getFile()->getMimeType();
+
+            if (in_array($fileType, $imagesTypes)) {
+                return true;
+            }
+        }
+
+        if($this->background != null && $this->background->getFile() != null)
+        {
+            $fileType = $this->background->getFile()->getMimeType();
+
+            if (in_array($fileType, $imagesTypes)) {
+                return true;
+            }
+        }
+
+        if(($this->background == null || $this->background->getFile() == null)&&($this->avatar == null || $this->avatar->getFile() == null))
+        {
+            return true;
+        }
+
+        return false;
+
     }
 
     /**
@@ -253,16 +342,24 @@ class User implements UserInterface
 
     /**
      * Get avatar
-     *
-     * @return string 
      */
     public function getAvatar()
     {
-        if($this->avatar == "")
-        {
-            return "default.png";
-        }
         return $this->avatar;
+    }
+
+    /**
+     * Get avatarChemin
+     *
+     * @return string 
+     */
+    public function getAvatarChemin()
+    {
+        if($this->avatar == null)
+        {
+            return "uploads/avatar/default.png";
+        }
+        return $this->avatar->getChemin();
     }
 
     /**
@@ -280,18 +377,26 @@ class User implements UserInterface
 
     /**
      * Get background
-     *
-     * @return string 
      */
     public function getBackground()
     {
-        if($this->background != "")
-        {
             return $this->background;
+    }
+
+    /**
+     * Get background
+     *
+     * @return string 
+     */
+    public function getBackgroundChemin()
+    {
+        if($this->background != null)
+        {
+            return $this->background->getChemin();
         }
         else
         {
-            return "default.jpg";
+            return "uploads/back/default.jpg";
         }
     }
 
@@ -382,5 +487,229 @@ class User implements UserInterface
     public function getReponsesStandards()
     {
         return $this->reponsesStandards;
+    }
+
+    /**
+     * Set dateNaissance
+     *
+     * @param \DateTime $dateNaissance
+     * @return User
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNaissance
+     *
+     * @return \DateTime 
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * Set dateInscription
+     *
+     * @param \DateTime $dateInscription
+     * @return User
+     */
+    public function setDateInscription($dateInscription)
+    {
+        $this->dateInscription = $dateInscription;
+
+        return $this;
+    }
+
+    /**
+     * Get dateInscription
+     *
+     * @return \DateTime 
+     */
+    public function getDateInscription()
+    {
+        return $this->dateInscription;
+    }
+
+    /**
+     * Set localisation
+     *
+     * @param string $localisation
+     * @return User
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    /**
+     * Get localisation
+     *
+     * @return string 
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param boolean $sexe
+     * @return User
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return boolean 
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return String
+     */
+    public function getFormatedSexe()
+    {
+        if($this->sexe)
+        {
+            return "Homme";
+        }
+        else
+        {
+            return "Femme";
+        }
+    }
+
+    /**
+     * Set interets
+     *
+     * @param string $interets
+     * @return User
+     */
+    public function setInterets($interets)
+    {
+        $this->interets = $interets;
+
+        return $this;
+    }
+
+    /**
+     * Get interets
+     *
+     * @return string 
+     */
+    public function getInterets()
+    {
+        return $this->interets;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string 
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set google
+     *
+     * @param string $google
+     * @return User
+     */
+    public function setGoogle($google)
+    {
+        $this->google = $google;
+
+        return $this;
+    }
+
+    /**
+     * Get google
+     *
+     * @return string 
+     */
+    public function getGoogle()
+    {
+        return $this->google;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

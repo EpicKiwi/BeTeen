@@ -19,13 +19,9 @@
 		</p>
 	</div>
     </form> 
-	<div class="sujetFooter" style="background-image: url('{% if app.user.background == "" %}{{ asset("uploads/back/default.jpg") }}{% else %}{{ asset("uploads/back/"~app.user.background) }}{% endif %}');">
+	<div class="sujetFooter" style="background-image: url('{{ asset(app.user.backgroundChemin) }}');">
 		<div class="sujetPhoto">
-			{% if app.user.avatar == "" %}
-				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{app.user.username}}" />
-			{% else %}
-				<img src="{{ asset("uploads/avatar/"~app.user.avatar) }}" alt="Avatar de {{app.user.username}}" />
-			{% endif %}
+				<img src="{{ asset(app.user.avatarChemin) }}" alt="Avatar de {{app.user.username}}" />
 		</div>
 		<div class="sujetAuteur">
 			<div class="meta">
