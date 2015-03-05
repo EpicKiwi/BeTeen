@@ -163,6 +163,36 @@ class User implements UserInterface
     }
 
     /**
+     * @Assert\True(message="Le fichier doit etre une image")
+     */
+    public function isImage()
+    {
+
+        $imagesTypes = array("image/gif","image/jpeg","image/pjpeg","image/png","image/x-png","image/tiff");
+
+        if($this->avatar != null && $this->avatar->getFile() != null)
+        {
+            $fileType = $this->avatar->getFile()->getMimeType();
+
+            if (in_array($fileType, $imagesTypes)) {
+                return true;
+            }
+        }
+
+        if($this->background != null && $this->background->getFile() != null)
+        {
+            $fileType = $this->background->getFile()->getMimeType();
+
+            if (in_array($fileType, $imagesTypes)) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    /**
      * Get id
      *
      * @return integer 

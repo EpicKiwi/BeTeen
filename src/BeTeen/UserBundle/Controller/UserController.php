@@ -43,11 +43,8 @@ class UserController extends Controller
     public function modifierProfilAction(User $user)
     {
         $form = $this->createForm(new UserType(), $user);
-
         $request = $this->get('request');
-
         $form->handleRequest($request);
-
         if($form->isValid())
         {
             $manager = $this->getDoctrine()->getManager();

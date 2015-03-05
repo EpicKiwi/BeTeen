@@ -4,6 +4,7 @@ namespace BeTeen\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Upload
@@ -54,6 +55,11 @@ class Upload
     private $file;
 
     private $tempFilename;
+
+    public function __construct()
+    {
+        $this->allowAllTypes = true;
+    }
 
     /**
      * @ORM\PrePersist()
