@@ -61,12 +61,11 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove","refresh"})
      */
     private $avatar;
-    
+
+
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="background", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove","refresh"})
      */
     private $background;
 
@@ -343,18 +342,26 @@ class User implements UserInterface
 
     /**
      * Get background
-     *
-     * @return string 
      */
     public function getBackground()
     {
+            return $this->background;
+    }
+
+    /**
+     * Get background
+     *
+     * @return string 
+     */
+    public function getBackgroundChemin()
+    {
         if($this->background != "")
         {
-            return $this->background;
+            return $this->background->getChemin();
         }
         else
         {
-            return "default.jpg";
+            return "uploads/back/default.jpg";
         }
     }
 
