@@ -153,16 +153,4 @@ class Upload
     {
         return $this->taille;
     }
-
-    public function setFile($file)
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    public function getFile()
-    {
-        return $this->file;
-    }
 }
