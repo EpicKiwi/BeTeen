@@ -3,12 +3,14 @@
 namespace BeTeen\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Upload
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="BeTeen\ForumBundle\Entity\UploadRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Upload
 {
@@ -51,6 +53,67 @@ class Upload
 
     private $file;
 
+    private $tempFilename;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\preUpdate()
+     */
+    public function preUpload()
+    {
+        if($this->file === null) {
+            return;
+        }
+        $this->type = $this->file->getMimeType();
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if($this->file === null) {
+            return;
+        }
+        if(null !== $this->tempFilename)
+        {
+            $oldFile = $this->getUploadRootDir()."/".$this->tempFilename;
+            if(file_exists($oldFile))
+            {
+                unlink($oldFile);
+            }
+        }
+        //Le nom du ficher sera de type 42-FichierLol.png
+        $this->nom = $this->id."-".$this->file->getClientOriginalName();
+        //Le chemin est relatif au dossier WEB
+        $this->chemin = $this->getUploadDir()."/".$this->nom;
+        //La taille
+        $this->taille = $this->getClientSize();
+        //On déplace le fichier
+        $this->file->move($this->getUploadRootDir(),$this->nom);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if(file_exists($this->getUploadRootDir()."/".$this->nom))
+        {
+            unlink($this->nom);
+        }
+    }
+
+    public function getUploadDir()
+    {
+        return "uploads/all";
+    }
+
+    public function getUploadRootDir()
+    {
+        return __DIR__."/../../../../web/".$this->getUploadDir();
+    }
 
     /**
      * Get id
@@ -157,6 +220,13 @@ class Upload
     public function setFile($file)
     {
         $this->file = $file;
+
+        if(null !== $this->url)
+        {
+            $this->tempFilename = $this->nom;
+            $this->chemin = null;
+            $this->nom = null;
+        }
 
         return $this;
     }
