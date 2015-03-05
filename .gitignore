@@ -54,6 +54,7 @@ Temporary Items
 /vendor/
 /vendor/*
 /web/cache/*
+/web/uploads/all/*
 composer.lock
 
 # Projet Netbeans
