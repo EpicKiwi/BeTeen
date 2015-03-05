@@ -42,19 +42,25 @@ class UserController extends Controller
 
     public function modifierProfilAction(User $user)
     {
-        $form = $this->createForm(new UserType(), $user);
-        $request = $this->get('request');
-        $form->handleRequest($request);
-        if($form->isValid())
+        if($user == $this->get('security.context')->getToken()->getUser() || $this->get('security.context')->isGranted('ROLE_MODERATEUR'))
         {
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($user);
-            $manager->flush();
-            $this->get("session")->getFlashBag()->add("info","Votre profil a été modifié");
-            return $this->redirect($this->generateUrl("be_teen_user_profil",array("username"=>$user->getUsername())));
-        }
+            $form = $this->createForm(new UserType(), $user);
+            $request = $this->get('request');
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $manager = $this->getDoctrine()->getManager();
+                $manager->persist($user);
+                $manager->flush();
+                $this->get("session")->getFlashBag()->add("info", "Votre profil a été modifié");
+                return $this->redirect($this->generateUrl("be_teen_user_profil", array("username" => $user->getUsername())));
+            }
 
-        return $this->render("BeTeenUserBundle:User:modifierProfil.html.twig",array("form"=>$form->createView(),"utilisateur"=>$user));
+            return $this->render("BeTeenUserBundle:User:modifierProfil.html.twig", array("form" => $form->createView(), "utilisateur" => $user));
+        }
+        else
+        {
+            throw $this->createAccessDeniedException('Vous n\'avez pas le droit de faire ça');
+        }
     }
 
     public function registerAction()

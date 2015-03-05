@@ -1,7 +1,10 @@
 {% extends "BeTeenUserBundle:layout:profil.html.twig" %}
 {% block title %}Profil de {{utilisateur.username}}{% endblock %}
 {% block content %}
-<h2><span class="toolBar"><a href="{{ path("be_teen_user_profil_modifier",{"username":utilisateur.username}) }}" ><i class="fi-pencil" title="Modifier le profil"></i></a></span>
+<h2>
+    {% if app.user != null and utilisateur == app.user or is_granted('ROLE_MODERATEUR') %}
+    <span class="toolBar"><a href="{{ path("be_teen_user_profil_modifier",{"username":utilisateur.username}) }}" ><i class="fi-pencil" title="Modifier le profil"></i></a></span>
+    {% endif %}
     Profil de {{utilisateur.username}}
 </h2>
 <div class="box col-2">
