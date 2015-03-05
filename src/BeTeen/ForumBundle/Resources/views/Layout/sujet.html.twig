@@ -21,13 +21,9 @@
             {% endif %}
         {% endif %}
         </div>
-	<div class="sujetFooter" style="background-image: url('{{ web_image("uploads/back/"~input.auteur.background).zoomCrop(1000,50) }}');">
+	<div class="sujetFooter" style="background-image: url('{{ web_image(input.auteur.backgroundChemin).zoomCrop(1000,50) }}');">
 		<div class="sujetPhoto">
-			{% if input.auteur.avatar == "" %}
-				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{input.auteur.username}}" />
-			{% else %}
-				<img src="{{ asset("uploads/avatar/"~input.auteur.avatar) }}" alt="Avatar de {{input.auteur.username}}" />
-			{% endif %}
+				<img src="{{ asset(input.auteur.avatarChemin) }}" alt="Avatar de {{input.auteur.username}}" />
 		</div>
 		<div class="sujetAuteur">
 			<div class="meta">

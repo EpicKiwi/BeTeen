@@ -21,13 +21,9 @@
 			</form> 
 		</p>
 	
-	<div class="sujetFooter" style="background-image: url('{{ web_image("uploads/back/"~app.user.background).zoomCrop(1000,50)}}');">
+	<div class="sujetFooter" style="background-image: url('{{ web_image(app.user.backgroundChemin).zoomCrop(1000,50)}}');">
 		<div class="sujetPhoto">
-			{% if app.user.avatar == "" %}
-				<img src="{{ asset("uploads/avatar/default.png") }}" alt="Avatar de {{app.user.username}}" />
-			{% else %}
-				<img src="{{ asset("uploads/avatar/"~app.user.avatar) }}" alt="Avatar de {{app.user.username}}" />
-			{% endif %}
+				<img src="{{ asset(app.user.avatarChemin) }}" alt="Avatar de {{app.user.username}}" />
 		</div>
 		<div class="sujetAuteur">
 			<div class="meta">
