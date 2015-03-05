@@ -58,9 +58,7 @@ class User implements UserInterface
     
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="avatar", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove"})
      */
     private $avatar;
     
@@ -160,7 +158,7 @@ class User implements UserInterface
         $this->dateInscription = new \DateTime();
         $this->sexe = true;
         $this->status = false;
-        $this->avatar = "";
+        $this->avatar = null;
         $this->background = "";
         $this->roles = array("ROLE_USER");
     }
@@ -315,9 +313,9 @@ class User implements UserInterface
      */
     public function getAvatar()
     {
-        if($this->avatar == "")
+        if($this->avatar == null)
         {
-            return "default.png";
+            return "uploads/avatar/default.png";
         }
         return $this->avatar;
     }
