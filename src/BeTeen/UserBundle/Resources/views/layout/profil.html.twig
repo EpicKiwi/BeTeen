@@ -5,7 +5,7 @@
 {% block body %}
 <div class="profilBox" style="background-image: url('{{asset("uploads/back/"~utilisateur.background)}}');">
     <div class="content">
-        <img class="avatar" src="{{asset("uploads/avatar/"~utilisateur.avatar)}}" alt="Avatar de {{utilisateur.username}}" />
+        <img class="avatar" src="{{asset(utilisateur.avatarChemin)}}" alt="Avatar de {{utilisateur.username}}" />
         {% block content %}{% endblock %}
     </div>
 </div>
