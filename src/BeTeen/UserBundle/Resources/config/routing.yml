@@ -2,6 +2,10 @@ be_teen_user_profil:
     path:     /profil/{username}
     defaults:  { _controller: BeTeenUserBundle:User:Profil }
 
+be_teen_user_profil_modifier:
+    path:     /profil/{username}/modifier
+    defaults:  { _controller: BeTeenUserBundle:User:modifierProfil }
+
 be_teen_user_register:
     path:     /enregistrement
     defaults: { _controller: BeTeenUserBundle:User:Register }
