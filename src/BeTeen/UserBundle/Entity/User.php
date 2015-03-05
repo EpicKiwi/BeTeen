@@ -158,7 +158,7 @@ class User implements UserInterface
         $this->sexe = true;
         $this->status = false;
         $this->avatar = null;
-        $this->background = "";
+        $this->background = null;
         $this->roles = array("ROLE_USER");
     }
 
@@ -186,6 +186,11 @@ class User implements UserInterface
             if (in_array($fileType, $imagesTypes)) {
                 return true;
             }
+        }
+
+        if(($this->background == null || $this->background->getFile() == null)&&($this->avatar == null || $this->avatar->getFile() == null))
+        {
+            return true;
         }
 
         return false;
