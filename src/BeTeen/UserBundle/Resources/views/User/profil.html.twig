@@ -22,6 +22,12 @@
     </table>
 </div>
 <div class="box col-1">
+    <h3>Centres d'interet</h3>
+   <p>
+       {{ utilisateur.interets }}
+   </p>
+</div>
+<div class="box col-1">
     <h3>Sujets crées</h3>
     <table>
         {% for sujet in utilisateur.sujetsStandards %}

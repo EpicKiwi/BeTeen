@@ -43,6 +43,7 @@
     display: inline-block;
     padding-left: 1%;
     padding-right: 1%;
+    margin-bottom: 20px !important;
 }
 
 .profilBox .col-2
@@ -112,11 +113,6 @@ form .field .error ul li
     color: #FFAD1D;
     font-weight: bold;
     list-style-type: none;
-}
-
-form
-{
-    margin-bottom: 20px !important;
 }
 
 form .field input[type="text"], form .field input[type="email"], form .field textarea, form .field select
