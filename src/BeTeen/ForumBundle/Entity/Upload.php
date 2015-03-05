@@ -57,7 +57,7 @@ class Upload
 
     /**
      * @ORM\PrePersist()
-     * @ORM\preUpdate()
+     * @ORM\PreUpdate()
      */
     public function preUpload()
     {
@@ -65,6 +65,16 @@ class Upload
             return;
         }
         $this->type = $this->file->getMimeType();
+        //Le nom du ficher sera de type 42-FichierLol.png
+        $this->nom = $this->file->getClientOriginalName();
+        for($i = 1; file_exists($this->getUploadRootDir()."/".$this->nom); $i++)
+        {
+            $this->nom = $i."-".$this->file->getClientOriginalName();
+        }
+        //Le chemin est relatif au dossier WEB
+        $this->chemin = $this->getUploadDir()."/".$this->nom;
+        //La taille
+        $this->taille = $this->file->getClientSize();
     }
 
     /**
@@ -84,14 +94,9 @@ class Upload
                 unlink($oldFile);
             }
         }
-        //Le nom du ficher sera de type 42-FichierLol.png
-        $this->nom = $this->id."-".$this->file->getClientOriginalName();
-        //Le chemin est relatif au dossier WEB
-        $this->chemin = $this->getUploadDir()."/".$this->nom;
-        //La taille
-        $this->taille = $this->file->getClientSize();
         //On déplace le fichier
         $this->file->move($this->getUploadRootDir(),$this->nom);
+        $this->file = null;
     }
 
     /**

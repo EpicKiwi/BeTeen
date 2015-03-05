@@ -17,7 +17,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('avatar',         new UploadType(),   array("required"=>false))
+            ->add('avatar',         new UploadType(),   array("required"=>false,"label"=>"Avatar"))
             //->add('background')
             ->add('dateNaissance',  'birthday')
             ->add('localisation',   "text",             array("required"=>false))

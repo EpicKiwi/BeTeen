@@ -58,7 +58,7 @@ class User implements UserInterface
     
 
     /**
-     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="BeTeen\ForumBundle\Entity\Upload",cascade={"persist","remove","refresh"})
      */
     private $avatar;
     
@@ -325,7 +325,7 @@ class User implements UserInterface
         {
             return "uploads/avatar/default.png";
         }
-        return $this->avatar->chemin;
+        return $this->avatar->getChemin();
     }
 
     /**
