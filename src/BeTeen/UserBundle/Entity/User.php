@@ -308,16 +308,24 @@ class User implements UserInterface
 
     /**
      * Get avatar
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Get avatarChemin
      *
      * @return string 
      */
-    public function getAvatar()
+    public function getAvatarChemin()
     {
         if($this->avatar == null)
         {
             return "uploads/avatar/default.png";
         }
-        return $this->avatar;
+        return $this->avatar->chemin;
     }
 
     /**

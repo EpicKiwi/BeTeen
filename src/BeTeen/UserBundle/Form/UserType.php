@@ -2,6 +2,7 @@
 
 namespace BeTeen\UserBundle\Form;
 
+use BeTeen\ForumBundle\Form\UploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,15 +17,15 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            //->add('avatar')
+            ->add('avatar',         new UploadType(),   array("required"=>false))
             //->add('background')
             ->add('dateNaissance',  'birthday')
-            ->add('localisation',   "text",     array("required"=>false))
-            ->add('sexe',           'choice',   array("choices"=>array(true=>"Homme",false=>"Femme")))
-            ->add('interets',       "textarea", array("required"=>false))
-            ->add('facebook',       "text",     array("required"=>false))
-            ->add('twitter',        "text",     array("required"=>false))
-            ->add('google',         "text",     array("required"=>false))
+            ->add('localisation',   "text",             array("required"=>false))
+            ->add('sexe',           'choice',           array("choices"=>array(true=>"Homme",false=>"Femme")))
+            ->add('interets',       "textarea",         array("required"=>false))
+            ->add('facebook',       "text",             array("required"=>false))
+            ->add('twitter',        "text",             array("required"=>false))
+            ->add('google',         "text",             array("required"=>false))
         ;
     }
     
