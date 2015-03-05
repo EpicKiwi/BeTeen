@@ -6,15 +6,6 @@
     background-size: 100% auto;
 }
 
-.profilBox a
-{
-	color: #FFAD1D;
-	text-decoration: underline;
-    font-weight: bold;
-	 font-size: 30px;
-	 text-shadow: 0 0 10px black;
-}
-
 .avatar
 {
 	width:150px;
@@ -88,4 +79,44 @@
 .profilBox table
 {
     width: 100%;
+}
+
+.profilBox table.col-2 td
+{
+    width: 50%;
+}
+
+.profilBox h2 .toolBar
+{
+    color: gray;
+}
+
+.profilBox h2 .toolBar a
+{
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width: 1350px)
+{
+    .profilBox .box.col-2
+    {
+        width: 98%;
+    }
+}
+
+@media (max-width: 1000px)
+{
+    .profilBox .content
+    {
+        width: 100%;
+        border-radius: 0;
+        border: none;
+    }
+
+    .profilBox .content .avatar
+    {
+        margin-left: 5px;
+        margin-top: -75px;
+    }
 }

@@ -7,10 +7,12 @@
 <div class="profilBox" style="background-image: url('{{asset("uploads/back/"~utilisateur.background)}}');">
     <div class="content">
         <img class="avatar" src="{{asset("uploads/avatar/"~utilisateur.avatar)}}" alt="Avatar de {{utilisateur.username}}" />
-        <h2>Profil de {{utilisateur.username}}</h2>
+        <h2><span class="toolBar"><a href="#" ><i class="fi-pencil" title="Modifier le profil"></i></a></span>
+            Profil de {{utilisateur.username}}
+        </h2>
         <div class="box col-2">
             <h3>Informations personnelles</h3>
-            <table>
+            <table class="col-2">
                 <tr><td>Date de naissance</td><td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td></tr>
                 <tr><td>Date d'inscription</td><td>{{ utilisateur.dateInscription|date("d/m/Y") }}</td></tr>
                 <tr><td>Sexe</td><td>{{ utilisateur.formatedSexe }}</td></tr>
@@ -19,7 +21,7 @@
         </div>
         <div class="box col-2">
             <h3>Réseaux sociaux</h3>
-            <table>
+            <table class="col-2">
                 <tr><td>Facebook</td><td>{{ utilisateur.facebook }}</td></tr>
                 <tr><td>Twitter</td><td>{{ utilisateur.twitter }}</td></tr>
                 <tr><td>Google +</td><td>{{ utilisateur.google }}</td></tr>
