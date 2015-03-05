@@ -390,7 +390,7 @@ class User implements UserInterface
      */
     public function getBackgroundChemin()
     {
-        if($this->background != "")
+        if($this->background != null)
         {
             return $this->background->getChemin();
         }
