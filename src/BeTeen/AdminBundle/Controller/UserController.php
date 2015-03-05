@@ -33,7 +33,7 @@ class UserController extends Controller
 		$utilisateur->setBackground("");
 		$utilisateur->setDescription("");
         
-        $form = $this->createForm(new UserType(),$utilisateur);
+        $form = $this->createForm(new AdminUserType(),$utilisateur);
         
         $requete = $this->get("request");
         if($requete->getMethod() == "POST")

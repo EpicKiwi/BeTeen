@@ -41,22 +41,20 @@
 .profilBox .box
 {
     display: inline-block;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
-.profilBox .box.col-2
+.profilBox .col-2
 {
     width: 40%;
     margin: 0;
-    padding-left: 1%;
-    padding-right: 1%;
 }
 
-.profilBox .box.col-1
+.profilBox .col-1
 {
     width: 98%;
     margin: 0;
-    padding-left: 1%;
-    padding-right: 1%;
 }
 
 .profilBox h3, .profilBox h2
@@ -66,7 +64,7 @@
 
 .profilBox h2
 {
-    color: #FFAD1D;
+    color: #ffad1d;
     font-size: 30px;
 }
 
@@ -95,6 +93,72 @@
 {
     color: inherit;
     text-decoration: none;
+}
+
+form .field,form .error
+{
+    width: 100%;
+    display: inline-block;
+}
+
+form .field
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form .field .error ul li
+{
+    color: #FFAD1D;
+    font-weight: bold;
+    list-style-type: none;
+}
+
+form
+{
+    margin-bottom: 20px !important;
+}
+
+form .field input[type="text"], form .field input[type="email"], form .field textarea, form .field select
+{
+    width: 99.5%;
+    border: 1px grey solid;
+    padding: 0.25%;
+    border-radius: 5px;
+    font-size: 100%;
+}
+
+form .field input[type="text"]:focus, form .field input[type="email"]:focus, form .field textarea:focus, form .field select:focus
+{
+    border-color: #FFAD1D;
+}
+
+form .field textarea
+{
+    max-width: 99.5%;
+    min-height: 150px;
+    max-height: 500px;
+}
+
+form .field label
+{
+    width: 100%;
+    display: block;
+}
+
+form .field.date select
+{
+    width: calc( 100% / 3 );
+}
+
+form .field input[type="submit"]
+{
+    width: 24.5%;
+    padding: 0.25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 100%;
 }
 
 @media (max-width: 1350px)

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class AdminUserType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,16 +15,10 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('username')
+            ->add('password','password',array("required"=>false))
             ->add('email')
-            //->add('avatar')
-            //->add('background')
-            ->add('dateNaissance',  'birthday')
-            ->add('localisation',   "text",     array("required"=>false))
-            ->add('sexe',           'choice',   array("choices"=>array(true=>"Homme",false=>"Femme")))
-            ->add('interets',       "textarea", array("required"=>false))
-            ->add('facebook',       "text",     array("required"=>false))
-            ->add('twitter',        "text",     array("required"=>false))
-            ->add('google',         "text",     array("required"=>false))
+            ->add('roles','choice',array('choices'=>array('ROLE_USER'=>'Utilisateur','ROLE_MODERATEUR'=>'Modérateur','ROLE_ADMIN'=>'Administrateur','ROLE_SUPER_ADMIN'=>'Super administrateur'),'multiple'=>true))
         ;
     }
     

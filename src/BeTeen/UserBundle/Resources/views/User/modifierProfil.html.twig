@@ -1,0 +1,68 @@
+{% extends "BeTeenUserBundle:layout:profil.html.twig" %}
+{% block title %}Profil de {{utilisateur.username}}{% endblock %}
+{% block content %}
+<h2>Modifier le profil de {{utilisateur.username}}</h2>
+    <form class="box col-1" method="post" {{ form_enctype(form) }}>
+        <div class="field">
+            <div class="error">
+                {{ form_errors(form.email) }}
+            </div>
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="field date col-2">
+            <div class="error">
+                {{ form_errors(form.dateNaissance) }}
+            </div>
+            {{ form_label(form.dateNaissance) }}
+            {{ form_widget(form.dateNaissance) }}
+        </div>
+        <div class="field col-2 box">
+            <div class="error">
+                {{ form_errors(form.sexe) }}
+            </div>
+            {{ form_label(form.sexe) }}
+            {{ form_widget(form.sexe) }}
+        </div>
+        <div class="field">
+            <div class="error">
+                {{ form_errors(form.localisation) }}
+            </div>
+            {{ form_label(form.localisation) }}
+            {{ form_widget(form.localisation) }}
+        </div>
+        <div class="field">
+            <div class="error">
+                {{ form_errors(form.interets) }}
+            </div>
+            {{ form_label(form.interets) }}
+            {{ form_widget(form.interets) }}
+        </div>
+        <div class="field">
+            <div class="error">
+                {{ form_errors(form.facebook) }}
+            </div>
+            {{ form_label(form.facebook) }}
+            {{ form_widget(form.facebook) }}
+        </div>
+        <div class="field">
+            <div class="error">
+                {{ form_errors(form.twitter) }}
+            </div>
+            {{ form_label(form.twitter) }}
+            {{ form_widget(form.twitter) }}
+        </div>
+        <div class="field">
+            <div class="error">
+                {{ form_errors(form.google) }}
+            </div>
+            {{ form_label(form.google) }}
+            {{ form_widget(form.google) }}
+        </div>
+        {{ form_rest(form) }}
+        <div class="field">
+            <input type="submit" value="Mettre a jour" />
+        </div>
+    </form>
+</div>
+{% endblock %}
